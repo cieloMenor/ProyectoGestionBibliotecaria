@@ -1,0 +1,74 @@
+.modo{
+    width: 20px;
+    font-size: 30px;
+    margin: auto;
+    cursor: pointer;
+
+}
+.sidebar-dark-primary{
+    background: #1d7fa3 !important;
+}
+.darkmode #modo{
+    color: rgb(70, 69, 67);
+}
+.darkmode{
+    background-color:#202C33 ;
+    color: white;
+}
+.darkmode .usuario{
+    color: white
+}
+.darkmode .wrapper{
+    background: #202C33;
+    color: white;
+}
+.darkmode .wrapper nav {
+    background: #202C33;
+    color: white;
+}
+.darkmode .wrapper nav ul li a {
+    color: white;
+}
+.darkmode .sidebar-dark-primary{
+    background: #202C33 !important;
+  }
+.darkmode .content-wrapper{
+    background-color: #202C33 !important;
+}
+.darkmode .main-footer{
+    background-color: #202C33 !important;
+}
+.darkmode .content-wrapper .content .container-fluid .cards .col .card,
+.darkmode .verperrito{
+    background-color: #455355 !important;
+    border-color: white;
+
+}
+.darkmode .modalperrito .modal-content{
+    color: white;
+    background-color: #0a5763;
+}
+
+.ayudanos, .perrito{
+    color: #128091;
+}
+.darkmode .perrito, .darkmode .ayudanos{
+    color: white;
+}
+
+
+/* .content-wrapper{
+    background-color:#17212D;
+}
+.main-header{
+    background-color: #17212D ;
+}
+.nav-link{
+    color: white;
+}
+.main-sidebar{
+    background-color: #17212D;
+}
+.main-footer{
+    background-color: #17212D;
+} */
