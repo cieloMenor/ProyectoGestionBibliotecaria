@@ -19,12 +19,22 @@ class LectorController extends Controller
         $buscarpor=$request->get('buscarpor');
 
         
-        $lectores = Lector::join('estadolectores','estadolectores.idestadolector','lectores.idestadolector')
+        $lectores = Lector::where('EstadoEliminadoLector','=',1)
+        ->join('estadolectores','estadolectores.idestadolector','lectores.idestadolector')
         ->where('lectores.ApellidosLector','like','%'.$buscarpor.'%')->orderby('FechaRegistroLector')->paginate($this::PAGINATION);
         
-        //  $edad=Carbon::parse($lectores->FechaNacLector)->age;
-        //  dump($edad);
+        //$edades=[];
+        //$x =0;
+        // foreach ($lectores as $item) {
+        //     $edad=Carbon::parse($item->FechaNacLector)->age;
+        //     dump($edad);
 
+        //     //$lectores[$x]->edad=$edad;
+        //    $edades +=[$edad];
+            
+        //     // $edades[$x]->edad=$edad;
+        //     // $x++;
+        // }
          
 
         return view('lectores.index',compact('lectores','buscarpor'));
@@ -37,7 +47,7 @@ class LectorController extends Controller
      */
     public function create()
     {
-        //
+        return view('lectores.create');
     }
 
     /**
@@ -48,7 +58,61 @@ class LectorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=request()->validate([
+            'DNILector' => 'required|numeric',
+            'NombresLector' =>'required',
+            'ApellidosLector' =>'required',
+            'CorreoLector' =>'required|email|max:255',
+            'FechaNacLector' => 'required',
+            'CelularLector' => 'required|numeric',
+            'DireccionLector' => 'required',
+        ],
+        [
+            'DNILector.required'=>'Registre DNI de lector',
+            'DNILector.numeric'=>'Registre solo valores numericos',
+            'NombresLector' =>'Registro Nombres del lector',
+            'ApellidosLector' =>'Registro Apellidos del lector',
+            'CorreoLector.required'=>'Registre correo',
+            'CorreoLector.email'=>'Registre correo electrónico válido',
+            'CorreoLector.max'=>'Máximo 255 caracteres para el correo',
+            'FechaNacLector.required'=>'Registre fecha de nacimiento',
+            'horaregistrotramite.required'=>'Registre hora de registro',
+            'CelularLector.required'=>'Registre celular',
+            'CelularLector.numeric'=>'Registre solo valores numericos',
+            'DireccionLector.required'=>'Registre dirección de lector',
+            
+        ]);
+
+        $dni=$request->get('DNILector'); //se almacenara el valor de name ingresado
+        $query=Lector::where('DNILector','=',$dni)->get();// comparación de name y se almacena en $query
+        if($query->count()!=0) //si lo encuentra, osea si no esta vacia, entonces analizara el password ahora
+        {
+            
+            return back()->withErrors(['DNILector'=> 'Lector ya registrado'])
+            ->withInput(request(['DNILector','NombresLector','ApellidosLector','CorreoLector','FechaNacLector','CelularLector',
+            'DireccionLector']));                   
+        }
+        else{ // si no lo encuentra con el name
+
+            $lector = new Lector();
+            $lector->DNILector = $request->DNILector;
+            $lector->NombresLector = $request->NombresLector;
+            $lector->ApellidosLector = $request->ApellidosLector;
+            $lector->idestadolector = 1;
+            $lector->CorreoLector = $request->CorreoLector;
+            $lector->FechaNacLector = $request->FechaNacLector;
+            $lector->FecharegistroLector = now();
+            $lector->FechaUpdateLector = now();
+            $lector->CelularLector = $request->CelularLector;
+            $lector->DireccionLector = $request->DireccionLector;
+            $lector->EstadoHabLector = 1;
+            $lector->EstadoEliminadoLector = 1;
+
+            $lector->save();
+
+            return redirect()->route('lector.index')->with('datos','Registro Exitoso ...!');
+
+        }
     }
 
     /**
@@ -68,9 +132,10 @@ class LectorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($DNILector)
     {
-        //
+        $lector = Lector::find($DNILector);
+        return view('lectores.edit',compact('lector'));
     }
 
     /**
@@ -80,9 +145,43 @@ class LectorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $DNILector)
     {
-        //
+        $data=request()->validate([
+            'NombresLector' =>'required',
+            'ApellidosLector' =>'required',
+            'CorreoLector' =>'required|email|max:255',
+            'FechaNacLector' => 'required',
+            'CelularLector' => 'required|numeric',
+            'DireccionLector' => 'required',
+        ],
+        [
+            'NombresLector' =>'Registro Nombres del lector',
+            'ApellidosLector' =>'Registro Apellidos del lector',
+            'CorreoLector.required'=>'Registre correo',
+            'CorreoLector.email'=>'Registre correo electrónico válido',
+            'CorreoLector.max'=>'Máximo 255 caracteres para el correo',
+            'FechaNacLector.required'=>'Registre fecha de nacimiento',
+            'horaregistrotramite.required'=>'Registre hora de registro',
+            'CelularLector.required'=>'Registre celular',
+            'CelularLector.numeric'=>'Registre solo valores numericos',
+            'DireccionLector.required'=>'Registre dirección de lector',
+            
+        ]);
+            
+            $lector = Lector::find($DNILector);
+            $lector->NombresLector = $request->NombresLector;
+            $lector->ApellidosLector = $request->ApellidosLector;
+            $lector->CorreoLector = $request->CorreoLector;
+            $lector->FechaNacLector = $request->FechaNacLector;
+            $lector->FechaUpdateLector = now();
+            $lector->CelularLector = $request->CelularLector;
+            $lector->DireccionLector = $request->DireccionLector;
+            $lector->EstadoHabLector = $request->EstadoHabLector;
+
+            $lector->save();
+
+            return redirect()->route('lector.index')->with('datos','Registro Actualizado ...!');
     }
 
     /**
@@ -91,8 +190,13 @@ class LectorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($DNILector)
     {
-        //
+        $lector = Lector::find($DNILector);
+        $lector->EstadoEliminadoLector = '0';
+        $lector->EstadoHabLector = '0';
+        $lector->save();
+        return redirect()->route('lector.index')->with('datos','Registro Eliminado ...!');
+
     }
 }

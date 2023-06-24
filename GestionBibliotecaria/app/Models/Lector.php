@@ -9,9 +9,9 @@ class Lector extends Model
 {
     use HasFactory;
     protected $table='lectores';
-    protected $primaryKey='DNIlector';
+    protected $primaryKey='DNILector';
     protected $fillable=['NombresLector','ApellidosLector','idestadolector','CorreoLector','FechaNacLector',
     'FecharegistroLector','FechaUpdateLector','CelularLector',
-    'DireccionLector','EstadoHabLector'];
+    'DireccionLector','EstadoHabLector','EstadoEliminadoLector'];
     public $timestamps=false;
 }

@@ -98,8 +98,8 @@ class UserController extends Controller
         if($query->count()!=0) //si lo encuentra, osea si no esta vacia, entonces analizara el password ahora
         {
             
-            return back()->withErrors(['password'=> 'Usuario ya registrado'])
-            ->withInput(request(['name','password']));                   
+            return back()->withErrors(['name'=> 'Usuario ya registrado'])
+            ->withInput(request(['name','password','email']));                   
         }
         else{ // si no lo encuentra con el name
 

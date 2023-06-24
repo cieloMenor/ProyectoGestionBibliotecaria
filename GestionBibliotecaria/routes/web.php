@@ -32,3 +32,7 @@ Route::get('/salirregistro',function(){
     return redirect()->route('login');})->name('usuario.salir');
 
 Route::resource('lector', LectorController::class);
+Route::get('/cancelar',function(){
+    return redirect()->route('lector.index')->with('datos','Acción Cancelada...!');
+  })->name('lector.cancelar');
+

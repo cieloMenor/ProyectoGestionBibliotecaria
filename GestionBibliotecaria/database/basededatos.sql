@@ -24,8 +24,14 @@ insert into estadolectores(estadolector) values ('SIN_LIBRO'),('DEUDOR_LIBRO'),
 CREATE TABLE lectores( DNILector char(8),NombresLector varchar(30),ApellidosLector varchar(50),
 idestadolector integer ,CorreoLector varchar(150),FechaNacLector date,
 FecharegistroLector datetime,FechaUpdateLector datetime,CelularLector varchar(11),
-DireccionLector varchar(100),EstadoHabLector tinyint, primary key(DNILector),
+DireccionLector varchar(100),EstadoHabLector tinyint, EstadoEliminadoLector tinyint,primary key(DNILector),
 foreign key(idestadolector) references estadolectores(idestadolector));
+
+INSERT INTO `lectores` (`DNILector`, `NombresLector`, `ApellidosLector`, `idestadolector`, `CorreoLector`, `FechaNacLector`, `FecharegistroLector`, `FechaUpdateLector`, `CelularLector`, `DireccionLector`, `EstadoHabLector`,`EstadoEliminadoLector`) VALUES
+('19257821', 'Maria Magdalena', 'Saavedra Chalán', 1, 'maria1@gmail.com', '2002-05-18', '2023-06-24 16:33:20', '2023-06-24 16:33:20', '985687854', 'Las palmeras', 1,1),
+('74970694', 'Cielo Yamile', 'Menor Saavedra', 1, 'cmenorsaavedra@gmail.com', '2000-05-18', '2023-06-24 06:18:45', '2023-06-24 06:18:45', '929869004', 'Las Palmeras', 1,1),
+('78963653', 'Margot Felicita', 'Sanchez Valdez', 1, 'margot@gmail.com', '1999-06-18', '2023-06-24 17:17:00', '2023-06-24 20:02:04', '963652369', 'Las Palmeras', 0,1);
+
 
 create table autores(idautor integer auto_increment, nombresautor varchar(30),apellidosautor
 varchar(50),estadoautor tinyint,fecharegistroAutor datetime,fechaupdateAutor datetime,
