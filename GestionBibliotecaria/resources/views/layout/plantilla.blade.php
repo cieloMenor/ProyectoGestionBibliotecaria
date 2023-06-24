@@ -131,7 +131,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="{{--route('perrito.index')--}}" class="nav-link">
+                    <a href="{{route('lector.index')}}" class="nav-link">
                       <i class="fa fa-user" aria-hidden="true"></i>
                       <p>Lectores</p>
                     </a>

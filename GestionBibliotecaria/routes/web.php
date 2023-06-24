@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LectorController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -30,3 +31,4 @@ Route::resource('usuario', UserController::class);
 Route::get('/salirregistro',function(){
     return redirect()->route('login');})->name('usuario.salir');
 
+Route::resource('lector', LectorController::class);

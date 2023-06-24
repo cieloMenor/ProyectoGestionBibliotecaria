@@ -110,6 +110,7 @@ class UserController extends Controller
             $usuario->token= Str::random(10);
             $usuario->created_at = Date('y-m-d');
             $usuario->updated_at = Date('y-m-d');
+            $usuario->idrol = 2;
             $usuario->save();
 
             return view('home');
