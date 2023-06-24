@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
 
 class UserController extends Controller
 {
@@ -81,7 +84,36 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=request()->validate([
+            'name'=>'required',
+            'password'=>'required'
+        ],
+        [
+            'name.required'=>'Ingrese Usuario',
+            'password.required'=>'Ingresa Contraseña'
+        ]);
+        
+        $name=$request->get('name'); //se almacenara el valor de name ingresado
+        $query=User::where('name','=',$name)->get();// comparación de name y se almacena en $query
+        if($query->count()!=0) //si lo encuentra, osea si no esta vacia, entonces analizara el password ahora
+        {
+            
+            return back()->withErrors(['password'=> 'Usuario ya registrado'])
+            ->withInput(request(['name','password']));                   
+        }
+        else{ // si no lo encuentra con el name
+
+            $usuario = new User();
+            $usuario->name = $request->name;
+            $usuario->email = $request->email;
+            $usuario->password = Hash::make($request->password) ;
+            $usuario->token= Str::random(10);
+            $usuario->created_at = Date('y-m-d');
+            $usuario->updated_at = Date('y-m-d');
+            $usuario->save();
+
+            return view('home');
+        }
     }
 
     /**

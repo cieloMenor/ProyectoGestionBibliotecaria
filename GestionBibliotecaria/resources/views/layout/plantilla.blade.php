@@ -26,7 +26,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../index3.html" class="nav-link">Home</a>
+        <a href="{{route('home')}}" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block ">
         <a href="#" class="nav-link">Contact</a>
@@ -71,22 +71,102 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Refugiados
+                Gestion Préstamo
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{--route('perrito.index')--}}" class="nav-link">
-                  <i class="fas fa-solid fa-dog"></i>
-                  <p>Perritos</p>
+                  <i class="fas fa-fw fa-tachometer-alt"></i>
+                  <p>Operaciones<i class="right fas fa-angle-left"></i>
+
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{--route('perrito.index')--}}" class="nav-link">
+                      <i class="fas fa-fw fa-tachometer-alt"></i>
+                      <p>Préstamos</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{--route('perrito.index')--}}" class="nav-link">
+                      <i class="fas fa-fw fa-tachometer-alt"></i>
+                      <p>Despachos</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{--route('perrito.index')--}}" class="nav-link">
+                     <i class="fa fa-bicycle" aria-hidden="true"></i>
+                      <p>Devoluciones</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{--route('perrito.index')--}}" class="nav-link">
+                      <i class="fas fa-money-bill-wave    "></i>
+                      <p>Pagos de multas</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{--route('perrito.index')--}}" class="nav-link">
+                      <i class="fas fa-fw fa-tachometer-alt"></i>
+                      <p>Multa extra-lector</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{--route('perrito.index')--}}" class="nav-link">
+                      <i class="fas fa-fw fa-tachometer-alt"></i>
+                      <p>Controlar libros devueltos</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Gatitos</p>
+                <a href="{{--route('perrito.index')--}}" class="nav-link">
+                  <i class="fas fa-fw fa-tachometer-alt"></i>
+                  <p>Mantenimiento<i class="right fas fa-angle-left"></i>
+
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{--route('perrito.index')--}}" class="nav-link">
+                      <i class="fa fa-user" aria-hidden="true"></i>
+                      <p>Lectores</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{--route('perrito.index')--}}" class="nav-link">
+                      <i class="fas fa-book-reader    "></i>
+                      <p>Libros</p> 
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{--route('perrito.index')--}}" class="nav-link">
+                      <i class="fas fa-money-check    "></i>
+                      <p>Multas</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{--route('perrito.index')--}}" class="nav-link">
+                      <i class="fas fa-file-pdf    "></i>
+                      <p>Tipo Documento CDP</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{--route('perrito.index')--}}" class="nav-link">
+                      <i class="fas fa-money-bill-wave    "></i>
+                      <p>Multas de Lectores</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{--route('perrito.index')--}}" class="nav-link">
+                      <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                      <p>Control-Préstamo</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
             </ul>
           </li>
@@ -94,7 +174,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
-                Voluntariado
+                Gest...
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -115,26 +195,14 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="fa fa-user-circle" aria-hidden="true"></i>
+              {{-- <i class="nav-icon fas fa-chart-pie"></i> --}}
               <p>
-                Solicitudes
-                <i class="right fas fa-angle-left"></i>
+                Usuarios
+                {{-- <i class="right fas fa-angle-left"></i> --}}
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{--route('solicitudadopcion.index')--}}" class="nav-link">
-                  <i class="fas fa-solid fa-user"></i>
-                  <p>De Adopción</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../charts/flot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Compras</p>
-                </a>
-              </li>
-            </ul>
+            
           </li>
         </ul>
       </nav>

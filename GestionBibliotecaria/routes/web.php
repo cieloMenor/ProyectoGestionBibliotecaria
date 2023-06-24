@@ -27,3 +27,6 @@ Route::post('salir/', [UserController::class,'salir'])->name('logout');
 Route::get('/registrousuario',[UserController::class,'registrousuario'])->name('registrousuario');
 Route::resource('usuario', UserController::class);
 
+Route::get('/salirregistro',function(){
+    return redirect()->route('login');})->name('usuario.salir');
+

@@ -27,15 +27,13 @@
                     <form class="col-12" method="POST" action="{{route('identificacion')}}">
                         @csrf
                         <div class="row">
-                            <div class="col1"></div>
-                            <div class="col-10">
+                            <div class="col-12">
                                 <div class="row">
                                     <div class="col-md-6"><label style="color: white">Entidad:1068</label></div>
-                                    <div class="col-md-6"><label style="color: white">Biblioteca del Perú</label>
+                                    <div class="col-md-6"><label style="color: white">Sistema de Gestión Bibliotecaria</label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col1"></div>
 						</div><br>
 
 						<div class="input-group mb-3">

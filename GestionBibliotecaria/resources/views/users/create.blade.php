@@ -41,7 +41,7 @@
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="name" class="form-control input_user @error('name') is-invalid @enderror" value="{{old('name')}}" placeholder="username">
+							<input type="text" name="name" class="form-control input_user @error('name') is-invalid @enderror" value="{{old('name')}}" placeholder="username" required>
 							@error('name') 
 								<span class="invalid-feedback" role="alert">
 									<strong>{{$message}}</strong>
@@ -52,7 +52,7 @@
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="email" name="email" class="form-control input_user @error('email') is-invalid @enderror" value="{{old('email')}}" placeholder="email">
+							<input type="email" name="email" class="form-control input_user @error('email') is-invalid @enderror" value="{{old('email')}}" placeholder="email" required>
 							@error('email') 
 								<span class="invalid-feedback" role="alert">
 									<strong>{{$message}}</strong>
@@ -63,7 +63,7 @@
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="password" class="form-control input_pass @error('password') is-invalid @enderror" value="{{old('password')}}" placeholder="password">
+							<input type="password" name="password" class="form-control input_pass @error('password') is-invalid @enderror" value="{{old('password')}}" placeholder="password" required>
 							@error('password') 
 								<span class="invalid-feedback" role="alert">
 									<strong>{{$message}}</strong>
@@ -77,7 +77,7 @@
 					</form>
 					<div class="col-12">
 						<center>
-						<a href="{{--route('usuario.create')--}}"><button class="btn btn-warning col-9">Salir</button></a>
+						<a href="{{route('usuario.salir')}}"><button class="btn btn-warning col-9">Salir</button></a>
 					</center>
 					</div>
 					
