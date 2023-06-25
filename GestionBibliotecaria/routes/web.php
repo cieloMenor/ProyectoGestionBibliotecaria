@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\LectorController;
+use App\Http\Controllers\LibrooController;
+use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\UserController;
+use App\Models\Prestamo;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -36,3 +39,5 @@ Route::get('/cancelar',function(){
     return redirect()->route('lector.index')->with('datos','Acción Cancelada...!');
   })->name('lector.cancelar');
 
+Route::resource('libroo', LibrooController::class);
+Route::resource('prestamo', PrestamoController::class);

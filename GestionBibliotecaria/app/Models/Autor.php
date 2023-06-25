@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Autor extends Model
 {
     use HasFactory;
+    protected $table='autores';
+    protected $primaryKey='idautor';
+    protected $fillable=['nombresautor','apellidosautor','estadoautor','fecharegistroAutor','fechaupdateAutor'];
+    public $timestamps=false;
 }

@@ -14,4 +14,10 @@ class Lector extends Model
     'FecharegistroLector','FechaUpdateLector','CelularLector',
     'DireccionLector','EstadoHabLector','EstadoEliminadoLector'];
     public $timestamps=false;
+
+    public function prestamos()
+    { 
+    return $this->hasMany('App\Prestamo','DNILector','DNILector');
+    
+    }
 }

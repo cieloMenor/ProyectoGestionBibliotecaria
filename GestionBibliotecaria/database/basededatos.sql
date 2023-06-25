@@ -37,6 +37,10 @@ create table autores(idautor integer auto_increment, nombresautor varchar(30),ap
 varchar(50),estadoautor tinyint,fecharegistroAutor datetime,fechaupdateAutor datetime,
 primary key(idautor));
 
+INSERT INTO `autores` (`nombresautor`, `apellidosautor`, `estadoautor`, `fecharegistroAutor`, `fechaupdateAutor`) VALUES
+('Pablo', 'Villanueva Flores', 1, '2023-06-25 01:02:20', '2023-06-25 01:02:20');
+
+
 create table estadolibros(idestadolibro integer auto_increment, estadolibro varchar(50),
 primary key(idestadolibro));
 
@@ -44,8 +48,11 @@ insert into estadolibros(estadolibro) values('DISPONIBLE'),('NO_DISPONIBLE'),('M
 
 create table libross(idlibro integer auto_increment,nombrelibro varchar(100),nrocopiaslibro integer,
 idautor integer,idestadolibro integer,estadoHablibro tinyint,fecharegistroLibro datetime,fechaupdateLibro datetime,
-primary key(idlibro), foreign key(idautor) references
+stocklibro integer,primary key(idlibro), foreign key(idautor) references
 autores(idautor), foreign key(idestadolibro) references estadolibros(idestadolibro));
+
+INSERT INTO `libross` (`nombrelibro`, `nrocopiaslibro`, `idautor`, `idestadolibro`, `estadoHablibro`, `fecharegistroLibro`, `fechaupdateLibro`, `stocklibro`) VALUES
+('Ingenieria de Datos', 100, 1, 1, 1, '2023-06-25 01:03:17', '2023-06-25 01:03:17', 100);
 
 create table tipoprestamos(idtipoprestamo integer auto_increment,tipoprestamo varchar(50),
 primary key(idtipoprestamo));
@@ -72,6 +79,7 @@ insert into estadodetalleprestamos(estadodetalleprestamo) values('PENDIENTE'),('
 create table detalleprestamos(idprestamo integer,idlibro integer,nrocopiasprestamo integer,
 nombrelibro varchar(100), idestadodetalleprestamo integer,
 primary key(idprestamo,idlibro),foreign key(idprestamo) references
-prestamos(idprestamo), foreign key(idlibro) references libross(idlibro));
+prestamos(idprestamo), foreign key(idlibro) references libross(idlibro),foreign key(idestadodetalleprestamo)
+references estadodetalleprestamos(idestadodetalleprestamo));
 
 

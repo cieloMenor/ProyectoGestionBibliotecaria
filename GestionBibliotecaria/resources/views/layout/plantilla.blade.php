@@ -85,7 +85,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="{{--route('perrito.index')--}}" class="nav-link">
+                    <a href="{{route('prestamo.index')}}" class="nav-link">
                       <i class="fas fa-fw fa-tachometer-alt"></i>
                       <p>Préstamos</p>
                     </a>
@@ -137,7 +137,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{--route('perrito.index')--}}" class="nav-link">
+                    <a href="{{route('libroo.index')}}" class="nav-link">
                       <i class="fas fa-book-reader    "></i>
                       <p>Libros</p> 
                     </a>
