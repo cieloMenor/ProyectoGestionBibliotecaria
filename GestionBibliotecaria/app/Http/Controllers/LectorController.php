@@ -19,9 +19,9 @@ class LectorController extends Controller
         $buscarpor=$request->get('buscarpor');
 
         
-        $lectores = Lector::where('EstadoEliminadoLector','=',1)
-        ->join('estadolectores','estadolectores.idestadolector','lectores.idestadolector')
-        ->where('lectores.ApellidosLector','like','%'.$buscarpor.'%')->orderby('FechaRegistroLector')->paginate($this::PAGINATION);
+        $lectores = Lector::where('Estadoeliminadolector','=',1)
+        ->join('estado_lector','estado_lector.Estado_lectorID','lector.Estado_lectorID')
+        ->where('lector.Apellidoslector','like','%'.$buscarpor.'%')->orderby('LectorID')->paginate($this::PAGINATION);
         
         //$edades=[];
         //$x =0;

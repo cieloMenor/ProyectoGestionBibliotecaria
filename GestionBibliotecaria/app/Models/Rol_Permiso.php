@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class EstadoLector extends Model
+class Rol_Permiso extends Model
 {
     use HasFactory;
-    protected $table='estado_lector';
-    protected $primaryKey='Estado_lectorID';
-    protected $fillable=['Estadolector'];
+    protected $table='rol_permiso';
+    protected $primaryKey='Rol_permisoID';
+    protected $fillable=['PermisoID','RolID'];
     public $timestamps=false;
 }

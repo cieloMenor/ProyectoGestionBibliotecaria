@@ -17,12 +17,23 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $primaryKey='UsuarioID';
     protected $fillable = [
-        'name',
-        'email',
+        'Apellidosusuario',
+        'Celularusuario',
         'password',
-        'idrol',
+        'Correousuario',
+        'Estadousuario',
+        'Nombresusuario',
+        'Usuario',
+        'RolID',
+        'token'
     ];
+
+    public function roles()
+    {
+        return $this->hasOne(Rol::class,'RolID','RolID');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

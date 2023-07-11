@@ -74,7 +74,7 @@ estadoprestamos(idestadoprestamo));
 create table estadodetalleprestamos(idestadodetalleprestamo integer auto_increment,
 estadodetalleprestamo varchar(50),primary key(idestadodetalleprestamo));
 
-insert into estadodetalleprestamos(estadodetalleprestamo) values('PENDIENTE'),('DEVUELTO');
+insert into estadodetalleprestamos(estadodetalleprestamo) values('REGISTRADO','PENDIENTE'),('DEVUELTO');
 
 create table detalleprestamos(idprestamo integer,idlibro integer,nrocopiasprestamo integer,
 nombrelibro varchar(100), idestadodetalleprestamo integer,

@@ -49,62 +49,63 @@
             @else
                 @foreach ($lectores as $itemlector)
                 <tr>
-                    <td>{{$loop->index+1}}</td>
-                    <td>{{$itemlector->DNILector}}</td>
-                    <td>{{$itemlector->ApellidosLector}}, {{$itemlector->NombresLector}}</td>
-                    <td>{{$itemlector->CorreoLector}}</td>
+                    <td>{{$itemlector->LectorID}}</td>
+                    <td>{{$itemlector->Dni_lector}}</td>
+                    <td>{{$itemlector->Apellidoslector}}, {{$itemlector->Nombreslector}}</td>
+                    <td>{{$itemlector->Correolector}}</td>
                     <td> @php
-                        $fecha_de_nacimiento =  $itemlector->FechaNacLector; //dd-mm-aaaa
+                        $fecha_de_nacimiento =  $itemlector->Fechanaclector; //dd-mm-aaaa
                             $hoy = date("Y-m-d");
                             $diff = date_diff(date_create($fecha_de_nacimiento), date_create($hoy));
                             
                         echo $diff->format('%y');
                     @endphp
                     </td>
-                    <td > <p class="btn btn-primary">{{$itemlector->estadolector}}</p></td>
+                    <td > <p class="btn btn-primary">{{$itemlector->Estadolector}}</p></td>
                     
-                    @if($itemlector->EstadoHabLector == 1)
+                    @if($itemlector->Estadohablector == 1)
                         <td > <p class="btn btn-warning">Habilitado</p></td>
                     @else
                         <td> <p class="btn btn-danger">Desabilitado</p></td>
                     @endif
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{$itemlector->DNILector}}">
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{$itemlector->LectorID}}">
                             <i class="fas fa-edit"></i> Ver
                           </button>
                           <!-- Modal -->
-                          <div class="modal fade" id="exampleModal{{$itemlector->DNILector}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal fade" id="exampleModal{{$itemlector->LectorID}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modalperrito" >
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">{{$itemlector->ApellidosLector}} - {{$itemlector->DNILector}}</h5>
+                                  <h5 class="modal-title" id="exampleModalLabel">{{$itemlector->Apellidoslector}} - {{$itemlector->Dni_lector}}</h5>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                   <h4>Datos del Lector</h4>
-                                  <p>DNI: {{$itemlector->DNILector}}</p>
-                                  <P>Nombres: {{$itemlector->NombresLector}}</P>
-                                  <P>Apellidos: {{$itemlector->ApellidosLector}}</P>
-                                  <P>Estado: {{$itemlector->estadolector}}</P>
-                                  <P>Correo: {{$itemlector->CorreoLector}}</P>
-                                  <P>Fecha Nacimiento: {{$itemlector->FechaNacLector}}</P>
+                                  <p>DNI: {{$itemlector->Dni_lector}}</p>
+                                  <P>Nombres: {{$itemlector->Nombreslector}}</P>
+                                  <P>Apellidos: {{$itemlector->Apellidoslector}}</P>
+                                  <P>Nombres: {{$itemlector->Nombreslector}}</P>
+                                  <P>Celular: {{$itemlector->Celularlector}}</P>
+                                  <P>Dirección: {{$itemlector->Direccionlector}}</P>
+                                  <P>Fecha de registro: {{$itemlector->Fecharegistrolector}}</P>
+                                  <P>Celular: {{$itemlector->Celularlector}}</P>
+                                  <P>Estado: {{$itemlector->Estadolector}}</P>
+                                  <P>Correo: {{$itemlector->Correolector}}</P>
+                                  <P>Fecha Nacimiento: {{$itemlector->Fechanaclector}}</P>
                                   <div class="row">
                                   <p class="col">Edad:
                                     @php
-                                        $fecha_de_nacimiento =  $itemlector->FechaNacLector; //dd-mm-aaaa
+                                        $fecha_de_nacimiento =  $itemlector->Fechanaclector; //dd-mm-aaaa
                                             $hoy = date("Y-m-d");
                                             $diff = date_diff(date_create($fecha_de_nacimiento), date_create($hoy));
                                             
                                         echo $diff->format('%y');
                                     @endphp
-                                  </p>
-                                  <P class="col">Celular: {{$itemlector->CelularLector}}</P>
                                   </div>
-                                  <p>Fecha de Registro: {{$itemlector->FecharegistroLector}}</p>
-                                  <p>Última Actualización: {{$itemlector->FechaUpdateLector}}</p>
-                                  <p>Dirección: {{$itemlector->DireccionLector}}</p>
+                                  <p>Última Actualización: {{$itemlector->Fechaupdatelector}}</p>
                                   <p>Estado Habilitación:
-                                    @if($itemlector->EstadoHabLector == 1)
+                                    @if($itemlector->Estadohablector == 1)
                                         <h5 class="btn btn-warning">Habilitado</h5>
                                     @else
                                         <h5 class="btn btn-danger">Desabilitado</h5>

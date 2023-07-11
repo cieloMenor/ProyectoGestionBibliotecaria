@@ -24,10 +24,10 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [UserController::class,'showlogin'])->name('login');
-Route::post('identificacion/', [UserController::class,'verificarlogin'])->name('identificacion');
+Route::post('/identificacion', [UserController::class,'verificarlogin'])->name('identificacion');
 
-Route::get('inicio/',[UserController::class,'inicio'])->name('home')->Middleware('auth');
-Route::post('salir/', [UserController::class,'salir'])->name('logout');
+Route::get('/inicio',[UserController::class,'inicio'])->name('home')->Middleware('auth');
+Route::post('/salir', [UserController::class,'salir'])->name('logout');
 Route::get('/registrousuario',[UserController::class,'registrousuario'])->name('registrousuario');
 Route::resource('usuario', UserController::class);
 

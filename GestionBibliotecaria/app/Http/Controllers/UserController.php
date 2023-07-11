@@ -28,31 +28,31 @@ class UserController extends Controller
 
     public function verificarlogin(Request $request){
         $data=request()->validate([
-            'name'=>'required',
+            'Usuario'=>'required',
             'password'=>'required'
         ],
         [
-            'name.required'=>'Ingrese Usuario',
+            'Usuario.required'=>'Ingrese Usuario',
             'password.required'=>'Ingresa Contraseña'
         ]);
         if(Auth::attempt($data)) {
             $con='ok';
         }
-        $name=$request->get('name');
-        $query=User::where('name', '=', $name)->get();
+        $Usuario=$request->get('Usuario');
+        $query=User::where('Usuario', '=', $Usuario)->get();
         
         if($query->count()!=0) {
             $hashp=$query[0]->password;
             $password=$request->get('password');
             if(password_verify($password, $hashp)) {
-                return redirect()->route('home',compact('name'));
+                return redirect()->route('home',compact('Usuario'));
             } else {
                 return back()->withErrors(['password'=>'Contraseña no valida'])
-                ->withInput(request(['name', 'password']));
+                ->withInput(request(['Usuario', 'password']));
             }
         } else {
-            return back()->withErrors(['name'=>'Usuario no valido'])
-            ->withInput(request(['name']));
+            return back()->withErrors(['Usuario'=>'Usuario no valido'])
+            ->withInput(request(['Usuario','password']));
         }
     }
     public function salir()
@@ -85,35 +85,55 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data=request()->validate([
-            'name'=>'required',
-            'password'=>'required'
+            'Usuario'=>'required',
+            'password'=>'required',
+            'Correousuario'=>'required',
+            'Nombresusuario'=>'required',
+            'Apellidosusuario'=>'required',
+            'Celularusuario'=>'required'
+
         ],
         [
-            'name.required'=>'Ingrese Usuario',
+            'Usuario.required'=>'Ingrese Usuario',
+            'Correousuario.required'=>'Ingrese Correo',
+            'Nombresusuario.required'=>'Ingrese nombres',
+            'Apellidosusuario.required'=>'Ingrese apellidos',
+            'Celularusuario.required'=>'Ingrese celular',
             'password.required'=>'Ingresa Contraseña'
         ]);
         
-        $name=$request->get('name'); //se almacenara el valor de name ingresado
-        $query=User::where('name','=',$name)->get();// comparación de name y se almacena en $query
+        $Usuario=$request->get('Usuario'); //se almacenara el valor de name ingresado
+        $query=User::where('Usuario','=',$Usuario)->get();// comparación de name y se almacena en $query
+        $query2=User::where('Correousuario','=',$request->get('Correousuario'))->get();
         if($query->count()!=0) //si lo encuentra, osea si no esta vacia, entonces analizara el password ahora
         {
             
-            return back()->withErrors(['name'=> 'Usuario ya registrado'])
-            ->withInput(request(['name','password','email']));                   
+            return back()->withErrors(['Usuario'=> 'Usuario ya registrado'])
+            ->withInput(request(['Usuario','password','Correousuario','Nombresusuario','Apellidosusuario','Celularusuario']));                   
         }
         else{ // si no lo encuentra con el name
-
+            if($query2->count()!=0) //si lo encuentra, osea si no esta vacia, entonces analizara el password ahora
+        {
+            
+            return back()->withErrors(['Correousuario'=> 'Correo ya registrado'])
+            ->withInput(request(['Usuario','password','Correousuario','Nombresusuario','Apellidosusuario','Celularusuario']));                   
+        }
+        else{
+            $count = count(User::all());
             $usuario = new User();
-            $usuario->name = $request->name;
-            $usuario->email = $request->email;
+            $usuario->UsuarioID= $count + 1;
+            $usuario->Apellidosusuario = $request->Apellidosusuario;
+            $usuario->Nombresusuario = $request->Nombresusuario;
+            $usuario->Celularusuario = $request->Celularusuario;
+            $usuario->Estadousuario = 1;
+            $usuario->Usuario = $request->Usuario;
             $usuario->password = Hash::make($request->password) ;
             $usuario->token= Str::random(10);
-            $usuario->created_at = Date('y-m-d');
-            $usuario->updated_at = Date('y-m-d');
-            $usuario->idrol = 2;
+            $usuario->RolID = 2;
             $usuario->save();
 
-            return view('home');
+            return view('login');
+        }
         }
     }
 

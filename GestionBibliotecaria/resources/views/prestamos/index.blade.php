@@ -31,16 +31,17 @@
                         <td>
                             {{-- @if($item->fecharegistroPrestamo == $item->fechaDevolucionEsperadaP) --}}
                             @php
-                                $fecharegistrosolodate=$item->fecharegistroPrestamo;
-                                $fechadevolsolodate=$item->fechaDevolucionEsperadaP;
-                                $fecharegistrosolodate->format('Y-m-d');
-                                $fechadevolsolodate->format('Y-m-d');
+                                // $fecharegistrosolodate=$item->fecharegistroPrestamo;
+                                // $fechadevolsolodate=$item->fechaDevolucionEsperadaP;
+                                
+                                // $fecharegistrosolodate->date_format('Y-m-d');
+                                // $fechadevolsolodate->date_format('Y-m-d');
 
                                 $fecha_de_registro =  $item->fecharegistroPrestamo; //dd-mm-aaaa
                                     $fecha_devolucion = $item->fechaDevolucionEsperadaP;
                                     $diff = date_diff(date_create($fecha_devolucion), date_create($fecha_de_registro));
                             @endphp 
-                            @if($fecharegistrosolodate == $fechadevolsolodate)
+                            @if($item->fecharegistroPrestamo == $item->fechaDevolucionEsperadaP)
                                 @php
                                     echo $diff->format('%h');
                                 @endphp
@@ -51,7 +52,7 @@
 
                                     // $interval = $horaInicio->diff($horaTermino);
                                     // echo $interval->format('%H');
-                                    echo $diff->format('d%');
+                                    echo $diff->format('%d');
                                 @endphp
                             @endif
                         </td>

@@ -40,8 +40,8 @@
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="name" class="form-control input_user @error('name') is-invalid @enderror" value="{{old('name')}}" placeholder="username">
-							@error('name') 
+							<input type="text" name="Usuario" class="form-control input_user @error('Usuario') is-invalid @enderror" value="{{old('Usuario')}}" placeholder="username">
+							@error('Usuario') 
 								<span class="invalid-feedback" role="alert">
 									<strong>{{$message}}</strong>
 								</span>
