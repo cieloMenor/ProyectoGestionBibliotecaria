@@ -89,8 +89,8 @@
 /*  Created On : 13-jul.-2023 23:21:51 				*/
 /*  DBMS       : MySql 						*/
 /* ---------------------------------------------------- */
-create database BD_Biblioteca;
-use BD_Biblioteca;
+create database biblioteca;
+use biblioteca;
 SET FOREIGN_KEY_CHECKS=0
 ; 
 /* Drop Tables */
