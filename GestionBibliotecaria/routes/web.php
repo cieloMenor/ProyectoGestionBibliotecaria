@@ -3,6 +3,7 @@
 use App\Http\Controllers\LectorController;
 use App\Http\Controllers\LibrooController;
 use App\Http\Controllers\PrestamoController;
+use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\UserController;
 use App\Models\Prestamo;
 use App\Models\User;
@@ -41,3 +42,5 @@ Route::get('/cancelar',function(){
 
 Route::resource('libroo', LibrooController::class);
 Route::resource('prestamo', PrestamoController::class);
+
+Route::get('/RegistroProveedor',[ProveedorController::class,'Proveedor'])->name('RegistroProveedor');

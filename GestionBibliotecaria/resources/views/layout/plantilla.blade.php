@@ -182,15 +182,9 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{--route('voluntario.index')--}}" class="nav-link">
-                  <i class="fas fa-solid fa-user"></i>
-                  <p>Voluntarios</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../charts/flot.html" class="nav-link">
+                <a href="{{route('RegistroProveedor')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Compras</p>
+                  <p>Registro Proveedor</p>
                 </a>
               </li>
             </ul>
