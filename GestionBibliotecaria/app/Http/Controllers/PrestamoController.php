@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lector;
 use App\Models\Prestamo;
+use App\Models\TipoPrestamo;
 use Illuminate\Http\Request;
 
 class PrestamoController extends Controller
@@ -15,9 +17,14 @@ class PrestamoController extends Controller
     const PAGINATION=10;
     public function index(Request $request)
     {
-        $prestamos = Prestamo::where('estadoHabprestamo','=','1')->orderby('idprestamo')->paginate($this::PAGINATION); 
+        $buscarpor=$request->get('buscarpor');
 
-        return view('prestamos.index',compact('prestamos'));
+        $prestamos = Prestamo::where('Estadohabprestamo','=','1')
+        ->join('lector','lector.LectorID','=','prestamo.LectorID')
+        ->where('lector.Apellidoslector','like','%'.$buscarpor.'%')
+        ->orderby('PrestamoID')->paginate($this::PAGINATION); 
+
+        return view('prestamos.index',compact('prestamos','buscarpor'));
     }
 
     /**
@@ -27,7 +34,9 @@ class PrestamoController extends Controller
      */
     public function create()
     {
-        //
+        $lectores = Lector::all();
+        $tipos=TipoPrestamo::all();
+        return view('prestamos.create',compact('tipos','lectores'));
     }
 
     /**

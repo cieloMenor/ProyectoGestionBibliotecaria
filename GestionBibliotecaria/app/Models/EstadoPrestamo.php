@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class EstadoPrestamo extends Model
 {
     use HasFactory;
-    protected $table='estadoprestamos';
-    protected $primaryKey='idestadoprestamo';
-    protected $fillable=['estadoprestamo'];
+    protected $table='estado_prestamo';
+    protected $primaryKey='Estado_prestamoID';
+    protected $fillable=['Estadoprestamo'];
     public $timestamps=false;
 
     public function prestamos()
     { 
-    return $this->hasMany('App\Prestamo','idestadoprestamo','idestadoprestamo');
+    return $this->hasMany('App\Prestamo','Estado_prestamoID','Estado_prestamoID');
     
     }
 

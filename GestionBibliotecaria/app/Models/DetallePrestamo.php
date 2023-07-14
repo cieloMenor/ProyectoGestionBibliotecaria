@@ -8,18 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class DetallePrestamo extends Model
 {
     use HasFactory;
-    protected $table = 'detalleprestamos'; 
+    protected $table = 'prestamo_detalle'; 
+    protected $primaryKey='Prestamo_detalleID';
     public $timestamps = false;
-    protected $fillable = [
-    'nrocopiasprestamo', 'nombrelibro','idestadodetalleprestamo',
+    protected $fillable = ['Estado_detalle_prestamoID','LibrooID',
+    'Nrocopiasprestamo', 'Nombrelibro','Estadohabdetalleprestamo',
+    'PrestamoID'
     ]; 
     
+    public function libros()
+    {
+        return $this->hasOne(Libroo::class,'LibrooID','LibrooID');
+    }
     public function prestamos()
     {
-        return $this->hasOne(Prestamo::class,'idprestamo','idprestamo');
+        return $this->hasOne(Prestamo::class,'PrestamoID','PrestamoID');
     }
-    public function libros()
-    { 
-        return $this->hasMany('App\Libro','idlibro','idlibro'); 
+    public function estadodetalleprestamos()
+    {
+        return $this->hasOne(EstadoDetallePrestamo::class,'Estado_detalle_prestamoID','Estado_detalle_prestamoID');
     }
 }

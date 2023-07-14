@@ -18,9 +18,11 @@ class LibrooController extends Controller
         $buscarpor=$request->get('buscarpor');
 
         
-        $libros = Libroo::where('estadoHablibro','=','1')
-        ->join('estadolibros','estadolibros.idestadolibro','=','libross.idestadolibro')
-        ->join('autores','autores.idautor','=','libross.idautor')->where('libross.nombrelibro','like','%'.$buscarpor.'%')->orderby('idlibro')->paginate($this::PAGINATION);
+        $libros = Libroo::where('Estadohablibro','=','1')
+        ->join('estado_libro','estado_libro.Estado_libroID','=','libroo.Estado_libroID')
+        ->join('autor','autor.AutorID','=','libroo.AutorID')
+        ->where('libroo.Nombrelibro','like','%'.$buscarpor.'%')
+        ->orderby('LibrooID')->paginate($this::PAGINATION);
         
         return view('libross.index',compact('libros','buscarpor'));
 

@@ -22,6 +22,6 @@ class Lector extends Model
     }
     public function estadoLectores()
     {
-        return $this->hasOne(EstadoLibro::class,'Estado_lectorID','Estado_lectorID');
+        return $this->hasOne(EstadoLector::class,'Estado_lectorID','Estado_lectorID');
     }
 }

@@ -9,15 +9,20 @@ use Illuminate\Support\Facades\DB;
 class Libroo extends Model
 {
     use HasFactory;
-    protected $table='libross';
-    protected $primaryKey='idlibro';
-    protected $fillable=['nombrelibro','nrocopiaslibro','stocklibro','idautor','idestadolibro','estadoHablibro',
-    'fecharegistroLibro','fechaupdateLibro'];
+    protected $table='libro';
+    protected $primaryKey='LibroID';
+    protected $fillable=['Titulo','Nrocopiaslibro','Stocklibro','AutorID',
+    'Estado_libroID','Estadohablibro',
+    'Fecharegistrolibro','Fechaupdatelibro'];
     public $timestamps=false;
 
-    public static function ActualizarStocklibro($idlibro,$nrocopiasprestamo){
+    public static function ActualizarStocklibro($LibrooID,$Nrocopiaslibro){
         return DB::select(
-        DB::raw("UPDATE libross set stocklibro = stocklibro - '".$nrocopiasprestamo."' where idlibro='".$idlibro."'")
+        DB::raw("UPDATE libroo set Stocklibro = Stocklibro - '".$Nrocopiaslibro."' where LibrooID='".$LibrooID."'")
         );
+    }
+    public function estadoLibros()
+    {
+        return $this->hasOne(EstadoLibro::class,'Estado_libroID','Estado_libroID');
     }
 }

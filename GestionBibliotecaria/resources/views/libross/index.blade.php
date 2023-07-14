@@ -47,34 +47,34 @@
             @else
                 @foreach ($libros as $item)
                 <tr>
-                    <td>{{$item->idlibro}}</td>
-                    <td>{{$item->nombrelibro}}</td>
-                    <td>{{$item->nrocopiaslibro}}</td>
-                    <td>{{$item->stocklibro}}</td>
-                    <td>{{$item->apellidosautor}}, {{$item->nombresautor}}</td>
-                    <td > <p class="btn btn-primary">{{$item->estadolibro}}</p></td>
+                    <td>{{$item->LibrooID}}</td>
+                    <td>{{$item->Nombrelibro}}</td>
+                    <td>{{$item->Nrocopiaslibro}}</td>
+                    <td>{{$item->Stocklibro}}</td>
+                    <td>{{$item->Apellidosautor}}, {{$item->Nombresautor}}</td>
+                    <td > <p class="btn btn-primary">{{$item->Estadolibro}}</p></td>
                     <td>
-                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{$item->idlibro}}">
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{$item->LibrooID}}">
                             <i class="fas fa-edit"></i> Ver
                           </button>
                           <!-- Modal -->
-                          <div class="modal fade" id="exampleModal{{$item->idlibro}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal fade" id="exampleModal{{$item->LibrooID}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modalperrito" >
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">{{$item->nombrelibro}} - {{$item->nombresautor}} {{$item->apellidosautor}}</h5>
+                                  <h5 class="modal-title" id="exampleModalLabel">{{$item->Nombrelibro}} - {{$item->Nombresautor}} {{$item->Apellidosautor}}</h5>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                   <h4>Datos del Libro</h4>
-                                  <p>IdLibro: {{$item->idlibro}}</p>
-                                  <P>Titulo: {{$item->nombrelibro}}</P>
-                                  <P>NroCopias Total: {{$item->nrocopiaslibro}}</P>
-                                  <P>Stock Disponible: {{$item->stocklibro}}</P>
-                                  <P>Autor: {{$item->apellidosautor}}, {{$item->nombresautor}}</P>
-                                  <P>Fecha de Registro: {{$item->fecharegistroLibro}}</P>
-                                  <p>Última Actualización: {{$item->fechaupdateLibro}}</p>
-                                  <p>Estado: <h5 class="btn btn-primary">{{$item->estadolibro}}</h5></p>
+                                  <p>IdLibro: {{$item->LibrooID}}</p>
+                                  <P>Titulo: {{$item->Nombrelibro}}</P>
+                                  <P>NroCopias Total: {{$item->Nrocopiaslibro}}</P>
+                                  <P>Stock Disponible: {{$item->Stocklibro}}</P>
+                                  <P>Autor: {{$item->Apellidosautor}}, {{$item->Nombresautor}}</P>
+                                  <P>Fecha de Registro: {{$item->Fecharegistrolibro}}</P>
+                                  <p>Última Actualización: {{$item->Fechaupdatelibro}}</p>
+                                  <p>Estado: <h5 class="btn btn-primary">{{$item->Estadolibro}}</h5></p>
                                   
                                 </div>
                                 <div class="modal-footer">
@@ -85,27 +85,27 @@
                             </div>
                           </div>
                         
-                        <a href="{{route('libroo.edit',$item->idlibro)}}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> Editar</a>
+                        <a href="{{route('libroo.edit',$item->LibrooID)}}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> Editar</a>
                         
                         {{-- <a href="{{route('tramite.confirmar',$itemtramite->idtramite)}}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>--}}
-                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2{{$item->idlibro}}">
+                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2{{$item->LibrooID}}">
                             <i class="fas fa-trash"></i>Eliminar
                           </button>
                           <!-- Modal -->
-                          <div class="modal fade" id="exampleModal2{{$item->idlibro}}" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                          <div class="modal fade" id="exampleModal2{{$item->LibrooID}}" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
                             <div class="modal-dialog modalperrito" >
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">{{$item->nombrelibro}} - {{$item->nombresautor}} {{$item->apellidosautor}}</h5>
+                                  <h5 class="modal-title" id="exampleModalLabel">{{$item->Nombrelibro}} - {{$item->Nombresautor}} {{$item->Apellidosautor}}</h5>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                   <p>
-                                    ¿Está seguro de eliminar este libro: {{$item->nombrelibro}}?
+                                    ¿Está seguro de eliminar este libro: {{$item->Nombrelibro}}?
                                   </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <form action="{{route('libroo.destroy',$item->idlibro)}}" method="post">
+                                    <form action="{{route('libroo.destroy',$item->LibrooID)}}" method="post">
                                         @method('delete')
                                         @csrf
                                         <button type="submit" class="btn btn-danger"><i class="fas fa-check-square"></i>SI</button>

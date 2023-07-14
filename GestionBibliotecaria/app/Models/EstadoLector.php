@@ -12,4 +12,5 @@ class EstadoLector extends Model
     protected $primaryKey='Estado_lectorID';
     protected $fillable=['Estadolector'];
     public $timestamps=false;
+
 }

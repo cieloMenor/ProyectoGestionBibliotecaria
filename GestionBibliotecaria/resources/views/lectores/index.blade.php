@@ -120,27 +120,27 @@
                             </div>
                           </div>
                         
-                        <a href="{{route('lector.edit',$itemlector->DNILector)}}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> Editar</a>
+                        <a href="{{route('lector.edit',$itemlector->LectorID)}}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> Editar</a>
                         
                         {{-- <a href="{{route('tramite.confirmar',$itemtramite->idtramite)}}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>--}}
-                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2{{$itemlector->DNILector}}">
+                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2{{$itemlector->LectorID}}">
                             <i class="fas fa-trash"></i>
                           </button>
                           <!-- Modal -->
-                          <div class="modal fade" id="exampleModal2{{$itemlector->DNILector}}" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                          <div class="modal fade" id="exampleModal2{{$itemlector->LectorID}}" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
                             <div class="modal-dialog modalperrito" >
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">{{$itemlector->ApellidosLector}} - {{$itemlector->DNILector}}</h5>
+                                  <h5 class="modal-title" id="exampleModalLabel">{{$itemlector->Apellidoslector}} - {{$itemlector->LectorID}}</h5>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                   <p>
-                                    ¿Está seguro de eliminar este lector: {{$itemlector->ApellidosLector}}, {{$itemlector->NombresLector}}?
+                                    ¿Está seguro de eliminar este lector: {{$itemlector->Apellidoslector}}, {{$itemlector->Nombreslector}}?
                                   </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <form action="{{route('lector.destroy',$itemlector->DNILector)}}" method="post">
+                                    <form action="{{route('lector.destroy',$itemlector->LectorID)}}" method="post">
                                         @method('delete')
                                         @csrf
                                         <button type="submit" class="btn btn-danger"><i class="fas fa-check-square"></i>SI</button>

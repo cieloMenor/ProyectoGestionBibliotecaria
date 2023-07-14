@@ -6,14 +6,35 @@
 
 <div class="container ">
     <h1>PRESTAMOS DE LIBROS</h1>
+    <a href="{{route('prestamo.create')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Crear</a>
+    
+    <nav class="navbar float-right">
+       
+        <form class="form-inline my-2" method="GET">
+            <input name="buscarpor" class="form-control me-2" type="search" placeholder="Busqueda por apellido" aria-label="Search" value="{{$buscarpor}}">
+            <button class="btn btn-success" type="submit">Buscar</button>
+        </form>
+    </nav>
+    {{-- Mensaje de alerta --}}
+    <div id="mensaje">
+        @if (session('datos'))
+            <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+                {{session('datos')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">$times;</span>
+                </button>
+            </div>
+        @endif
+    </div>
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">Código</th>
-                <th scope="col">Fecha registro</th>
+                <th scope="col">ID</th>
+                <th scope="col"><i class="fa fa-calendar" aria-hidden="true"></i> Registro</th>
                 <th scope="col">Días</th>
                 <th scope="col">Tipo</th>
                 <th scope="col">Lector</th>
+                <th scope="col"><i class="fa fa-calendar" aria-hidden="true"></i> Devolucion</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Opciones</th>
             </tr>
@@ -21,13 +42,13 @@
         <tbody>
             @if(count($prestamos)<=0)
                 <tr>
-                    <td colspan="7"><b>No hay registro</b></td>
+                    <td colspan="8"><b>No hay registro</b></td>
                 </tr>
             @else
                 @foreach($prestamos as $item) 
                     <tr> 
-                        <td>{{$item->idprestamo}}</td>
-                        <td>{{$item->fecharegistroPrestamo}}</td>
+                        <td>{{$item->PrestamoID}}</td>
+                        <td>{{$item->Fecharegistroprestamo}}</td>
                         <td>
                             {{-- @if($item->fecharegistroPrestamo == $item->fechaDevolucionEsperadaP) --}}
                             @php
@@ -56,9 +77,10 @@
                                 @endphp
                             @endif
                         </td>
-                        <td>{{$item->tipo->tipoprestamo}}</td>
-                        <td>{{$item->lectores->ApellidosLector}}, {{$item->lectores->NombresLector}}</td>
-                        <td>{{$item->estadoprestamos->estadoprestamo}}</td>
+                        <td>{{$item->tipo->Tipoprestamo}}</td>
+                        <td>{{$item->lectores->Apellidoslector}}, {{$item->lectores->Nombreslector }}</td>
+                        <td>{{$item->Fechadevolucionesperadap}} {{$item->Horadevolucionesperadap}} </td>
+                        <td> <a href="" class="btn btn-danger">{{$item->estadoprestamos->Estadoprestamo}}</a></td>
                         <td> 
 
                         </td>
@@ -71,4 +93,14 @@
     {{ $prestamos->links()}}
 </div>
 
+@endsection
+@section('script')
+<script>
+    //para cerrar el mensaje
+    setTimeout(function () {
+        //selecciono el id mensaje y lo remuevo en 2000 segundos
+        document.querySelector('#mensaje').remove();
+        
+    }, 2000);
+</script>
 @endsection
