@@ -29,6 +29,13 @@
                             <div class="form-group">
                                 <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
                                 <div class="col-md-8">
+                                    <input name="ProveedorID" type="text" placeholder="Codigo" class="form-control" id="ProveedorID">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                                <div class="col-md-8">
                                     <input name="Empresa" type="text" placeholder="Nombre de la Empresa" class="form-control" id="Empresa">
                                 </div>
                             </div>

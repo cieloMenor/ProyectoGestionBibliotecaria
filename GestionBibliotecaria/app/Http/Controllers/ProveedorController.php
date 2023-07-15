@@ -13,7 +13,7 @@ class ProveedorController extends Controller
     
     public function tabla(Request $request){
         $Proveedores=Proveedor::all();
-        return view('Abastecimiento.Listado',compact('Proveedores'));
+        return view('Abastecimiento.ListadoProveedor',compact('Proveedores'));
     }
 
     public function store(Request $request){
@@ -24,6 +24,7 @@ class ProveedorController extends Controller
 	        'Telefono'=>'required'
         ]);
         $Proveedor=new Proveedor();
+        $Proveedor->ProveedorID=$request->ProveedorID;
         $Proveedor->Correoelectronico=$request->Correoelectronico;
         $Proveedor->Direccion=$request->Direccion;
         $Proveedor->Empresa=$request->Empresa;

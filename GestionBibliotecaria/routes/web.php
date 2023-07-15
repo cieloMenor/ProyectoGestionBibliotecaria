@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\BibliotecarioController;
 use App\Http\Controllers\LectorController;
 use App\Http\Controllers\LibrooController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\UserController;
@@ -46,8 +48,18 @@ Route::resource('prestamo', PrestamoController::class);
 
 Route::get('/ListadoProveedor',[ProveedorController::class,'Tabla'])->name('listado');
 Route::get('/RegistroProveedor',[ProveedorController::class,'Form'])->name('registro');
-Route::post('/store',[ProveedorController::class,'store'])->name('ProveedorStore'); 
+Route::post('/storeP',[ProveedorController::class,'store'])->name('ProveedorStore'); 
 
 
+Route::get('/RegistroPedido',[PedidoController::class,'createP'])->name('registroP');
+Route::get('/ListadoPedido',[PedidoController::class,'tablaP'])->name('listadoP');
+Route::post('/StorePedido',[PedidoController::class,'storeP'])->name('storeP'); 
 
 
+Route::get('/RegistroDetallePedido',[PedidoController::class,'createDp'])->name('registroDP');
+Route::get('/ListadoDetallePedido',[PedidoController::class,'tablaDp'])->name('listadoDP');
+Route::post('/StoreDetallePedido',[PedidoController::class,'storeDp'])->name('storeDP'); 
+
+Route::get('/RegistroBibliotecario',[BibliotecarioController::class,'createB'])->name('registroB');
+Route::get('/DatosBibliotecario',[BibliotecarioController::class,'tablaB'])->name('listadoB');
+Route::post('/StoreBibliotecario',[BibliotecarioController::class,'storeB'])->name('storeBb'); 

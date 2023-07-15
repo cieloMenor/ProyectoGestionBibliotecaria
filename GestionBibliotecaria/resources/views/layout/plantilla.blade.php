@@ -188,6 +188,22 @@
                 </a>
               </li>
             </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('listadoB')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Registro Bibliotecario</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('listadoP')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Registro Pedido</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">

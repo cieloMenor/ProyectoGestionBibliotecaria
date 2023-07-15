@@ -230,8 +230,8 @@ CREATE TABLE `Proveedor`
 	`Correoelectronico` VARCHAR(30) NULL,
 	`Direccion` VARCHAR(50) NULL,
 	`Empresa` VARCHAR(50) NULL,
-	`Telefono` VARCHAR(12) NULL,
-	`ProveedorID` INT NOT NULL auto_increment,
+	`ProveedorIDTelefono` VARCHAR(12) NULL,
+	`` INT NOT NULL ,
 	CONSTRAINT `PK_Proveedor` PRIMARY KEY (`ProveedorID` ASC)
 )
 
