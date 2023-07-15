@@ -231,7 +231,7 @@ CREATE TABLE `Proveedor`
 	`Direccion` VARCHAR(50) NULL,
 	`Empresa` VARCHAR(50) NULL,
 	`Telefono` VARCHAR(12) NULL,
-	`ProveedorID` INT NOT NULL,
+	`ProveedorID` INT NOT NULL auto_increment,
 	CONSTRAINT `PK_Proveedor` PRIMARY KEY (`ProveedorID` ASC)
 )
 

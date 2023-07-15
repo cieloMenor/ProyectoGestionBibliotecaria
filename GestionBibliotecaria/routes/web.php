@@ -44,3 +44,4 @@ Route::resource('libroo', LibrooController::class);
 Route::resource('prestamo', PrestamoController::class);
 
 Route::get('/RegistroProveedor',[ProveedorController::class,'Proveedor'])->name('RegistroProveedor');
+Route::post('/xd',[ProveedorController::class,'Store'])->name('ProveedorStore');
