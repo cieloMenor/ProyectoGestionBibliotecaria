@@ -8,7 +8,17 @@
     <a href="{{route('registro')}}" class="btn btn-primary"><i class="fas fa-plus">Registrar</i></a>
     <br>
     <br>
-    
+    <div id="mensaje">
+        @if (session('datos'))
+        <div class="alert alert-danger" role="alert">
+            {{session('datos')}}
+            <button type="button" class="close" data-dismiss='alert' aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
+    </div>
+
     <p align=center style = "font-family:courier,arial,helvética; color:crimson">
         PROVEEDORES
     </p>
@@ -40,5 +50,15 @@
             @endif
         </tbody>
     </table>  
+    
 </div>
+@endsection
+
+@section('script')
+<script>
+    setTimeout(function(){
+        document.querySelector('#mensaje').remove();
+    },5000);
+</script>
+
 @endsection

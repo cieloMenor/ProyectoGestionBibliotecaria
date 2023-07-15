@@ -29,6 +29,6 @@ class ProveedorController extends Controller
         $Proveedor->Empresa=$request->Empresa;
         $Proveedor->Telefono=$request->Telefono;
         $Proveedor->save();
-        return redirect()->route('listado');
+        return redirect()->route('listado')->with('datos','Registro Nuevo Guardado ...!');
     }
 }

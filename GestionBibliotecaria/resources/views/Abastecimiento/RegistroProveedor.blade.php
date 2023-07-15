@@ -6,6 +6,17 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="well well-sm">
+                    <script>
+                        function confirmacion(){
+                            var respuesta=confirm("¿Confirmas que los datos proporcionados son precisos y verdaderos?");
+                            if (respuesta==true){
+                                return true
+                            }else{
+                                return false
+                            }
+                        }
+
+                    </script>
                     <form class="form-horizontal" method="POST" style="margin-left:20px" action="{{route('ProveedorStore')}}">
                         @csrf
                         <fieldset>
@@ -46,7 +57,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-12 " role="group">
-                                    <button type="submit" class="btn btn-outline-primary">Registrar</button>
+                                    <button type="submit" class="btn btn-outline-primary" onclick="return confirmacion()">Registrar</button>
                                     <a href="{{route('listado')}}" class="btn btn-outline-primary"><i class="">Volver</i></a>
                                 </div>
                             </div>
