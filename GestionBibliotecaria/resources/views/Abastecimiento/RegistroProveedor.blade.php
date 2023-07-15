@@ -45,8 +45,9 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="col-md-12 ">
-                                    <button type="submit" class="btn btn-primary btn-lg">Registrar</button>
+                                <div class="col-md-12 " role="group">
+                                    <button type="submit" class="btn btn-outline-primary">Registrar</button>
+                                    <a href="{{route('listado')}}" class="btn btn-outline-primary"><i class="">Volver</i></a>
                                 </div>
                             </div>
                         </fieldset>
@@ -55,32 +56,5 @@
             </div>
         </div>
     </div>
-    <table class="table table-bordered">
-         <thead>
-            <tr>
-                <th>Codigo</th>
-                <th>Nombre</th>
-                 <th>E-mail</th>
-                 <th>Direccion</th>
-                  <th>Telefono</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (count($Proveedores)<=0) 
-                <tr>
-                 <td colspan="3"><b>No hay Registro</b></td>
-                </tr>
-            @else 
-                @foreach ($Proveedores as $ItemProveedor)
-                 <tr>
-                    <td>{{$ItemProveedor->ProveedorID}}</td>
-                    <td>{{$ItemProveedor->Empresa}}</td>
-                    <td>{{$ItemProveedor->Correoelectronico}}</td>
-                    <td>{{$ItemProveedor->Direccion}}</td>
-                    <td>{{$ItemProveedor->Telefono}}</td>
-                 </tr>
-                @endforeach
-            @endif
-        </tbody>
-    </table>  
+
 @endsection

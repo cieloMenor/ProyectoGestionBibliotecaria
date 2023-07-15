@@ -7,13 +7,16 @@ use Illuminate\Http\Request;
 
 class ProveedorController extends Controller
 {
-    public function Proveedor(Request $request){
-        $Proveedores=Proveedor::all();
-        return view('Abastecimiento.RegistroProveedor',compact('Proveedores'));
+    public function form(){
+        return view('Abastecimiento.RegistroProveedor');
     }
     
+    public function tabla(Request $request){
+        $Proveedores=Proveedor::all();
+        return view('Abastecimiento.Listado',compact('Proveedores'));
+    }
 
-    public function Store(Request $request){
+    public function store(Request $request){
         $data=request()->validate([
             'Correoelectronico'=>'required',
 	        'Direccion'=>'required',
@@ -26,6 +29,6 @@ class ProveedorController extends Controller
         $Proveedor->Empresa=$request->Empresa;
         $Proveedor->Telefono=$request->Telefono;
         $Proveedor->save();
-        return redirect()->route('RegistroProveedor');
+        return redirect()->route('listado');
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\UserController;
 use App\Models\Prestamo;
+use App\Models\Proveedor;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -43,5 +44,9 @@ Route::get('/cancelar',function(){
 Route::resource('libroo', LibrooController::class);
 Route::resource('prestamo', PrestamoController::class);
 
-Route::get('/RegistroProveedor',[ProveedorController::class,'Proveedor'])->name('RegistroProveedor');
-Route::post('/xd',[ProveedorController::class,'Store'])->name('ProveedorStore');
+Route::get('/ListadoProveedor',[ProveedorController::class,'Tabla'])->name('listado');
+Route::get('/RegistroProveedor',[ProveedorController::class,'Form'])->name('registro');
+Route::post('/store',[ProveedorController::class,'store'])->name('ProveedorStore'); 
+
+
+
