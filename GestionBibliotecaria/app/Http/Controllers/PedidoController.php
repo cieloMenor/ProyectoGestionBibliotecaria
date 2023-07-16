@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\registroDetallePedido;
 use App\Models\registroPedido;
 use Illuminate\Http\Request;
 
@@ -37,10 +38,22 @@ class PedidoController extends Controller
     }
 
     public function tablaDp(Request $request){
-
+        $detallesP=registroDetallePedido::all();
+        return view('Abastecimiento.ListadoDetallePedido',compact('detallesP'));
     }
 
-    public function storeDp(){
-        
+    public function storeDp(Request $request){
+        $data=request()->validate([
+            'Detalle_pedidoID'=>'required',
+            'Cantidad'=>'required',
+            'PedidoID'=>'required'
+        ]);
+        $PedidoDetalle= new registroDetallePedido();
+        $PedidoDetalle->Detalle_pedidoID=$request->Detalle_pedidoID;
+        $PedidoDetalle->Cantidad=$request->Cantidad;
+        $PedidoDetalle->PedidoID=$request->PedidoID;
+        $PedidoDetalle->LibroID=$request->LibroID;
+        $PedidoDetalle->save();
+        return redirect()->route('listadoDP');
     }
 }

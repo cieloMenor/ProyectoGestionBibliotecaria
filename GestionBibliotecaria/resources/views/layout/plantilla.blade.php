@@ -184,7 +184,7 @@
               <li class="nav-item">
                 <a href="{{route('listado')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Registro Proveedor</p>
+                  <p>Proveedor</p>
                 </a>
               </li>
             </ul>
@@ -192,7 +192,7 @@
               <li class="nav-item">
                 <a href="{{route('listadoB')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Registro Bibliotecario</p>
+                  <p>Bibliotecario</p>
                 </a>
               </li>
             </ul>
@@ -200,7 +200,15 @@
               <li class="nav-item">
                 <a href="{{route('listadoP')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Registro Pedido</p>
+                  <p>Pedidos</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('listadoDP')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Detalle Pedido</p>
                 </a>
               </li>
             </ul>

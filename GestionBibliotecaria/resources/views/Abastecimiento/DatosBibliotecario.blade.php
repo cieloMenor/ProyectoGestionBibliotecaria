@@ -10,7 +10,7 @@
     <br>
 
     <p align=center style = "font-family:courier,arial,helvética; color:crimson">
-        PEDIDOS
+        BIBLIOTECARIO
     </p>
     <table class="table table-bordered">
          <thead>

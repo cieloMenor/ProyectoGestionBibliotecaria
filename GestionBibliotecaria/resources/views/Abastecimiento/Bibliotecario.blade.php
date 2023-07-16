@@ -16,35 +16,35 @@
                             <br>
                             <br>
                             <div class="form-group">
-                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-code"></i></span>
                                 <div class="col-md-8">
                                     <input name="BibliotecarioID" type="number" placeholder="Codigo Bibliotecario" class="form-control" id="BibliotecarioID">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope bigicon"></i></span>
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user"></i></span>
                                 <div class="col-md-8">
                                     <input name="Nombre" type="text" placeholder="Nombres " class="form-control" id="Nombre">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fas fa-map-marker-alt"></i></span>
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fas fa-id-card"></i></span>
                                 <div class="col-md-8">
                                     <input name="Dni" type="text" placeholder="DNI" class="form-control" id="Dni">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fas fa-map-marker-alt"></i></span>
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="far fa-envelope"></i></span>
                                 <div class="col-md-8">
                                     <input name="Correoelectronico" type="text" placeholder="E-mail" class="form-control" id="Correoelectronico">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fas fa-map-marker-alt"></i></span>
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fas fa-phone"></i></span>
                                 <div class="col-md-8">
                                     <input name="Telefono" type="tel" placeholder="Telefono" class="form-control" id="Telefono">
                                 </div>
