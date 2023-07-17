@@ -11,14 +11,15 @@ class Libroo extends Model
     use HasFactory;
     protected $table='libro';
     protected $primaryKey='LibroID';
-    protected $fillable=['Titulo','Nrocopiaslibro','Stocklibro','AutorID',
+    protected $fillable=['Titulo','Nrocopiaslibro','Stocklibro','Edicionlibro',
     'Estado_libroID','Estadohablibro',
+    'Añopublicacion','Editorial','Idioma','Isbn','Paginas','Precio',
     'Fecharegistrolibro','Fechaupdatelibro'];
     public $timestamps=false;
-
-    public static function ActualizarStocklibro($LibrooID,$Nrocopiaslibro){
+    
+    public static function ActualizarStocklibro($LibroID,$Nrocopiaslibro){
         return DB::select(
-        DB::raw("UPDATE libroo set Stocklibro = Stocklibro - '".$Nrocopiaslibro."' where LibrooID='".$LibrooID."'")
+        DB::raw("UPDATE libro set Stocklibro = Stocklibro - '".$Nrocopiaslibro."' where LibroID='".$LibroID."'")
         );
     }
     public function estadoLibros()

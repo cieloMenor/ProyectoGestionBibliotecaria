@@ -7,106 +7,120 @@
     <h1>NUEVO PRESTAMO</h1>
     <form action="{{route('prestamo.store')}}" method="post">
         @csrf
-        <div class="row">
-            <div class="col-md-1"> 
-                <label for="">Fecha</label>
+        <div class="form-group row">
+            <div class="col-2">
+                <label class="control-label">Fecha:</label>
+                <input class="form-control @error('Fecharegistroprestamo') is-invalid @enderror" placeholder="Ingrese DNI"  id="Fecharegistroprestamo" name="Fecharegistroprestamo" value="{{Carbon\Carbon::now()->format('d/m/Y')}}"/>
+                @error('Fecharegistroprestamo')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
             </div>
-            <div class="col-md-2"> 
-                <div class="form-group"> 
-                    <div class="input-group date" data-target-input="nearest"> 
-                        <input type="text" id="fecha" name="fecha" class="form-control datetimepicker-input" data-target="#fecha" value="{{ Carbon\Carbon::now()->format('d/m/Y') }}"> 
-                        <div class="input-group-append" data-target="#fecha" data-toggle="datetimepicker">
-                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div>
+            
+            <div class="col-3">
+                <label class="control-label">Lector:</label>
+                <div class="row">
+                    <div class="col-10">
+                        <select class=" form-control select2 select2-hiddenaccessible selectpicker" style="width: 100%;" data-select2-id="1" tabindex="-1" ariahidden="true" id="LectorID" name="LectorID" data-live-search="true">
+                            <option value="0" selected>- Seleccione Lector -</option>
+                            @foreach($lectores as $itemlector)
+                                <option value="{{ $itemlector->LectorID }}_{{ $itemlector->Dni_lector }}_{{ $itemlector->Correolector }}_{{ $itemlector->Estadolector }}" >{{ $itemlector->Apellidoslector }},{{ $itemlector->Nombreslector }}</option>
+                            @endforeach
+                        </select>
                     </div>
-                </div> 
-            </div> 
-        
-            <div class="col-md-1">
-                <label for="">Tipo</label>
-            </div> 
-            <div class="col-md-2"> 
-                <select class="form-control" id="seltipo" name="seltipo" onchange="mostrarTipo()">
-                    @foreach($tipo as $itemtipo)
-                        <option value="{{$itemtipo['tipo_id']}}" selected>{{$itemtipo['descripcion']}}</option> 
-                    @endforeach 
-                </select> 
-            </div>
-            <div class="col-md-1">
-                <label for="">No Doc. :</label>
-            </div> 
-            <div class="col-md-3">
-                <input type="text" class="form-control" name="nrodoc" id="nrodoc" value="{{ $parametros->serie.$parametros->numeracion }}"> 
-            </div>
-        </div> 
-        <div class="row">
-            <div class="col-md-8">
-                <div class="form-group">
-                    <label for="cliente_id"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cliente</font></font></label>
-                    <select class="form-control select2 select2-hiddenaccessible selectpicker" style="width: 100%;" data-select2-id="1" tabindex="-1" ariahidden="true" id="cliente_id" name="cliente_id" data-live-search="true">
-                        <option value="0" selected>- Seleccione Cliente -</option>
-                        @foreach($cliente as $itemcliente)
-                            <option value="{{ $itemcliente->cliente_id }}_{{ $itemcliente->ruc_dni }}_{{ $itemcliente->direccion }}" >{{ $itemcliente->nombres }}</option>
-                        @endforeach
-                    </select> 
+                    <div class="col-1">
+                        <a href="" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                    </div>
                 </div>
-            </div> 
-            <div class="col-md-4"> 
-                <label for="">RUC/DNI </label> 
-                <div class="input-group">
-                    <input type="text" class="form-control" name="ruc" id="ruc" readonly="readonly">
-                </div>
-            </div> 
-        </div>
-        <div class="row pt-2">
-            <div class="col-md-1">
-                <label for="">Dirección </label>
             </div>
-            <div class="col-md-11">
-                <input type="text" class="form-control" name="direccion" id="direccion" readonly="readonly">
+            <div class="col-2">
+                <label class="control-label">DNI:</label>
+                <input class="form-control " type="text" id="Dni_lector" name="Dni_lector" readonly="readonly"/>
+            </div>
+            <div class="col-3">
+                <label class="control-label">Correo:</label>
+                <input class="form-control " type="text" id="Correolector" name="Correolector" readonly="readonly"/>
+            </div>
+            <div class="col-2">
+                <label class="control-label">Estado:</label>
+                <input class="form-control " type="text" id="Estadolector" name="Estadolector" readonly="readonly"/>
             </div>
         </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label class="control-label">Tipo:</label>
+                <select name="Tipo_prestamoID" id="Tipo_prestamoID" class="form-select input_user">
+                    <option value="0" selected>- Seleccione -</option>
+                    @foreach ($tipos as $item)
+                    <option value="{{$item->Tipo_prestamoID}}">{{$item->Tipoprestamo}}</option>
+                    @endforeach
+                    
+                </select>
+            </div>
+            <div class="col-2">
+                <label class="control-label"><i class="fa fa-calendar" aria-hidden="true"></i>Devolucion:</label>
+                <input class="form-control @error('Fechadevolucionesperadap') is-invalid @enderror" type="date" id="Fechadevolucionesperadap" name="Fechadevolucionesperadap" value="{{old('Fechadevolucionesperadap')}}"/>
+                @error('Fechadevolucionesperadap')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="col-2">
+                <label class="control-label">Hora:</label>
+                <input class="form-control @error('Horadevolucionesperadap') is-invalid @enderror" type="time" id="Horadevolucionesperadap" name="Horadevolucionesperadap" value="{{old('Horadevolucionesperadap')}}"/>
+                @error('Horadevolucionesperadap')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="col-6">
+                <label class="control-label">Observaciones:</label>
+
+                <input class="form-control @error('Observacionesprestamo') is-invalid @enderror" placeholder="Ingrese Observaciones" type="text" id="Observacionesprestamo" name="Observacionesprestamo" value="{{old('Observacionesprestamo')}}"/>
+            </div>
+        </div>
+
         <div class="row pt-3">
-            <div class="col-md-1">
-                <label for="">Producto </label>
-            </div>
-            <div class="col-md-6">
+            
+            <div class="col-md-4">
+                <label for="">Libro: </label>
                 <select class="form-control select2 select2-hidden-accessible selectpicker" style="width: 100%;"
-                data-select2-id="1" tabindex="-1" aria-hidden="true" id="idproducto" name="idproducto"
+                data-select2-id="1" tabindex="-1" aria-hidden="true" id="LibroID" name="LibroID"
                 data-live-search="true">
-                    <option value="0" selected>- Seleccione Producto -</option>
-                    @foreach($producto as $itemproducto)
-                        <option value="{{ $itemproducto->idproducto }}_{{ $itemproducto->precio }}_{{ $itemproducto->stock}}">{{ $itemproducto->descripcion }}</option>
+                    <option value="0" selected>- Seleccione Libro -</option>
+                    @foreach($libros as $itemproducto)
+                        <option value="{{ $itemproducto->LibroID }}_{{ $itemproducto->Stocklibro }}_{{ $itemproducto->Idioma}}_{{ $itemproducto->Titulo}}">{{ $itemproducto->Titulo }}</option>
                     @endforeach
                 </select>
             </div>
-            <div class="col-md-1" style="text-align:right;">
+            <div class="col-md-1">
                 <label for="">Stock :</label>
+                <input type="text" class="form-control" name="Stocklibro" id="Stocklibro" readonly="readonly">
             </div>
             <div class="col-md-3">
-                <input type="text" class="form-control" name="stock" id="stock" readonly="readonly">
+                <label for="">Idioma :</label>
+                <input type="text" class="form-control" name="Idioma" id="Idioma" readonly="readonly">
+            </div>
+            <div class="col-md-1">
+                <label for="">Cantidad:</label>
+                <input type="text" class="form-control" name="Nrocopiasprestamo" id="Nrocopiasprestamo" value="{{old('Nrocopiasprestamo')}}" >
+            </div>
+            <div class="col-md-2">
+                <button type="button" id="btnadddet" class="btn btn-success"><i class="fas fa-shopping-cart"></i>
+                Agregar</button>
+                
             </div>
         </div>
-        <div class="row pt-3"> 
-            <div class="col-md-1">
-                <label for="">Precio </label>
+        {{-- Mensaje de alerta --}}
+        <div id="mensaje">
+            <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">$times;</span>
+                </button>
             </div>
-            <div class="col-md-2">
-                <input type="text" class="form-control" name="precio" id="precio" readonly="readonly">
-            </div>
-            <div class="col-md-1">
-                <label for="">Cantidad </label>
-            </div>
-            <div class="col-md-2">
-                <input type="number" step=".1" min="0.1" value="1" class="form-control" name="cantidad" id="cantidad">
-            </div>
-            <div class="col-md-3">
-                <button type="button" id="btnadddet" class="btn btn-success"><i class="fas fa-shopping-cart"></i>
-                Agregar al carrito</button>
-            </div>
-            {{-- <div class="col-md-2">
-                <input hidden type="number" class="form-control" name="stock" id="stock">
-            </div> --}}
         </div>
         <div class="col-md-12 pt-3">
             <div class="table-responsive">
@@ -117,8 +131,6 @@
                         <th>DESCRIPCIÓN</th>
                         <th>STOCK</th>
                         <th class="text-center">CANTIDAD</th>
-                        <th class="text-center">P.VENTA</th>
-                        <th>IMPORTE</th>
                     </thead>
                     <tfoot>
                     </tfoot>
@@ -127,6 +139,7 @@
                 </table>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-8">
             </div>
@@ -137,15 +150,20 @@
                 <input type="text" class="form-control text-right" name="total" id="total" readonly="readonly">
             </div>
         </div>
+
+        <br>
         <div class="col-md-12 text-center"> 
             <div id="guardar">
                 <div class="form-group">
                     <button class="btn btn-primary" id="btnRegistrar" data-loading-text="<i class='fa a-spinner fa-spin'> </i> Registrando">
                     <i class='fas fa-save'></i> Registrar</button> 
-                    <a href="{{URL::to('venta')}}" class='btn btn-danger'><i class='fas fa-ban'></i> Cancelar</a> 
+                    
+                    <a href="{{route('prestamo.cancelar')}}" class='btn btn-danger'><i class='fas fa-ban'></i> Cancelar</a> 
                 </div> 
             </div>
         </div>
+
+        
     </form>
 
 </div>
@@ -158,6 +176,7 @@
     <script src="/adminlte/plugins/moment/moment.min.js"></script>
     <script src="/adminlte/plugins/inputmask/jquery.inputmask.min.js"></script>
     <script src="/adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    
     <script src="/js/createdoc.js"></script>
     <script type="text/javascript"> 
         $('#fecha').datetimepicker({

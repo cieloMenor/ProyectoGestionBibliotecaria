@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Lector extends Model
 {
@@ -23,5 +24,11 @@ class Lector extends Model
     public function estadoLectores()
     {
         return $this->hasOne(EstadoLector::class,'Estado_lectorID','Estado_lectorID');
+    }
+
+    public static function ActualizarLectorADeudor($LectorID){
+        return DB::select(
+        DB::raw("UPDATE lector set Estado_lectorID = '2' where LectorID='".$LectorID."'")
+        );
     }
 }

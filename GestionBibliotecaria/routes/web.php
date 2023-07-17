@@ -39,12 +39,16 @@ Route::get('/salirregistro',function(){
     return redirect()->route('login');})->name('usuario.salir');
 
 Route::resource('lector', LectorController::class);
-Route::get('/cancelar',function(){
-    return redirect()->route('lector.index')->with('datos','Acción Cancelada...!');
-  })->name('lector.cancelar');
+Route::get('/cancelarlector',function(){
+  return redirect()->route('lector.index')->with('datos','Acción Cancelada...!');
+})->name('lector.cancelar');
 
 Route::resource('libroo', LibrooController::class);
 Route::resource('prestamo', PrestamoController::class);
+Route::get('/cancelarprestamo',function(){
+  return redirect()->route('prestamo.index')->with('datos','Acción Cancelada...!');
+})->name('prestamo.cancelar');
+
 
 Route::get('/ListadoProveedor',[ProveedorController::class,'Tabla'])->name('listado');
 Route::get('/RegistroProveedor',[ProveedorController::class,'Form'])->name('registro');

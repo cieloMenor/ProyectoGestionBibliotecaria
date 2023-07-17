@@ -1,24 +1,24 @@
 var cont = 0;
 var total = 0;
-var detalleventa = [];
+var detalleprestamo = [];
 var subtotal = [];
 var controlproducto = [];
 $(document).ready(function () {
-    $('#cliente_id').change(function () {
-        mostrarCliente();
+    $('#LibroID').change(function () {
+        mostrarLibro();
         });
-        $('#idproducto').change(function () {
-        mostrarProducto();
+        $('#LectorID').change(function () {
+        mostrarLector();
         });
         $('#btnadddet').click(function () {
         agregarDetalle();
         });
         
 });
-function mostrarCliente() {
-    datosCliente = document.getElementById('cliente_id').value.split('_');
-    $('#ruc').val(datosCliente[1]);
-    $('#direccion').val(datosCliente[2]);
+function mostrarLibro() {
+    datosCliente = document.getElementById('LibroID').value.split('_');
+    $('#Stocklibro').val(datosCliente[1]);
+    $('#Idioma').val(datosCliente[2]);
     /* cliente_id=$("#cliente_id").val();
     
     $.get('/EncontrarCliente/'+cliente_id, function(data){
@@ -28,10 +28,11 @@ function mostrarCliente() {
     
     });*/
 }
-function mostrarProducto() {
-    datosProducto = document.getElementById('idproducto').value.split('_');
-    $('#precio').val(datosProducto[1]);
-    $('#stock').val(datosProducto[2]);
+function mostrarLector() {
+    datosProducto = document.getElementById('LectorID').value.split('_');
+    $('#Dni_lector').val(datosProducto[1]);
+    $('#Correolector').val(datosProducto[2]);
+    $('#Estadolector').val(datosProducto[3]);
     // idproducto = $("#idproducto").val();
     // $.get('/EncontrarProducto/' + idproducto, function (data) {
     // $('input[name=idproducto]').val(data[0].idproducto);
@@ -40,12 +41,7 @@ function mostrarProducto() {
     // $('input[name=stock]').val(data[3].cantidad);
     // });
 }
-function mostrarTipo() {
-    tipo_id = $("#seltipo").val();
-    $.get('/EncontrarTipo/' + tipo_id, function (data) {
-        $('input[name=nrodoc]').val(data[0].serie+''+data[0].numeracion);
-    });
-}
+
 /* Mostrar Mensajes de Error */
 function mostrarMensajeError(mensaje) {
     $(".alert").css('display', 'block');
@@ -55,36 +51,50 @@ function mostrarMensajeError(mensaje) {
     $('.alert').delay(5000).hide(400);
 }
 function agregarDetalle() {
-    ruc = $("#ruc").val();
+    ruc = $("#Dni_lector").val();
     if (ruc == '') {
-        mostrarMensajeError("Por favor seleccione el Cliente");
+        mostrarMensajeError("Por favor seleccione el Lector");
         return false;
     }
-    descripcion = $('#idproducto option:selected').text();
-    if (descripcion == '- Seleccione Producto -') {
-        mostrarMensajeError("Por favor seleccione el Producto");
+    tipo = $('#Tipo_prestamoID option:selected').text();
+    if (tipo == '- Seleccione -') {
+        mostrarMensajeError("Por favor seleccione el tipo de prestamo");
         return false;
     }
-    let cantidad_producto = parseFloat($("#cantidad").val());
-    let stock = parseFloat($("#stock").val());
-    if (cantidad_producto == '' || cantidad_producto == 0 || cantidad_producto == null) {
+
+    descripcion = $('#LibroID option:selected').text();
+    if (descripcion == '- Seleccione Libro -') {
+        mostrarMensajeError("Por favor seleccione el Libro");
+        return false;
+    }
+
+    let cantidadT=$("#Nrocopiasprestamo").val();
+    let cantidad_producto = parseInt($("#Nrocopiasprestamo").val());
+    let stock = parseInt($("#Stocklibro").val());
+    if (cantidadT == '' || cantidadT == 0 || cantidad_producto == null) {
         mostrarMensajeError("Por favor ingrese cantidad del producto");
         return false;
     }
     else if (cantidad_producto <= 0) {
-        mostrarMensajeError("Por favor debe escribir cantidad del producto mayor a 0 ");
+        mostrarMensajeError("Por favor debe escribir cantidad del lector mayor a 0 ");
         return false;
     }
     else if (cantidad_producto > stock) {
-        mostrarMensajeError("No se tiene tal cantidad de producto solo hay " + stock);
+        mostrarMensajeError("No se tiene tal cantidad de libro solo hay " + stock);
         return false;
     }
-    pventa = $("#precio").val();
-    if (pventa == '' || pventa == 0) {
-        mostrarMensajeError("Por favor ingrese precio de venta del producto");
+    let fechaDevolucion = $("#Fechadevolucionesperadap").val();
+    if (fechaDevolucion == '') {
+        mostrarMensajeError("Por favor ingrese fecha de devolucion");
         return false;
     }
-    datosProducto = document.getElementById('idproducto').value.split('_');
+    let horaDevolucion = $("#Horadevolucionesperadap").val();
+    if (horaDevolucion == '') {
+        mostrarMensajeError("Por favor ingrese hora de devolucion");
+        return false;
+    }
+
+    datosProducto = document.getElementById('LibroID').value.split('_');
     cod_producto = datosProducto[0];
     //cod_producto = $("#idproducto").val();
      /* Buscar que codigo de producto no se repita */
@@ -97,70 +107,52 @@ function agregarDetalle() {
         i = i + 1;
     }
     if (band == true) {
-        mostrarMensajeError("No puede volver a vender el mismo producto");
+        mostrarMensajeError("No puede volver a prestar el mismo libro");
         return false;
     }
     else { 
-        stock = $("#stock").val();
-        subtotal[cont] = cantidad_producto * pventa;
+        stock = $("#Stocklibro").val();
+        subtotal[cont] = cantidad_producto;
         controlproducto[cont] = cod_producto;
         total = total + subtotal[cont];
         var fila = '<tr class="selected" id="fila' + cont + '">'+
         '<td style="text-align:center;"><button type="button" class="btn btn-danger btn-xs" onclick="eliminardetalle(' + cod_producto + ',' + cont + ');"><i class="fa fa-times" ></i></button></td>'+
-        '<td style="text-align:right;"><input type="text" name="cod_producto[]" value="' + cod_producto + '" readonly style="width:50px; text-align:right;"></td>'+
-        '<td>' + descripcion + '</td><td><input type="number" name="stock[]" value="' + stock + '" style="width:140px; text-align:left;"></td>'+
-        '<td style="text-align:center;"><input type="number" name="cantidad_producto[]" value="' + cantidad_producto + '" readonly style="width:50px; text-align:right;"></td>'+
-        '<td style="textalign:right;"><input type="number" name="pventa[]" value="' + pventa + '" style="width:80px; text-align:right;" readonly></td>'+
-        '<td style="textalign:right;">' + number_format(subtotal[cont], 2) + '</td>'+'</tr>';
+        '<td style="text-align:right;"><input type="text" name="cod_producto[]" value="' + cod_producto + '" readonly="readonly" style="width:50px; text-align:right;"></td>'+
+        '<td><input type="text" name="descripcion[]" value="' + descripcion + '" readonly="readonly" style="width:100%; text-align:center;"></td><td><input type="number" name="stock[]" value="' + stock + '" readonly="readonly" style="width:140px; text-align:left;"></td>'+
+        '<td style="text-align:center;"><input type="number" name="cantidad_producto[]" value="' + cantidad_producto + '" style="width:50px; text-align:right;"></td>'+
+        +'</tr>';
         $('#detalles').append(fila);
-        detalleventa.push({
+        detalleprestamo.push({
             cod_producto: cod_producto,
             stock: stock,
             cantidad_producto: cantidad_producto,
-            pventa: pventa,
-            subtotal: subtotal
+            descripcion : descripcion
         });
         cont++;
     }
-    $('#total').val(number_format(total, 2));
+    $('#total').val(total);
     limpiar();
 }
 function limpiar() { 
-    $("#cantidad").val('1');
-    $("#idproducto").val("0").change();
-    $("#precio").val('');
-    $("#stock").val(''); 
+    $("#Nrocopiasprestamo").val('1');
+    $("#LibroID").val("0").change(); 
 }
     /* Eliminar productos */
 function eliminardetalle(codigo, index) {
     total = total - subtotal[index];
-    tam = detalleventa.length;
+    tam = detalleprestamo.length;
     var i = 0;
     var pos;
     while (i < tam) {
-        if (detalleventa[i].codigo == codigo) {
+        if (detalleprestamo[i].codigo == codigo) {
             pos = i;
             break;
         }
         i = i + 1;
     }
-    detalleventa.splice(pos, 1);
+    detalleprestamo.splice(pos, 1);
     $('#fila' + index).remove();
     controlproducto[index] = "";
-    $('#total').val(number_format(total, 2));
+    $('#total').val(total);
 }
-function number_format(amount, decimals) {
-    amount += ''; // por si pasan un numero en vez de un string
-    amount = parseFloat(amount.replace(/[^0-9\.] /g, '')); // elimino cualquier cosa que no sea numero o punto
-     decimals = decimals || 0; // por si la variable no fue fue pasada
-     // si no es un numero o es igual a cero retorno el mismo cero
-    if (isNaN(amount) || amount === 0)
-        return parseFloat(0).toFixed(decimals);// si es mayor o menor que cero retorno el valor formateado como numero
-    amount = '' + amount.toFixed(decimals);
-    var amount_parts = amount.split('.'),
-        regexp = /(\d+)(\d{3})/;
-    while (regexp.test(amount_parts[0]))
-        amount_parts[0] = amount_parts[0].replace(regexp, '$1' + ',' + '$2');
-    return amount_parts.join('.');
-}
-           
+        
