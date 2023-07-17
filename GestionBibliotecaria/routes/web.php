@@ -64,6 +64,10 @@ Route::post('/eliminarBibliotecario/{ide}',[BibliotecarioController::class,'elim
 Route::get('/RegistroPedido',[PedidoController::class,'createP'])->name('registroP');
 Route::get('/ListadoPedido',[PedidoController::class,'tablaP'])->name('listadoP');
 Route::post('/StorePedido',[PedidoController::class,'storeP'])->name('storeP'); 
+Route::get('/EditarPedidoo/{id}',[PedidoController::class,'editarP'])->name('editarP');
+Route::post('/updatePedido',[PedidoController::class,'updateP'])->name('updateP'); 
+Route::post('/eliminarPedido/{ide}',[PedidoController::class,'eliminarP'])->name('eliminarP'); 
+
 
 
 Route::get('/RegistroDetallePedido',[PedidoController::class,'createDp'])->name('registroDP');

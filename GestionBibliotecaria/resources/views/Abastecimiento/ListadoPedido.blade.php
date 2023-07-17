@@ -33,6 +33,39 @@
                     <td>{{$ItemPedidos->Fecha}}</td>
                     <td>{{$ItemPedidos->ProveedorID}}</td>
                     <td>{{$ItemPedidos->BibliotecarioID}}</td>
+                    <td>
+                        <a href="{{route('editarP', [$ItemPedidos->PedidoID])}}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> Editar</a>
+                        &nbsp; &nbsp; &nbsp;
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal-{{$ItemPedidos->PedidoID}}">
+                            <i class="fas fa-trash"></i> Eliminar
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal-{{$ItemPedidos->PedidoID}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <form action="{{route('eliminarP',$ItemPedidos->PedidoID)}}" method="post">
+                                        @csrf
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Eliminacion de Capacitacion</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ¿Esta seguro que desea eliminar <b>{{$ItemPedidos->PedidoID}}</b>? <br>
+                                            <i>Se eliminara todo el contenido de la capacitacion</i>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                                   
+                    </td>
                  </tr>
                 @endforeach
             @endif

@@ -33,6 +33,46 @@ class PedidoController extends Controller
         return redirect()->route('listadoP');
     }
 
+    public function editarP($id){
+        $pedi=registroPedido::find($id);
+        return view('Abastecimiento.EditarPedido',compact('pedi'));
+    }
+
+    public function updateP(Request $request){
+        $updaP=registroPedido::find($request->PedidoID);
+        $updaP->PedidoID=$request->PedidoID;
+        $updaP->Fecha=$request->Fecha;
+        $updaP->BibliotecarioID=$request->BibliotecarioID;
+        $updaP->ProveedorID=$request->ProveedorID;
+        $updaP->save();
+        return redirect()->route('listadoP');
+    }
+
+    public function eliminarP($ide){
+        $elimP=registroPedido::find($ide);
+        $elimP->delete($ide);
+        return redirect()->route('listadoP');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function createDp(){
         return view('Abastecimiento.RegistroDetallePedido');
     }
