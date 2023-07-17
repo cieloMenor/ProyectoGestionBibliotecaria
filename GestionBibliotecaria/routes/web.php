@@ -53,6 +53,14 @@ Route::get('/EditarProveedor/{id}',[ProveedorController::class,'Edit'])->name('e
 Route::post('/update',[ProveedorController::class,'update'])->name('update'); 
 Route::post('/eliminar/{id}',[ProveedorController::class,'eliminar'])->name('eliminar'); 
 
+Route::get('/RegistroBibliotecario',[BibliotecarioController::class,'createB'])->name('registroB');
+Route::get('/DatosBibliotecario',[BibliotecarioController::class,'tablaB'])->name('listadoB');
+Route::post('/StoreBibliotecario',[BibliotecarioController::class,'storeB'])->name('storeBb'); 
+Route::get('/EditarBibliotecario/{id}',[BibliotecarioController::class,'editarB'])->name('editarB');
+Route::post('/updateBibliotecario',[BibliotecarioController::class,'updateB'])->name('updateB'); 
+Route::post('/eliminarBibliotecario/{ide}',[BibliotecarioController::class,'eliminarB'])->name('eliminarB'); 
+
+
 Route::get('/RegistroPedido',[PedidoController::class,'createP'])->name('registroP');
 Route::get('/ListadoPedido',[PedidoController::class,'tablaP'])->name('listadoP');
 Route::post('/StorePedido',[PedidoController::class,'storeP'])->name('storeP'); 
@@ -62,6 +70,4 @@ Route::get('/RegistroDetallePedido',[PedidoController::class,'createDp'])->name(
 Route::get('/ListadoDetallePedido',[PedidoController::class,'tablaDp'])->name('listadoDP');
 Route::post('/StoreDetallePedido',[PedidoController::class,'storeDp'])->name('storeDP'); 
 
-Route::get('/RegistroBibliotecario',[BibliotecarioController::class,'createB'])->name('registroB');
-Route::get('/DatosBibliotecario',[BibliotecarioController::class,'tablaB'])->name('listadoB');
-Route::post('/StoreBibliotecario',[BibliotecarioController::class,'storeB'])->name('storeBb'); 
+

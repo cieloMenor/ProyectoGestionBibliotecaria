@@ -34,4 +34,28 @@ class BibliotecarioController extends Controller
         $Bibliotecario->save();
         return redirect()->route('listadoB');
     }
+
+    public function editarB($id){
+        $biblo=Bibliotecario::find($id);
+        return view('Abastecimiento.EditarBibliotecario',compact('biblo'));
+    }
+
+    public function updateB(Request $request){
+        $updaB=Bibliotecario::find($request->BibliotecarioID);
+        $updaB->BibliotecarioID=$request->BibliotecarioID;
+        $updaB->Nombre=$request->Nombre;
+        $updaB->Dni=$request->Dni;
+        $updaB->Correoelectronico=$request->Correoelectronico;
+        $updaB->Direccion=$request->Direccion;
+        $updaB->Telefono=$request->Telefono;
+        $updaB->save();
+        return redirect()->route('listadoB');
+    }
+
+    public function eliminarB($ide){
+        $elimB=Bibliotecario::find($ide);
+        $elimB->delete($ide);
+        return redirect()->route('listadoB');
+
+    }
 }
