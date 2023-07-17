@@ -49,7 +49,9 @@ Route::resource('prestamo', PrestamoController::class);
 Route::get('/ListadoProveedor',[ProveedorController::class,'Tabla'])->name('listado');
 Route::get('/RegistroProveedor',[ProveedorController::class,'Form'])->name('registro');
 Route::post('/storeP',[ProveedorController::class,'store'])->name('ProveedorStore'); 
-
+Route::get('/EditarProveedor/{id}',[ProveedorController::class,'Edit'])->name('editar');
+Route::post('/update',[ProveedorController::class,'update'])->name('update'); 
+Route::post('/eliminar/{id}',[ProveedorController::class,'eliminar'])->name('eliminar'); 
 
 Route::get('/RegistroPedido',[PedidoController::class,'createP'])->name('registroP');
 Route::get('/ListadoPedido',[PedidoController::class,'tablaP'])->name('listadoP');
