@@ -72,11 +72,25 @@ Route::resource('controlPrestamo', ControlPrestamoController::class);
 Route::get('/ListadoProveedor',[ProveedorController::class,'Tabla'])->name('listado');
 Route::get('/RegistroProveedor',[ProveedorController::class,'Form'])->name('registro');
 Route::post('/storeP',[ProveedorController::class,'store'])->name('ProveedorStore'); 
+Route::get('/EditarProveedor/{id}',[ProveedorController::class,'Edit'])->name('editar');
+Route::post('/update',[ProveedorController::class,'update'])->name('update'); 
+Route::post('/eliminar/{id}',[ProveedorController::class,'eliminar'])->name('eliminar'); 
+
+Route::get('/RegistroBibliotecario',[BibliotecarioController::class,'createB'])->name('registroB');
+Route::get('/DatosBibliotecario',[BibliotecarioController::class,'tablaB'])->name('listadoB');
+Route::post('/StoreBibliotecario',[BibliotecarioController::class,'storeB'])->name('storeBb'); 
+Route::get('/EditarBibliotecario/{id}',[BibliotecarioController::class,'editarB'])->name('editarB');
+Route::post('/updateBibliotecario',[BibliotecarioController::class,'updateB'])->name('updateB'); 
+Route::post('/eliminarBibliotecario/{ide}',[BibliotecarioController::class,'eliminarB'])->name('eliminarB'); 
 
 
 Route::get('/RegistroPedido',[PedidoController::class,'createP'])->name('registroP');
 Route::get('/ListadoPedido',[PedidoController::class,'tablaP'])->name('listadoP');
 Route::post('/StorePedido',[PedidoController::class,'storeP'])->name('storeP'); 
+Route::get('/EditarPedidoo/{id}',[PedidoController::class,'editarP'])->name('editarP');
+Route::post('/updatePedido',[PedidoController::class,'updateP'])->name('updateP'); 
+Route::post('/eliminarPedido/{ide}',[PedidoController::class,'eliminarP'])->name('eliminarP'); 
+
 
 
 Route::get('/RegistroDetallePedido',[PedidoController::class,'createDp'])->name('registroDP');

@@ -32,4 +32,25 @@ class ProveedorController extends Controller
         $Proveedor->save();
         return redirect()->route('listado')->with('datos','Registro Nuevo Guardado ...!');
     }
+
+    public function Edit($id){
+        $provi=Proveedor::find($id);
+        return view('Abastecimiento.EditarProveedor',compact('provi'));
+    }
+
+    public function update(Request $request){
+        $upda=Proveedor::find($request->ProveedorID);
+        $upda->ProveedorID=$request->ProveedorID;
+        $upda->Correoelectronico=$request->Correoelectronico;
+        $upda->Direccion=$request->Direccion;
+        $upda->Empresa=$request->Empresa;
+        $upda->Telefono=$request->Telefono;
+        $upda->save();
+        return redirect()->route('listado');
+    }
+    public function eliminar($id){
+        $elimp=Proveedor::find($id);
+        $elimp->delete();
+        return redirect()->route('listado');
+    }
 }
