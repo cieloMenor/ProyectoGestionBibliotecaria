@@ -10,6 +10,6 @@ class EstadoDetallePrestamo extends Model
     use HasFactory;
     protected $table='estado_detalle_prestamo';
     protected $primaryKey='Estado_detalle_prestamoID';
-    protected $fillable=['Estado_detalle_prestamo'];
+    protected $fillable=['Estadodetalleprestamo'];
     public $timestamps=false;
 }

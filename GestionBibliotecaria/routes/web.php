@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\BibliotecarioController;
+use App\Http\Controllers\ControlPrestamoController;
+use App\Http\Controllers\DevolucionController;
+use App\Http\Controllers\EntregaController;
 use App\Http\Controllers\LectorController;
 use App\Http\Controllers\LibrooController;
 use App\Http\Controllers\PedidoController;
@@ -49,6 +52,22 @@ Route::get('/cancelarprestamo',function(){
   return redirect()->route('prestamo.index')->with('datos','Acción Cancelada...!');
 })->name('prestamo.cancelar');
 
+Route::post('/guardarlector', [PrestamoController::class,'store2'])->name('prestamo.store2');
+Route::get('/crearlector',[PrestamoController::class,'crearlector'])->name('prestamo.crearlector');
+Route::get('/verDetallePrestamos/{id}',[PrestamoController::class,'ver'])->name('prestamo.ver');
+
+Route::resource('entrega', EntregaController::class);
+Route::resource('devolucion', DevolucionController::class);
+
+Route::get('/cancelardevolucion',function(){
+  return redirect()->route('devolucion.index')->with('datos','Acción Cancelada...!');
+})->name('devolucion.cancelar');
+
+Route::post('/agregarDevolucion/{id}',[DevolucionController::class,'agregar'])->name('devolucion.agregar');
+Route::get('/verDetalleDevolucions/{id}',[DevolucionController::class,'ver'])->name('devolucion.ver');
+Route::get('/agregarMultaLector/{id}',[DevolucionController::class,'multalector'])->name('devolucion.multalector');
+
+Route::resource('controlPrestamo', ControlPrestamoController::class);
 
 Route::get('/ListadoProveedor',[ProveedorController::class,'Tabla'])->name('listado');
 Route::get('/RegistroProveedor',[ProveedorController::class,'Form'])->name('registro');
@@ -67,3 +86,4 @@ Route::post('/StoreDetallePedido',[PedidoController::class,'storeDp'])->name('st
 Route::get('/RegistroBibliotecario',[BibliotecarioController::class,'createB'])->name('registroB');
 Route::get('/DatosBibliotecario',[BibliotecarioController::class,'tablaB'])->name('listadoB');
 Route::post('/StoreBibliotecario',[BibliotecarioController::class,'storeB'])->name('storeBb'); 
+

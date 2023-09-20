@@ -22,6 +22,11 @@ class Libroo extends Model
         DB::raw("UPDATE libro set Stocklibro = Stocklibro - '".$Nrocopiaslibro."' where LibroID='".$LibroID."'")
         );
     }
+    public static function AumentarStocklibro($LibroID,$Nrocopiaslibro){
+        return DB::select(
+        DB::raw("UPDATE libro set Stocklibro = Stocklibro + '".$Nrocopiaslibro."' where LibroID='".$LibroID."'")
+        );
+    }
     public function estadoLibros()
     {
         return $this->hasOne(EstadoLibro::class,'Estado_libroID','Estado_libroID');

@@ -34,7 +34,6 @@
             <th scope="col">Titulo</th>
             <th scope="col">NroCopias</th>
             <th scope="col">Stock Disponible</th>
-            <th scope="col">Autor</th>
             <th scope="col">Estado</th>
             <th scope="col">Opciones</th>
           </tr>
@@ -47,11 +46,10 @@
             @else
                 @foreach ($libros as $item)
                 <tr>
-                    <td>{{$item->LibrooID}}</td>
-                    <td>{{$item->Nombrelibro}}</td>
+                    <td>{{$item->LibroID}}</td>
+                    <td>{{$item->Titulo}}</td>
                     <td>{{$item->Nrocopiaslibro}}</td>
                     <td>{{$item->Stocklibro}}</td>
-                    <td>{{$item->Apellidosautor}}, {{$item->Nombresautor}}</td>
                     <td > <p class="btn btn-primary">{{$item->Estadolibro}}</p></td>
                     <td>
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{$item->LibrooID}}">
@@ -85,27 +83,27 @@
                             </div>
                           </div>
                         
-                        <a href="{{route('libroo.edit',$item->LibrooID)}}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> Editar</a>
+                        <a href="{{--route('libroo.edit',$item->LibrooID)--}}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> Editar</a>
                         
                         {{-- <a href="{{route('tramite.confirmar',$itemtramite->idtramite)}}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>--}}
-                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2{{$item->LibrooID}}">
+                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2{{$item->LibroID}}">
                             <i class="fas fa-trash"></i>Eliminar
                           </button>
                           <!-- Modal -->
-                          <div class="modal fade" id="exampleModal2{{$item->LibrooID}}" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                          <div class="modal fade" id="exampleModal2{{$item->LibroID}}" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
                             <div class="modal-dialog modalperrito" >
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">{{$item->Nombrelibro}} - {{$item->Nombresautor}} {{$item->Apellidosautor}}</h5>
+                                  <h5 class="modal-title" id="exampleModalLabel">{{$item->Titulo}}</h5>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                   <p>
-                                    ¿Está seguro de eliminar este libro: {{$item->Nombrelibro}}?
+                                    ¿Está seguro de eliminar este libro: {{$item->Titulo}}?
                                   </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <form action="{{route('libroo.destroy',$item->LibrooID)}}" method="post">
+                                    <form action="{{route('libroo.destroy',$item->LibroID)}}" method="post">
                                         @method('delete')
                                         @csrf
                                         <button type="submit" class="btn btn-danger"><i class="fas fa-check-square"></i>SI</button>

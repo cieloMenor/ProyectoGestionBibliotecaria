@@ -5,6 +5,17 @@
 @section('contenido')
 <div class="container">
     <h1>NUEVO PRESTAMO</h1>
+    {{-- Mensaje de alerta --}}
+    <div id="mensaje2">
+        @if (session('datos2'))
+            <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+                {{session('datos2')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">$times;</span>
+                </button>
+            </div>
+        @endif
+    </div>
     <form action="{{route('prestamo.store')}}" method="post">
         @csrf
         <div class="form-group row">
@@ -30,7 +41,7 @@
                         </select>
                     </div>
                     <div class="col-1">
-                        <a href="" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                        <a href="{{route('prestamo.crearlector')}}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
                     </div>
                 </div>
             </div>
@@ -182,5 +193,13 @@
         $('#fecha').datetimepicker({
         format: 'DD/MM/YYYY',
         }); 
+    </script>
+    <script>
+        //para cerrar el mensaje
+        setTimeout(function () {
+            //selecciono el id mensaje y lo remuevo en 2000 segundos
+            document.querySelector('#mensaje2').remove();
+            
+        }, 2000);
     </script>
 @endsection

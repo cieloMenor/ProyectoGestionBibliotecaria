@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Prestamo extends Model
 {
@@ -32,4 +33,28 @@ class Prestamo extends Model
     {
         return $this->hasOne(EstadoPrestamo::class,'Estado_prestamoID','Estado_prestamoID');
     }
+
+    public static function AnularEntrega($PrestamoID){
+        return DB::select(
+        DB::raw("UPDATE prestamo set Estado_prestamoID ='3' where PrestamoID='".$PrestamoID."'")
+        );
+    }
+
+    public static function ProcesarEntrega($PrestamoID){
+        return DB::select(
+        DB::raw("UPDATE prestamo set Estado_prestamoID ='2' where PrestamoID='".$PrestamoID."'")
+        );
+    }
+    public static function FinalizarPrestamo($PrestamoID){
+        return DB::select(
+        DB::raw("UPDATE prestamo set Estado_prestamoID ='5' where PrestamoID='".$PrestamoID."'")
+        );
+    }
+
+    public static function VencerPrestamo($PrestamoID){
+        return DB::select(
+        DB::raw("UPDATE prestamo set Estado_prestamoID ='4' where PrestamoID='".$PrestamoID."'")
+        );
+    }
+    
 }

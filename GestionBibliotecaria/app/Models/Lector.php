@@ -31,4 +31,14 @@ class Lector extends Model
         DB::raw("UPDATE lector set Estado_lectorID = '2' where LectorID='".$LectorID."'")
         );
     }
+    public static function ActualizarLectorASinLibro($LectorID){
+        return DB::select(
+        DB::raw("UPDATE lector set Estado_lectorID = '1' where LectorID='".$LectorID."'")
+        );
+    }
+    public static function ActualizarLectorAMoroso($LectorID){
+        return DB::select(
+        DB::raw("UPDATE lector set Estado_lectorID = '3' where LectorID='".$LectorID."'")
+        );
+    }
 }

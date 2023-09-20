@@ -92,7 +92,7 @@ class LectorController extends Controller
             'Direccionlector']));                   
         }
         else{ // si no lo encuentra con el name
-            $count = count(Lector::all());
+            $count=Lector::all()->last()->LectorID;
 
             $lector = new Lector();
             $lector->LectorID = $count + 1;
@@ -102,8 +102,10 @@ class LectorController extends Controller
             $lector->Estado_lectorID = 1;
             $lector->Correolector = $request->Correolector;
             $lector->Fechanaclector = $request->Fechanaclector;
-            $lector->Fecharegistrolector = now();
-            $lector->Fechaupdatelector = now();
+                date_default_timezone_set('America/Lima');		
+                $fecha_actual = date("Y-m-d H:i:s"); 
+            $lector->Fecharegistrolector = $fecha_actual;
+            $lector->Fechaupdatelector = $fecha_actual;
             $lector->Celularlector = $request->Celularlector;
             $lector->Direccionlector = $request->Direccionlector;
             $lector->Estadohablector = 1;
@@ -179,10 +181,18 @@ class LectorController extends Controller
             $lector->Apellidoslector = $request->Apellidoslector;
             $lector->Correolector = $request->Correolector;
             $lector->Fechanaclector = $request->Fechanaclector;
-            $lector->Fechaupdatelector = now();
+                date_default_timezone_set('America/Lima');		
+                $fecha_actual = date("Y-m-d H:i:s"); 
+            $lector->Fechaupdatelector = $fecha_actual;
             $lector->Celularlector = $request->Celularlector;
             $lector->Direccionlector = $request->Direccionlector;
-            $lector->Estadohablector = $request->Estadohablector;
+            if ($request->Estadohablector=="1") {
+                $lector->Estadohablector = 1;
+            } else {
+                $lector->Estadohablector = 0;
+            }
+            
+            
 
             $lector->save();
 
@@ -198,8 +208,8 @@ class LectorController extends Controller
     public function destroy($LectorID)
     {
         $lector = Lector::find($LectorID);
-        $lector->Estadoeliminadolector = '0';
-        $lector->Estadohablector = '0';
+        $lector->Estadoeliminadolector = 0;
+        $lector->Estadohablector = 0;
         $lector->save();
         return redirect()->route('lector.index')->with('datos','Registro Eliminado ...!');
 

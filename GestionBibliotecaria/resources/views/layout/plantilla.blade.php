@@ -12,7 +12,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="/adminlte/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="/css/darkmode.css">
-
+  <link rel="stylesheet" href="/css/imagenfondo.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body class="hold-transition sidebar-mini">
@@ -44,7 +44,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar  sidebar-dark-primary elevation-4" >
     <!-- Brand Logo -->
     <a href="../../index3.html" style="text-decoration:none;" class="brand-link">
       <img src="/img/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -93,13 +93,13 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{--route('perrito.index')--}}" class="nav-link">
+                    <a href="{{route('entrega.index')}}" class="nav-link">
                       <i class="fas fa-fw fa-tachometer-alt"></i>
                       <p>Despachos</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{--route('perrito.index')--}}" class="nav-link">
+                    <a href="{{route('devolucion.index')}}" class="nav-link">
                      <i class="fa fa-bicycle" aria-hidden="true"></i>
                       <p>Devoluciones</p>
                     </a>
@@ -163,7 +163,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{--route('perrito.index')--}}" class="nav-link">
+                    <a href="{{route('controlPrestamo.index')}}" class="nav-link">
                       <i class="fa fa-balance-scale" aria-hidden="true"></i>
                       <p>Control-Préstamo</p>
                     </a>
