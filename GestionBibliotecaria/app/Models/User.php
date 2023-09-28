@@ -27,7 +27,8 @@ class User extends Authenticatable
         'Nombresusuario',
         'Usuario',
         'RolID',
-        'token'
+        'token',
+        'imagenusuario'
     ];
 
     public function roles()

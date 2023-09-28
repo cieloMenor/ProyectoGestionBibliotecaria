@@ -7,6 +7,7 @@ use App\Http\Controllers\EntregaController;
 use App\Http\Controllers\LectorController;
 use App\Http\Controllers\LibrooController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\UserController;
@@ -37,6 +38,20 @@ Route::get('/inicio',[UserController::class,'inicio'])->name('home')->Middleware
 Route::post('/salir', [UserController::class,'salir'])->name('logout');
 Route::get('/registrousuario',[UserController::class,'registrousuario'])->name('registrousuario');
 Route::resource('usuario', UserController::class);
+Route::get('/registrousuario2',[UserController::class,'create2'])->name('usuario.create2');
+Route::get('/cancelarusuario',function(){
+  return redirect()->route('usuario.index')->with('datos','Acción Cancelada...!');
+})->name('usuario.cancelar');
+
+Route::post('/store2', [UserController::class,'store2'])->name('usuario.store2');
+
+Route::resource('perfil', PerfilController::class);
+Route::get('/cancelarperfil',function(){
+  return redirect()->route('perfil.index')->with('datos','Acción Cancelada...!');
+})->name('perfil.cancelar');
+
+Route::get('/salirperfil',function(){
+  return redirect()->route('home');})->name('perfil.salir');
 
 Route::get('/salirregistro',function(){
     return redirect()->route('login');})->name('usuario.salir');
