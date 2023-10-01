@@ -1,13 +1,13 @@
 @extends('layout.plantilla')
 
-@section('titulo','Usuarios')
+@section('titulo','Tipos de multa')
 
 @section('contenido')
 
 <div class="container ">
-    <h1>Tipos de Préstamo</h1>
+    <h1>Tipos de Multa</h1>
     <br>
-    <a href="{{route('tipoprestamo.create')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Nuevo</a>
+    <a href="{{route('tipomulta.create')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Nuevo</a>
     
     
     {{-- Mensaje de alerta --}}
@@ -23,53 +23,49 @@
     </div>
 
     <table class="table">
-        <thead class="thead-default" style="background-color:#6b902b;color: #fff;">
+        <thead class="thead-default" style="background-color:#2b8190;color: #fff;">
             <tr>
               <th scope="col">ID</th>
               <th scope="col">Descripcion</th>
+              <th scope="col">Porcentaje</th>
               <th scope="col">Fecha registro <i class="fa fa-calendar" aria-hidden="true"></i></th>
               <th scope="col">Usuario</th>
-              <th scope="col">Estado</th>
               <th scope="col">Opciones</th>
             </tr>
           </thead>
           <tbody>
-            @if(count($tiposprestamo)<=0)
+            @if(count($tiposmulta)<=0)
                 <tr>
                     <td colspan="6"><b>No hay registro</b></td>
                 </tr>
             @else
-                @foreach ($tiposprestamo as $tipoprestamo)
+                @foreach ($tiposmulta as $tipomulta)
                 <tr>
-                    <td>{{$tipoprestamo->Tipo_prestamoID}}</td>
-                    <td>{{$tipoprestamo->Tipoprestamo}}</td>
-                    <td>{{$tipoprestamo->fechatipoprestamo}}</td>
-                    <td>{{$tipoprestamo->users->Apellidosusuario}}, {{$tipoprestamo->users->Nombresusuario}}</td>
-                    @if($tipoprestamo->estadotipoprestamo == 1)
-                    <td > <p class="btn btn-primary">Habilitado</p></td>
-                    @else
-                        <td> <p class="btn btn-danger">Desabilitado</p></td>
-                    @endif
+                    <td>{{$tipomulta->MultaID}}</td>
+                    <td>{{$tipomulta->Descripcionmulta}}</td>
+                    <td>{{$tipomulta->Porcentajemulta}}</td>
+                    <td>{{$tipomulta->Fecharegistromulta}}</td>
+                    <td>{{$tipomulta->users->Usuario}}</td>
                     <td>
-                        <a href="{{route('tipoprestamo.edit',$tipoprestamo->Tipo_prestamoID)}}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> Editar</a>
-                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2{{$tipoprestamo->Tipo_prestamoID}}">
+                        <a href="{{route('tipomulta.edit',$tipomulta->MultaID)}}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> Editar</a>
+                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2{{$tipomulta->MultaID}}">
                             <i class="fas fa-trash"></i>
                           </button>
                           <!-- Modal -->
-                          <div class="modal fade" id="exampleModal2{{$tipoprestamo->Tipo_prestamoID}}" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                          <div class="modal fade" id="exampleModal2{{$tipomulta->MultaID}}" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
                             <div class="modal-dialog modalperrito" >
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">{{$tipoprestamo->Tipo_prestamoID}}</h5>
+                                  <h5 class="modal-title" id="exampleModalLabel">{{$tipomulta->MultaID}}</h5>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                   <p>
-                                    ¿Está seguro de eliminar al tipo de prestamo: {{$tipoprestamo->Tipoprestamo}}?
+                                    ¿Está seguro de eliminar el tipo de multa: {{$tipomulta->Descripcionmulta}}?
                                   </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <form action="{{route('tipoprestamo.destroy',$tipoprestamo->Tipo_prestamoID)}}" method="post">
+                                    <form action="{{route('tipomulta.destroy',$tipomulta->MultaID)}}" method="post">
                                         @method('delete')
                                         @csrf
                                         <button type="submit" class="btn btn-danger"><i class="fas fa-check-square"></i>SI</button>
@@ -79,7 +75,6 @@
                               </div>
                             </div>
                           </div>
-                        
                     </td>
                 </tr>
             </tr>
@@ -88,6 +83,7 @@
     </tbody>
     
 </table>
+{{$tiposmulta->links()}}
 </div>
 
 @endsection

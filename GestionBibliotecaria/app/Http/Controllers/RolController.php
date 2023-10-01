@@ -15,7 +15,7 @@ class RolController extends Controller
     const PAGINATION=10;
     public function index()
     {
-        $roles= Rol::orderby('RolID')->paginate($this::PAGINATION);;
+        $roles= Rol::orderby('RolID')->paginate($this::PAGINATION);
         return view('roles.index', compact('roles'));
     }
 

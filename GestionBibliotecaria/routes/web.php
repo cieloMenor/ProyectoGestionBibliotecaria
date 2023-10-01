@@ -11,6 +11,7 @@ use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\RolController;
+use App\Http\Controllers\TipoMultaController;
 use App\Http\Controllers\TipoprestamoController;
 use App\Http\Controllers\UserController;
 use App\Models\Prestamo;
@@ -83,6 +84,10 @@ Route::get('/cancelartipoprestamo',function(){
   return redirect()->route('tipoprestamo.index')->with('datos','Acción Cancelada...!');
 })->name('tipoprestamo.cancelar');
 
+Route::resource('tipomulta', TipoMultaController::class);
+Route::get('/cancelartipomulta',function(){
+  return redirect()->route('tipomulta.index')->with('datos','Acción Cancelada...!');
+})->name('tipomulta.cancelar');
 
 Route::resource('entrega', EntregaController::class);
 Route::resource('devolucion', DevolucionController::class);
