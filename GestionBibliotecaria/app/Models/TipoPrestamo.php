@@ -10,7 +10,7 @@ class TipoPrestamo extends Model
     use HasFactory;
     protected $table='Tipo_prestamo';
     protected $primaryKey='Tipo_prestamoID';
-    protected $fillable=['Tipoprestamo'];
+    protected $fillable=['Tipoprestamo','estadotipoprestamo','fechatipoprestamo','updateipoprestamo','UsuarioID','observacionestipoprestamo'];
     public $timestamps=false;
 
     public function prestamos()
@@ -18,4 +18,9 @@ class TipoPrestamo extends Model
     return $this->hasMany('App\Prestamo','Tipo_prestamoID','Tipo_prestamoID');
     
     }
+    public function users()
+    {
+        return $this->hasOne(User::class,'UsuarioID','UsuarioID');
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EstadoLibro;
 use App\Models\Rol;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -94,7 +95,7 @@ class UserController extends Controller
     }
     public function create2()
     {
-        $roles= Rol::all();
+        $roles= Rol::where('EstadoRol','=',1)->get();
         return view('users.create2', compact('roles'));
     }
 
@@ -247,7 +248,10 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $usuario = User::find($id);
+        $usuario->Estadousuario = 1;
+        $usuario->save();
+        return redirect()->route('usuario.index')->with('datos','Registro Habilitado ...!');
     }
 
     /**

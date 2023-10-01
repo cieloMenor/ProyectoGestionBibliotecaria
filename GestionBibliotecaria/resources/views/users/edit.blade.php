@@ -68,7 +68,6 @@
                     </span>
                 @enderror
             </div>
-           
         </div>
         <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>Actualizar</button>
         <a href="{{route('usuario.cancelar')}}" class="btn btn-danger"><i class="fas fa-ban"></i>Cancelar</a>

@@ -10,6 +10,6 @@ class Rol extends Model
     use HasFactory;
     protected $table='rol';
     protected $primaryKey='RolID';
-    protected $fillable=['Descripcionrol','Estadorol'];
+    protected $fillable=['Descripcionrol','Estadorol','fechaRegistroRol','fechaUpdateRol'];
     public $timestamps=false;
 }

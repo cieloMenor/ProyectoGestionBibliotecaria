@@ -54,7 +54,7 @@ class PrestamoController extends Controller
         $lectores = Lector::join('estado_lector','estado_lector.estado_lectorID','=','lector.estado_lectorID')
         ->where('Estadoeliminadolector','=',1)->where('Estadohablector','=',1)
         ->get();
-        $tipos=TipoPrestamo::all();
+        $tipos=TipoPrestamo::where('estadotipoprestamo','=',1)->get();
         $libros =Libroo::where('Estado_libroID','=',1)->get();
         return view('prestamos.create',compact('tipos','lectores','libros'));
     }

@@ -1,21 +1,15 @@
 @extends('layout.plantilla')
 
-@section('titulo','Usuarios')
+@section('titulo','Roles')
 
 @section('contenido')
 
 <div class="container ">
-    <h1>USUARIOS</h1>
+    <h1>ROLES</h1>
     <br>
-    <a href="{{route('usuario.create2')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Nuevo</a>
+    <a href="{{route('rol.create')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Nuevo</a>
     
-    <nav class="navbar float-right">
-       
-        <form class="form-inline my-2" method="GET">
-            <input name="buscarpor" class="form-control me-2" type="search" placeholder="Busqueda por apellido" aria-label="Search" value="{{$buscarpor}}">
-            <button class="btn btn-success" type="submit">Buscar</button>
-        </form>
-    </nav>
+    
     {{-- Mensaje de alerta --}}
     <div id="mensaje">
         @if (session('datos'))
@@ -32,54 +26,49 @@
         <thead>
             <tr>
               <th scope="col">N°</th>
-              <th scope="col">Nombres y Apellidos</th>
-              <th scope="col">Usuario</th>
-              <th scope="col">Correo</th>
-              <th scope="col">Rol</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Fecha</th>
               <th scope="col">Estado</th>
               <th scope="col">Opciones</th>
             </tr>
           </thead>
           <tbody>
-            @if(count($usuarios)<=0)
+            @if(count($roles)<=0)
                 <tr>
-                    <td colspan="7"><b>No hay registro</b></td>
+                    <td colspan="5"><b>No hay registro</b></td>
                 </tr>
             @else
-                @foreach ($usuarios as $usuario)
+                @foreach ($roles as $rol)
                 <tr>
-                    <td>{{$usuario->UsuarioID}}</td>
-                    <td>{{$usuario->Apellidosusuario}}, {{$usuario->Nombresusuario}}</td>
-                    <td>{{$usuario->Usuario}}</td>
-                    <td>{{$usuario->Correousuario}}</td>
-                    <td> <p class="btn btn-primary">{{$usuario->roles->Descripcionrol}}</p></td>
-                    
-                        @if($usuario->Estadousuario == 1)
-                        <td > <p class="btn btn-warning">Habilitado</p></td>
-                        @else
-                            <td> <p class="btn btn-danger">Desabilitado</p></td>
-                        @endif
+                    <td>{{$rol->RolID}}</td>
+                    <td>{{$rol->Descripcionrol}}</td>
+                    <td>{{$rol->fechaRegistroRol}}</td>
+                    @if($rol->Estadorol == 1)
+                    <td > <p class="btn btn-warning">Habilitado</p></td>
+                    @else
+                        <td> <p class="btn btn-danger">Desabilitado</p></td>
+                    @endif
                     <td>
-                        <a href="{{route('usuario.edit',$usuario->UsuarioID)}}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> Editar</a>
-                        @if($usuario->Estadousuario == 1)
-                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2{{$usuario->UsuarioID}}">
+                        <a href="{{route('rol.edit',$rol->RolID)}}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> Editar</a>
+                        @if($rol->Estadorol == 1)
+                          <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2{{$rol->RolID}}">
                             <i class="fas fa-trash"></i>
                           </button>
                           <!-- Modal -->
-                          <div class="modal fade" id="exampleModal2{{$usuario->UsuarioID}}" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                          <div class="modal fade" id="exampleModal2{{$rol->RolID}}" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
                             <div class="modal-dialog modalperrito" >
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">{{$usuario->Usuario}}</h5>
+                                  <h5 class="modal-title" id="exampleModalLabel">{{$rol->Descripcionrol}}</h5>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                   <p>
-                                    ¿Está seguro de eliminar al usuario: {{$usuario->Usuario}}?
+                                    ¿Está seguro de eliminar el rol: {{$rol->RolID}}?
                                   </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <form action="{{route('usuario.destroy',$usuario->UsuarioID)}}" method="post">
+                                    <form action="{{route('rol.destroy',$rol->RolID)}}" method="post">
                                         @method('delete')
                                         @csrf
                                         <button type="submit" class="btn btn-danger"><i class="fas fa-check-square"></i>SI</button>
@@ -90,7 +79,6 @@
                             </div>
                           </div>
                         @endif
-                          
                     </td>
                 </tr>
                 @endforeach
@@ -98,7 +86,7 @@
         </tbody>
         
     </table>
-    {{$usuarios->links()}}
+    {{$roles->links()}}
 </div>
 
 @endsection

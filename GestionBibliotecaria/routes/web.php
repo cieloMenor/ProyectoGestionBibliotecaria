@@ -10,6 +10,8 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\RolController;
+use App\Http\Controllers\TipoprestamoController;
 use App\Http\Controllers\UserController;
 use App\Models\Prestamo;
 use App\Models\Proveedor;
@@ -61,6 +63,11 @@ Route::get('/cancelarlector',function(){
   return redirect()->route('lector.index')->with('datos','Acción Cancelada...!');
 })->name('lector.cancelar');
 
+Route::resource('rol', RolController::class);
+Route::get('/cancelarrol',function(){
+  return redirect()->route('rol.index')->with('datos','Acción Cancelada...!');
+})->name('rol.cancelar');
+
 Route::resource('libroo', LibrooController::class);
 Route::resource('prestamo', PrestamoController::class);
 Route::get('/cancelarprestamo',function(){
@@ -70,6 +77,12 @@ Route::get('/cancelarprestamo',function(){
 Route::post('/guardarlector', [PrestamoController::class,'store2'])->name('prestamo.store2');
 Route::get('/crearlector',[PrestamoController::class,'crearlector'])->name('prestamo.crearlector');
 Route::get('/verDetallePrestamos/{id}',[PrestamoController::class,'ver'])->name('prestamo.ver');
+
+Route::resource('tipoprestamo', TipoprestamoController::class);
+Route::get('/cancelartipoprestamo',function(){
+  return redirect()->route('tipoprestamo.index')->with('datos','Acción Cancelada...!');
+})->name('tipoprestamo.cancelar');
+
 
 Route::resource('entrega', EntregaController::class);
 Route::resource('devolucion', DevolucionController::class);

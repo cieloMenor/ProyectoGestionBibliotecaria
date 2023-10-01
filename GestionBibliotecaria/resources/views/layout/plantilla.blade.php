@@ -139,6 +139,12 @@
                     </a>
                   </li>
                   <li class="nav-item">
+                    <a href="{{route('tipoprestamo.index')}}" class="nav-link">
+                      <i class="fas fa-book-reader    "></i>
+                      <p>Tipo Préstamo</p> 
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="{{route('libroo.index')}}" class="nav-link">
                       <i class="fas fa-book-reader    "></i>
                       <p>Libros</p> 
@@ -220,6 +226,17 @@
               {{-- <i class="nav-icon fas fa-chart-pie"></i> --}}
               <p>
                 Usuarios
+                {{-- <i class="right fas fa-angle-left"></i> --}}
+              </p>
+            </a>
+            
+          </li>
+          <li class="nav-item">
+            <a href="{{route('rol.index')}}" class="nav-link">
+              <i class="fa fa-align-justify" aria-hidden="true"></i>
+              {{-- <i class="nav-icon fas fa-chart-pie"></i> --}}
+              <p>
+                Roles
                 {{-- <i class="right fas fa-angle-left"></i> --}}
               </p>
             </a>
