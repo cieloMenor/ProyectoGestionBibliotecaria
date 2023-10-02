@@ -1,6 +1,6 @@
 @extends('layout.plantilla')
 
-@section('titulo','Usuarios')
+@section('titulo','Tipos de préstamo')
 
 @section('contenido')
 

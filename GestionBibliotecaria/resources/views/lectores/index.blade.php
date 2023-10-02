@@ -104,6 +104,8 @@
                                     @endphp
                                   </div>
                                   <p>Última Actualización: {{$itemlector->Fechaupdatelector}}</p>
+                                  <p> Bibliotecario que lo registró: {{$itemlector->bibliotecarios->Nombre}}</p>
+
                                   <p>Estado Habilitación:
                                     @if($itemlector->Estadohablector == 1)
                                         <h5 class="btn btn-warning">Habilitado</h5>

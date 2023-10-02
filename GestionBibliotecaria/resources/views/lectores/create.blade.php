@@ -77,6 +77,10 @@
                 </span>
                 @enderror
             </div>
+            <div>
+                <label class="control-label"> Bibliotecario:</label>
+                <input class="form-control" type="text" value="{{$bibliotecario[0]->Nombre}}" readonly/>
+            </div>
         </div>
         <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>Guardar</button>
         <a href="{{route('lector.cancelar')}}" class="btn btn-danger"><i class="fas fa-ban"></i>Cancelar</a>  

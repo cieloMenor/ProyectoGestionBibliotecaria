@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bibliotecario;
 use App\Models\Lector;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -47,7 +49,9 @@ class LectorController extends Controller
      */
     public function create()
     {
-        return view('lectores.create');
+        $usuario= auth()->user()->UsuarioID;
+        $bibliotecario = Bibliotecario::where('suUsuarioID','=',$usuario)->get();
+        return view('lectores.create',compact('bibliotecario'));
     }
 
     /**
@@ -110,7 +114,10 @@ class LectorController extends Controller
             $lector->Direccionlector = $request->Direccionlector;
             $lector->Estadohablector = 1;
             $lector->Estadoeliminadolector = 1;
-
+            //el bibliotecario tiene un unico usuario
+            $usuario= auth()->user()->UsuarioID;
+            $biblio = Bibliotecario::where('suUsuarioID','=',$usuario)->get();
+            $lector->BibliotecarioID=$biblio[0]->BibliotecarioID;
             $lector->save();
 
             return redirect()->route('lector.index')->with('datos','Registro Exitoso ...!');
