@@ -104,7 +104,12 @@
                                     @endphp
                                   </div>
                                   <p>Última Actualización: {{$itemlector->Fechaupdatelector}}</p>
+                                  @if ($itemlector->bibliotecarios!= null)
                                   <p> Bibliotecario que lo registró: {{$itemlector->bibliotecarios->Nombre}}</p>
+                                  @else
+                                  <p> No fue registrado por un bibliotecario</p>
+                                  @endif
+                                  <p>Usuario que lo registró: {{$itemlector->usuarios->Usuario}}</p>
 
                                   <p>Estado Habilitación:
                                     @if($itemlector->Estadohablector == 1)

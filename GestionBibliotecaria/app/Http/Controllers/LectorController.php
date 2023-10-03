@@ -50,7 +50,7 @@ class LectorController extends Controller
     public function create()
     {
         $usuario= auth()->user()->UsuarioID;
-        $bibliotecario = Bibliotecario::where('suUsuarioID','=',$usuario)->get();
+        $bibliotecario = Bibliotecario::where('suUsuarioID','=',$usuario)->get();        
         return view('lectores.create',compact('bibliotecario'));
     }
 
@@ -114,10 +114,14 @@ class LectorController extends Controller
             $lector->Direccionlector = $request->Direccionlector;
             $lector->Estadohablector = 1;
             $lector->Estadoeliminadolector = 1;
-            //el bibliotecario tiene un unico usuario
             $usuario= auth()->user()->UsuarioID;
             $biblio = Bibliotecario::where('suUsuarioID','=',$usuario)->get();
-            $lector->BibliotecarioID=$biblio[0]->BibliotecarioID;
+            if(count($biblio)>0)
+            {
+                $lector->BibliotecarioID=$biblio[0]->BibliotecarioID;
+            }
+            $lector->UsuarioID=$usuario;
+
             $lector->save();
 
             return redirect()->route('lector.index')->with('datos','Registro Exitoso ...!');

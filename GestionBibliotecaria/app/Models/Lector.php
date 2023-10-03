@@ -13,7 +13,7 @@ class Lector extends Model
     protected $primaryKey='LectorID';
     protected $fillable=['Apellidoslector','Nombreslector','Celularlector','Direccionlector',
     'Correolector','Dni_lector','Estadoeliminadolector','Estadohablector','Fechanaclector',
-    'Fecharegistrolector','Fechaupdatelector','Estado_lectorID','BibliotecarioID'];
+    'Fecharegistrolector','Fechaupdatelector','Estado_lectorID','BibliotecarioID','UsuarioID'];
     public $timestamps=false;
 
     public function prestamos()
@@ -29,6 +29,10 @@ class Lector extends Model
     public function bibliotecarios()
     {
         return $this->hasOne(Bibliotecario::class,'BibliotecarioID','BibliotecarioID');
+    }
+    public function usuarios()
+    {
+        return $this->hasOne(User::class,'UsuarioID','UsuarioID');
     }
 
     public static function ActualizarLectorADeudor($LectorID){
