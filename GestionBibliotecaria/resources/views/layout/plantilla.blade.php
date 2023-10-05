@@ -151,7 +151,7 @@
                   <li class="nav-item">
                     <a href="{{route('tipomulta.index')}}" class="nav-link">
                       <i class="fas fa-money-check    "></i>
-                      <p>Multas</p>
+                      <p>Tipos de Multa</p>
                     </a>
                   </li>
 
