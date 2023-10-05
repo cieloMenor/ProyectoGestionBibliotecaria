@@ -1,6 +1,6 @@
 @extends('layout.plantilla')
 
-@section('titulo','Editar Usuario')
+@section('titulo','Perfil')
 
 @section('contenido')
 

@@ -132,6 +132,7 @@
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
+                  @if(auth()->user()->roles->Descripcionrol == 'ROLE_BIBLIOTECARIO')
                   <li class="nav-item">
                     <a href="{{route('lector.index')}}" class="nav-link">
                       <i class="fa fa-user" aria-hidden="true"></i>
@@ -144,24 +145,23 @@
                       <p>Tipo Préstamo</p> 
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a href="{{route('libroo.index')}}" class="nav-link">
-                      <i class="fas fa-book-reader"></i>
-                      <p>Libros</p> 
-                    </a>
-                  </li>
+                  @endif
+                  
+                  @if(auth()->user()->roles->Descripcionrol == 'ROLE_ADMIN')
                   <li class="nav-item">
                     <a href="{{route('tipomulta.index')}}" class="nav-link">
                       <i class="fas fa-money-check    "></i>
                       <p>Multas</p>
                     </a>
                   </li>
+
                   <li class="nav-item">
                     <a href="{{--route('perrito.index')--}}" class="nav-link">
                       <i class="fas fa-file-pdf    "></i>
                       <p>Tipo Documento CDP</p>
                     </a>
                   </li>
+                  @endif
                   <li class="nav-item">
                     <a href="{{--route('perrito.index')--}}" class="nav-link">
                       <i class="fas fa-money-bill-wave    "></i>
@@ -199,6 +199,14 @@
                 <a href="{{route('listadoB')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Bibliotecario</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('libroo.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Libros</p> 
                 </a>
               </li>
             </ul>
