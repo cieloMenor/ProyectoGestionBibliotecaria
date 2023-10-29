@@ -10,6 +10,7 @@ use App\Models\TipoPrestamo;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\Report\Php;
@@ -283,5 +284,22 @@ class PrestamoController extends Controller
         }
         
         return redirect()->route('prestamo.index')->with('datos','Registro eliminado y stock de libros actualizados...');
+    }
+
+    public function pdf($id)
+    {
+        // $perritos = Perrito::select('*')
+        // ->join('estadoPerritos','estadoPerritos.idEstado','=','perritos.idEstado')
+        // ->get();
+        $total = 0;
+        $detalles=DetallePrestamo::where('PrestamoID','=',$id)->get();
+        $prestamo= Prestamo::find($id);    
+        foreach ($detalles as $detalle) {
+            $total+= $detalle->Nrocopiasprestamo;
+         }
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML(view('prestamos.pdf', compact('detalles','prestamo','total')));
+        //return $pdf->download('lista_perritos.pdf');
+        return $pdf->stream('ticket_prestamo.pdf');
     }
 }

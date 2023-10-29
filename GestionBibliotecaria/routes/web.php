@@ -102,6 +102,9 @@ Route::get('/agregarMultaLector/{id}',[DevolucionController::class,'multalector'
 
 Route::resource('controlPrestamo', ControlPrestamoController::class);
 
+Route::get('/ticket/{id}',[PrestamoController::class,'pdf'])->name('ticket');
+
+
 Route::get('/ListadoProveedor',[ProveedorController::class,'Tabla'])->name('listado');
 Route::get('/RegistroProveedor',[ProveedorController::class,'Form'])->name('registro');
 Route::post('/storeP',[ProveedorController::class,'store'])->name('ProveedorStore'); 

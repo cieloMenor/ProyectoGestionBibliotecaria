@@ -107,7 +107,7 @@
                             
                             >{{$item->estadoprestamos->Estadoprestamo}}</a></td>
                         <td> 
-                            <a href="{{route('prestamo.ver',$item->PrestamoID)}}" class="btn btn-primary"> Ver</a>
+                            <a href="{{route('prestamo.ver',$item->PrestamoID)}}" class="btn btn-primary"> <i class="fa fa-search" aria-hidden="true"></i></a>
                             @if ($item->Estado_prestamoID ==1)
                             <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2{{$item->PrestamoID}}">
                                 <i class="fas fa-trash"></i>
@@ -138,6 +138,7 @@
                               </div>
                             @endif
                             
+                            <a href="{{route('ticket',$item->PrestamoID)}}" class="btn btn-warning"> <i class="fas fa-file-pdf    "></i></a>
                                 
                         </td>
                     
