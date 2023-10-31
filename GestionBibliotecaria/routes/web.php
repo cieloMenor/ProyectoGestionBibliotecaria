@@ -70,6 +70,7 @@ Route::get('/cancelarrol',function(){
 })->name('rol.cancelar');
 
 Route::resource('libroo', LibrooController::class);
+Route::get('/ListadoL',[LibrooController::class,'Tabla'])->name('listadoL');
 Route::resource('prestamo', PrestamoController::class);
 Route::get('/cancelarprestamo',function(){
   return redirect()->route('prestamo.index')->with('datos','Acción Cancelada...!');
@@ -137,3 +138,4 @@ Route::get('/RegistroBibliotecario',[BibliotecarioController::class,'createB'])-
 Route::get('/DatosBibliotecario',[BibliotecarioController::class,'tablaB'])->name('listadoB');
 Route::post('/StoreBibliotecario',[BibliotecarioController::class,'storeB'])->name('storeBb'); 
 
+Route::get('/RegistroLibro',[LibrooController::class,'create'])->name('registroLi');

@@ -6,7 +6,7 @@
 
 <div class="container ">
     <h1>LIBROS</h1>
-    <a href="{{route('libroo.create')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Nuevo</a>
+    <a href="{{route('registroLi')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Nuevo</a>
     
     <nav class="navbar float-right">
        
