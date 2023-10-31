@@ -142,7 +142,7 @@ class UserController extends Controller
             ->withInput(request(['Usuario','password','Correousuario','Nombresusuario','Apellidosusuario','Celularusuario']));                   
         }
         else{
-            $count=User::all()->last()->UsuarioID;
+            $count=User::count();
             $usuario = new User();
             $usuario->UsuarioID= $count + 1;
             $usuario->Apellidosusuario = $request->Apellidosusuario;

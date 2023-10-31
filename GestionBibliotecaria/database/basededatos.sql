@@ -230,8 +230,8 @@ CREATE TABLE `Proveedor`
 	`Correoelectronico` VARCHAR(30) NULL,
 	`Direccion` VARCHAR(50) NULL,
 	`Empresa` VARCHAR(50) NULL,
-	`ProveedorIDTelefono` VARCHAR(12) NULL,
-	`` INT NOT NULL ,
+	`ProveedorID` INT NOT  NULL,
+	`Telefono` VARCHAR(12)  NULL ,
 	CONSTRAINT `PK_Proveedor` PRIMARY KEY (`ProveedorID` ASC)
 )
 
@@ -617,7 +617,7 @@ CREATE TABLE `users`
 	`Estadousuario` BIT(1) NULL,
 	`Nombresusuario` VARCHAR(50) NULL,
 	`Usuario` VARCHAR(50) NULL,
-	`UsuarioID` INT NOT NULL,
+	`UsuarioID` INT  NOT NULL,
 	`RolID` INT NOT NULL,
 	`token` CHAR(200) NULL,
     `created_at` datetime NULL,

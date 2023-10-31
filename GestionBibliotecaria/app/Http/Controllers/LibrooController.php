@@ -34,7 +34,7 @@ class LibrooController extends Controller
      */
     public function create()
     {
-        //
+        return view('libross.registroLibro');
     }
 
     /**
@@ -45,15 +45,47 @@ class LibrooController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=request()->validate([
+           'Añopublicacion'=>'required',
+           'Editorial'=>'required',
+           'Idioma '=>'required',
+           'Isbn '=>'required',
+           'Paginas'=>'required',
+           'Precio'=>'required',
+           'Titulo'=>'required',
+           'Edicionlibro'=>'required',
+           'Estadohablibro'=>'required',
+           'Nrocopiaslibro'=>'required',
+           'Stocklibro'=>'required'
+        ]);
+        $libros= new Libroo();
+        $libros->LibroID = $request->LibroID;
+        $libros->Añopublicacion = $request->Añopublicacion;
+        $libros->Editorial = $request->Editorial;
+        $libros->Idioma = $request->Idioma;
+        $libros->Isbn = $request->Isbn;
+        $libros->Paginas = $request->Paginas;
+        $libros->Precio = $request->Precio;
+        $libros->Titulo = $request->Titulo;
+        $libros->Edicionlibro = $request->Edicionlibro;
+        $libros->Estadohablibro = $request->Estadohablibro;
+        $libros->Nrocopiaslibro = $request->Nrocopiaslibro;
+        $libros->Stocklibro = $request->Stocklibro;
+        $libros->save();
+        return redirect()->route('listadoL');
     }
-
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function tabla(Request $request)
+    {
+        $libros=Libroo::all();
+        return view('libross.index');
+    }
+
     public function show($id)
     {
         //
