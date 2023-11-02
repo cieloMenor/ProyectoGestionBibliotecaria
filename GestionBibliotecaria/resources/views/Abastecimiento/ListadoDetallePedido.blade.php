@@ -31,7 +31,7 @@
                  <tr>
                     <td>{{$ItemDetallesP->Detalle_pedidoID}}</td>
                     <td>{{$ItemDetallesP->Cantidad}}</td>
-                    <td>{{$ItemDetallesP>PedidoID}}</td>
+                    <td>{{$ItemDetallesP->PedidoID}}</td>
                     <td>{{$ItemDetallesP->LibroID}}</td>
                  </tr>
                 @endforeach

@@ -754,4 +754,7 @@ SET FOREIGN_KEY_CHECKS=1
 ; 
 
 
+
+
 insert into rol(RolID,Descripcionrol) values(1,'ROLE_ADMIN'),(2,'ROLE_USER');
+insert into Estado_libro(Estado_libroID,Estado_libro)values(001,'En stock'),(002,'Fuera de Stock');

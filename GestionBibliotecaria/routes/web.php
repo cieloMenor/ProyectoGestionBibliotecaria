@@ -5,6 +5,7 @@ use App\Http\Controllers\ControlPrestamoController;
 use App\Http\Controllers\DevolucionController;
 use App\Http\Controllers\EntregaController;
 use App\Http\Controllers\LectorController;
+use App\Http\Controllers\LibroController;
 use App\Http\Controllers\LibrooController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PerfilController;
@@ -69,8 +70,7 @@ Route::get('/cancelarrol',function(){
   return redirect()->route('rol.index')->with('datos','Acción Cancelada...!');
 })->name('rol.cancelar');
 
-Route::resource('libroo', LibrooController::class);
-Route::get('/ListadoL',[LibrooController::class,'Tabla'])->name('listadoL');
+
 Route::resource('prestamo', PrestamoController::class);
 Route::get('/cancelarprestamo',function(){
   return redirect()->route('prestamo.index')->with('datos','Acción Cancelada...!');
@@ -138,4 +138,6 @@ Route::get('/RegistroBibliotecario',[BibliotecarioController::class,'createB'])-
 Route::get('/DatosBibliotecario',[BibliotecarioController::class,'tablaB'])->name('listadoB');
 Route::post('/StoreBibliotecario',[BibliotecarioController::class,'storeB'])->name('storeBb'); 
 
-Route::get('/RegistroLibro',[LibrooController::class,'create'])->name('registroLi');
+Route::get('/RegistroLibro',[LibroController::class,'createL'])->name('registroL');
+Route::get('/ListadoLibro',[LibroController::class,'tablaL'])->name('listadoL');
+route::post('/storeLibro',[LibroController::class,'storeL'])->name('storeL');
