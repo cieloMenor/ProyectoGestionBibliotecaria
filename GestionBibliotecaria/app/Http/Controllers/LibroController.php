@@ -34,7 +34,7 @@ class LibroController extends Controller
         $Libro=new Libro();
         $Libro->LibroID=$request->LibroID;
         $Libro->Titulo=$request->Titulo;
-        $Libro->Stock=$request->Stock;
+        $Libro->Stocklibro=$request->Stock;
         $Libro->Precio=$request->Precio;
         $Libro->Paginas=$request->Paginas;
         $Libro->Isbn=$request->Isbn;

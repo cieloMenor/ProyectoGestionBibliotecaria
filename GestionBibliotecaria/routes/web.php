@@ -11,6 +11,7 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\TipoMultaController;
 use App\Http\Controllers\TipoprestamoController;
@@ -141,3 +142,6 @@ Route::post('/StoreBibliotecario',[BibliotecarioController::class,'storeB'])->na
 Route::get('/RegistroLibro',[LibroController::class,'createL'])->name('registroL');
 Route::get('/ListadoLibro',[LibroController::class,'tablaL'])->name('listadoL');
 route::post('/storeLibro',[LibroController::class,'storeL'])->name('storeL');
+
+
+Route::resource('reporte', ReporteController::class);
