@@ -134,10 +134,11 @@ Route::get('/RegistroDetallePedido',[PedidoController::class,'createDp'])->name(
 Route::get('/ListadoDetallePedido',[PedidoController::class,'tablaDp'])->name('listadoDP');
 Route::post('/StoreDetallePedido',[PedidoController::class,'storeDp'])->name('storeDP'); 
 
-Route::get('/RegistroBibliotecario',[BibliotecarioController::class,'createB'])->name('registroB');
-Route::get('/DatosBibliotecario',[BibliotecarioController::class,'tablaB'])->name('listadoB');
-Route::post('/StoreBibliotecario',[BibliotecarioController::class,'storeB'])->name('storeBb'); 
+
 
 Route::get('/RegistroLibro',[LibroController::class,'createL'])->name('registroL');
 Route::get('/ListadoLibro',[LibroController::class,'tablaL'])->name('listadoL');
 route::post('/storeLibro',[LibroController::class,'storeL'])->name('storeL');
+Route::get('/EditarLibro/{id}',[LibroController::class,'editarL'])->name('editarL');
+Route::post('/updateLibro',[LibroController::class,'updateL'])->name('updateL'); 
+Route::post('/eliminarLibr/{id}',[LibroController::class,'eliminarL'])->name('eliminarLi'); 

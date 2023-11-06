@@ -24,6 +24,7 @@
                 <th>Editorial</th>
                 <th>Año Publicación</th>
                 <th>Stock</th>
+                <th>Opciones</th>
             </tr>
         </thead>
         <tbody>
@@ -43,6 +44,17 @@
                     <td>{{$ItemDetallesL->Editorial}}</td>
                     <td>{{$ItemDetallesL->Añopublicacion}}</td>
                     <td>{{$ItemDetallesL->Stock}}</td>
+                    <td>
+                        <a href="{{route('editarL', [$ItemDetallesL->LibroID])}}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> Editar</a>
+                        &nbsp; &nbsp; &nbsp;
+
+                        <form action="{{ route('eliminarLi', $ItemDetallesL->LibroID) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Eliminar</button>
+                         </form>
+                        
+                    <td> 
+                    
                  </tr>
                 @endforeach
             @endif

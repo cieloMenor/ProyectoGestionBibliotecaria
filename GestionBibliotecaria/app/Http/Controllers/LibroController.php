@@ -45,4 +45,31 @@ class LibroController extends Controller
         $Libro->save();
         return redirect()->route('listadoL');
     }
+
+    public function editarL($id){
+        $Li=Libro::find($id);
+        $estadosLibros=EstadoLibro::all();
+        return view('Abastecimiento.EditarLibro',compact('Li','estadosLibros'));
+    }
+
+    public function updateL(Request $request){
+        $updaL=Libro::find($request->LibroID);
+        $updaL->LibroID=$request->LibroID;
+        $updaL->Stock=$request->Stock;
+        $updaL->Precio=$request->Precio;
+        $updaL->Paginas=$request->Paginas;
+        $updaL->Isbn=$request->Isbn;
+        $updaL->Idioma=$request->Idioma;
+        $updaL->Editorial=$request->Editorial;
+        $updaL->Añopublicacion=$request->Añopublicacion;
+        $updaL->Estado_libroID=$request->Estado_libroID;
+        $updaL->save();
+        return redirect()->route('listadoL');
+    }
+
+    public function eliminarL($id){
+        Libro::where('LibroID',$id)->delete();
+        return redirect()->route('listadoL');
+
+    }
 }
