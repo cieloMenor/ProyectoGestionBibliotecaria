@@ -6,6 +6,7 @@ use App\Models\DetalleDevolucion;
 use App\Models\DetallePrestamo;
 use App\Models\Devolucion;
 use App\Models\Lector;
+use App\Models\Libro;
 use App\Models\Libroo;
 use App\Models\Prestamo;
 use DateTime;
@@ -120,7 +121,7 @@ class DevolucionController extends Controller
                 $stockanterior=$stock[$cont];
                 $detalle->save();
                 /* Actualizar stock */
-                Libroo::AumentarStocklibro($cod_libro[$cont],$cantidad_producto[$cont]);
+                Libro::AumentarStocklibro($cod_libro[$cont],$cantidad_producto[$cont]);
                 
                 $prestamoDetalle=DetallePrestamo::where('PrestamoID','=',$idPrestamo)
                 ->where('LibroID','=',$cod_libro[$cont])->get();
@@ -229,7 +230,7 @@ class DevolucionController extends Controller
 
         $detalle->save();
         /* Actualizar stock */
-        Libroo::AumentarStocklibro($libro,$cantidad);
+        Libro::AumentarStocklibro($libro,$cantidad);
 
         $Devolucion = Devolucion::find($request->DevolucionID);
         $idPrestamo=$Devolucion->PrestamoID;

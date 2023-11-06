@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DetallePrestamo;
 use App\Models\Lector;
-use App\Models\Libroo;
+use App\Models\Libro;
 use App\Models\Prestamo;
 use Illuminate\Http\Request;
 
@@ -94,7 +94,7 @@ class EntregaController extends Controller
                 $LibroID= $iten->LibroID;
                 $copias = $iten->Nrocopiasprestamo;
 
-                Libroo::AumentarStocklibro($LibroID,$copias);
+                Libro::AumentarStocklibro($LibroID,$copias);
             }
             $LectorDeudor=Prestamo::where('LectorID','=',$lector)
             //->join('estado_prestamo','estado_prestamo.Estado_prestamoID','=','prestamo.Estado_prestamoID')
