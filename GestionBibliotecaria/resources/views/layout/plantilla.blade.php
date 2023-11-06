@@ -177,26 +177,6 @@
                 </ul>
               </li>
             </ul>
-
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('reporte.index')}}" class="nav-link">
-                  <i class="fas fa-fw fa-tachometer-alt"></i>
-                  <p>Reporte<i class="right fas fa-angle-left"></i>
-
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{--route('perrito.index')--}}" class="nav-link">
-                  <i class="fas fa-fw fa-tachometer-alt"></i>
-                  <p>Mantenimiento<i class="right fas fa-angle-left"></i>
-
-                  </p>
-                </a>
-                
-              </li>
-            </ul>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -340,8 +320,6 @@
 <script src="/adminlte/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="/adminlte/plugins/chart.js/Chart.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/adminlte/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
