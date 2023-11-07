@@ -19,6 +19,7 @@
                 <th>Cantidad</th>
                 <th>Codigo Pedido</th>
                 <th>Codigo Libro</th>
+                <th>Opciones</th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +34,16 @@
                     <td>{{$ItemDetallesP->Cantidad}}</td>
                     <td>{{$ItemDetallesP->PedidoID}}</td>
                     <td>{{$ItemDetallesP->LibroID}}</td>
+                    <td>
+                        <a href="{{route('editarDP', $ItemDetallesP->Detalle_pedidoID)}}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> Editar</a>
+                        &nbsp; &nbsp; &nbsp;
+
+                        <form action="{{route('eliminarDP', $ItemDetallesP->Detalle_pedidoID)}}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Eliminar</button>
+                         </form>
+                        
+                    <td> 
                  </tr>
                 @endforeach
             @endif

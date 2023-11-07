@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\DetallePrestamo;
 use App\Models\Lector;
-use App\Models\Libro;
 use App\Models\Libroo;
 use App\Models\Prestamo;
 use App\Models\TipoPrestamo;
@@ -57,7 +56,7 @@ class PrestamoController extends Controller
         ->where('Estadoeliminadolector','=',1)->where('Estadohablector','=',1)
         ->get();
         $tipos=TipoPrestamo::where('estadotipoprestamo','=',1)->get();
-        $libros =Libro::where('Estado_libroID','=',1)->get();
+        $libros =Libroo::where('Estado_libroID','=',1)->get();
         return view('prestamos.create',compact('tipos','lectores','libros'));
     }
 
@@ -121,7 +120,7 @@ class PrestamoController extends Controller
                 $detalle->StockLibroP = $stock[$cont];
                 $detalle->save();
                 /* Actualizar stock */
-                Libro::ActualizarStocklibro($cod_libro[$cont],$cantidad_producto[$cont]);
+                Libroo::ActualizarStocklibro($cod_libro[$cont],$cantidad_producto[$cont]);
                 
                 $cont=$cont+1;
             }
@@ -259,7 +258,7 @@ class PrestamoController extends Controller
             $iten->Estadohabdetalleprestamo = 0;
             $iten->save();
             
-            Libro::AumentarStocklibro($LibroID,$copias);
+            Libroo::AumentarStocklibro($LibroID,$copias);
         }
         $prestamo= Prestamo::find($id);
         $lector = $prestamo->LectorID;

@@ -19,6 +19,7 @@
                 <th>Fecha</th>
                 <th>Codigo Proveedor</th>
                 <th>Codigo Bibliotecario</th>
+                <th>Opciones</th>
             </tr>
         </thead>
         <tbody>
