@@ -5,30 +5,12 @@
 @section('contenido')
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="col">
-      <select class="form-select" name="años" id="años">
-        <option value="0" selected>Seleccionar--</option>
-        @foreach ($años as $item)
-        <option value="{{$item->año}}" @if($item->año== $valoraño) selected @endif >{{$item->año}}</option>
-        @endforeach
-      </select>
-    </div>
-    <div class="col">
-      <form action="" method="get">
-        <input type="text" name="valoraño" id="valoraño" value="{{$valoraño}}" hidden >
-      
-        <button class="btn btn-success" type="submit">Buscar</button>
-    </form>
-    </div>
-  </div>
     <div class="row">
       <div class="col-md-6">
         <!-- AREA CHART -->
-        <div class="card card-primary row" >
-          
+        <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">N° de Libros prestados mensuales según año</h3>
+            <h3 class="card-title">Area Chart</h3>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -72,7 +54,7 @@
         <!-- PIE CHART -->
         <div class="card card-danger">
           <div class="card-header">
-            <h3 class="card-title">N° libros prestados por Nombre</h3>
+            <h3 class="card-title">Pie Chart</h3>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -170,18 +152,18 @@
 @endsection
 @section('script')
 <script>
+    var productos =[];
+    var valores = [];
+
     $(function () {
-      $('#años').click(function () {
-        datosCliente = document.getElementById('años').value.split('_');
-        $('#valoraño').val(datosCliente[0]);;
-        });
-      
       /* ChartJS
        * -------
        * Here we will create a few charts using ChartJS
        */
       
-      //$.ajax
+      $.ajax({
+        url: '/reporte/store'
+      })
 
       //--------------
       //- AREA CHART -
@@ -189,11 +171,9 @@
   
       // Get context with jQuery - using jQuery's .get() method.
       var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
-      const valores = <?php echo json_encode($valores); ?>;
-      const nombres = <?php echo json_encode($nombres); ?>;
-      
+  
       var areaChartData = {
-        labels  : nombres,
+        labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
         datasets: [
           {
             label               : 'Digital Goods',
@@ -208,7 +188,7 @@
           },
           
         ]
-      };
+      }
   
       var areaChartOptions = {
         maintainAspectRatio : false,
@@ -258,10 +238,17 @@
       // Get context with jQuery - using jQuery's .get() method.
       var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
       var donutData        = {
-        labels: nombres,
+        labels: [
+            'Chrome',
+            'IE',
+            'FireFox',
+            'Safari',
+            'Opera',
+            'Navigator',
+        ],
         datasets: [
           {
-            data: valores,
+            data: [700,500,400,600,300,100],
             backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
           }
         ]
@@ -272,8 +259,6 @@
       }
       //Create pie or douhnut chart
       // You can switch between pie and douhnut using the method below.
-      
-      
       new Chart(donutChartCanvas, {
         type: 'doughnut',
         data: donutData,
@@ -285,20 +270,7 @@
       //-------------
       // Get context with jQuery - using jQuery's .get() method.
       var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-      const valores2 = <?php echo json_encode($valores2); ?>;
-      const nombres2 = <?php echo json_encode($nombres2); ?>;
-
-      var donutData2        = {
-        labels: nombres2,
-        datasets: [
-          {
-            data: valores2,
-            backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-          }
-        ]
-      }
-
-      var pieData        = donutData2;
+      var pieData        = donutData;
       var pieOptions     = {
         maintainAspectRatio : false,
         responsive : true,
@@ -314,41 +286,10 @@
       //-------------
       //- BAR CHART -
       //-------------
-      var areaChartData2 = {
-        labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      datasets: [
-        {
-          label               : 'Digital Goods',
-          backgroundColor     : 'rgba(60,141,188,0.9)',
-          borderColor         : 'rgba(60,141,188,0.8)',
-          pointRadius          : false,
-          pointColor          : '#3b8bba',
-          pointStrokeColor    : 'rgba(60,141,188,1)',
-          pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [28, 48, 40, 19, 86, 27, 90]
-        },
-          {
-          label               : 'Electronics',
-          backgroundColor     : 'rgba(210, 214, 222, 1)',
-          borderColor         : 'rgba(210, 214, 222, 1)',
-          pointRadius         : false,
-          pointColor          : 'rgba(210, 214, 222, 1)',
-          pointStrokeColor    : '#c1c7d1',
-          pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [65, 59, 80, 81, 56, 55, 40]
-        },
-          
-        ]
-
-      };
       var barChartCanvas = $('#barChart').get(0).getContext('2d')
-      var barChartData = $.extend(true, {}, areaChartData2)
-      var temp0 = areaChartData2.datasets[0]
-      var temp1 = areaChartData2.datasets[1]
+      var barChartData = $.extend(true, {}, areaChartData)
+      var temp0 = areaChartData.datasets[0]
       barChartData.datasets[0] = temp1
-      barChartData.datasets[1] = temp0
   
       var barChartOptions = {
         responsive              : true,
@@ -365,7 +306,6 @@
       //---------------------
       //- STACKED BAR CHART -
       //---------------------
-
       var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
       var stackedBarChartData = $.extend(true, {}, barChartData)
   
