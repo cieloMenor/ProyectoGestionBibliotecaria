@@ -12,8 +12,11 @@ class ProveedorController extends Controller
     }
     
     public function tabla(Request $request){
-        $Proveedores=Proveedor::all();
-        return view('Abastecimiento.ListadoProveedor',compact('Proveedores'));
+        $texto=trim($request->get('texto'));
+        $Proveedores=Proveedor::where('Empresa','LIKE','%'.$texto.'%')
+        ->orderBy('Empresa','asc')
+        ->paginate(10);
+        return view('Abastecimiento.ListadoProveedor',compact('Proveedores','texto'));
     }
 
     public function store(Request $request){

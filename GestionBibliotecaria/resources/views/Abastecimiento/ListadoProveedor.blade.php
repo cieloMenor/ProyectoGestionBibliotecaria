@@ -22,6 +22,21 @@
     <p align=center style="font-family:courier,arial,helvética; color:crimson">
         PROVEEDORES
     </p>
+
+    
+    <div class="col-6">
+            <form action="{{route('listado')}}" method="get">
+                <div class="form-row" >
+                    <div class="col-sm-4  my-4">
+                        <input type="text" class="form-control" name="texto" value="{{$texto}}">
+                    </div>
+                    <div class="col-auto my-4">
+                    <input type="submit" class="btn btn-primary" value="Buscar">
+                    </div>
+                </div>
+            </form>
+    </div>
+   
     <table class="table table-bordered">
         <thead>
             <tr>

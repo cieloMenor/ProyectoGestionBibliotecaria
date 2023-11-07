@@ -133,8 +133,9 @@ Route::post('/eliminarPedido/{ide}',[PedidoController::class,'eliminarP'])->name
 Route::get('/RegistroDetallePedido',[PedidoController::class,'createDp'])->name('registroDP');
 Route::get('/ListadoDetallePedido',[PedidoController::class,'tablaDp'])->name('listadoDP');
 Route::post('/StoreDetallePedido',[PedidoController::class,'storeDp'])->name('storeDP'); 
-
-
+Route::get('/EditarDetallePedido/{id}',[PedidoController::class,'editarDp'])->name('editarDP');
+Route::post('/updateDetallePedido',[PedidoController::class,'updateDP'])->name('updateDP'); 
+Route::post('/eliminarDetallePedido/{id}',[PedidoController::class,'eliminarDP'])->name('eliminarDP'); 
 
 Route::get('/RegistroLibro',[LibroController::class,'createL'])->name('registroL');
 Route::get('/ListadoLibro',[LibroController::class,'tablaL'])->name('listadoL');

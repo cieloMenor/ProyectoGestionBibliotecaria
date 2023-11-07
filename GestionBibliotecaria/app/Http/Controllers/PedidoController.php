@@ -54,22 +54,10 @@ class PedidoController extends Controller
         return redirect()->route('listadoP');
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public function editarDP($id){
+        $Depedi=registroDetallePedido::find($id);
+        return view('Abastecimiento.EditarDetallePedido',compact('Depedi'));
+    }
 
 
 
@@ -96,4 +84,21 @@ class PedidoController extends Controller
         $PedidoDetalle->save();
         return redirect()->route('listadoDP');
     }
+
+    public function updateDP(Request $request){
+        $updaDP=registroDetallePedido::find($request->Detalle_pedidoID);
+        $updaDP->Detalle_pedidoID=$request->Detalle_pedidoID;
+        $updaDP->Cantidad=$request->Cantidad;
+        $updaDP->PedidoID=$request->PedidoID;
+        $updaDP->LibroID=$request->LibroID;
+        $updaDP->save();
+        return redirect()->route('listadoDP');
+    }
+
+    public function eliminarDP($id){
+        registroDetallePedido::where('Detalle_pedidoID',$id)->delete();
+        return redirect()->route('listadoDP');
+
+    }
+
 }
