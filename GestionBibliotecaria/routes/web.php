@@ -146,3 +146,8 @@ route::post('/storeLibro',[LibroController::class,'storeL'])->name('storeL');
 
 Route::resource('reporte', ReporteController::class);
 route::post('/reporte/all',[ReporteController::class,'all'])->name('all');
+
+
+Route::get('/EditarLibro/{id}',[LibroController::class,'editarL'])->name('editarL');
+Route::post('/updateLibro',[LibroController::class,'updateL'])->name('updateL'); 
+Route::post('/eliminarLibr/{id}',[LibroController::class,'eliminarL'])->name('eliminarLi');
