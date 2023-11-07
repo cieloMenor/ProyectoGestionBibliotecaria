@@ -14,8 +14,11 @@ class LibroController extends Controller
     }
 
     public function tablaL(Request $request){
-        $libros=Libro::all();
-        return view('Abastecimiento.ListadoLibro',compact('libros'));
+        $texto=trim($request->get('texto'));
+        $libros=Libro::where('ISBN','LIKE','%'.$texto.'%')
+        ->orderBy('ISBN','asc')
+        ->paginate(10);
+        return view('Abastecimiento.ListadoLibro',compact('libros','texto'));
     }
 
     public function storeL(Request $request){

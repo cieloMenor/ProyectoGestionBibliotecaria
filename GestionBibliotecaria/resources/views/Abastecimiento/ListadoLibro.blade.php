@@ -12,6 +12,25 @@
     <p align=center style = "font-family:courier,arial,helvética; color:crimson">
         LIBROS
     </p>
+    <div class="row">
+
+    
+    <div class="col-6" style="margin-right: 300px;">      
+    </div>
+    <div class="col-6" style="margin-left: 800px;">
+            <form action="{{route('listadoL')}}" method="get">
+                <div class="form-row" >
+                    <div class="col-sm-4  my-4">
+                        <input type="text" class="form-control" name="texto" value="{{$texto}}" placeholder="Busqueda por ISBN">
+                    </div>
+                    <div class="col-auto my-4">
+                    <input type="submit" class="btn btn-primary" value="Buscar">
+                    </div>
+                </div>
+            </form>
+    </div>
+    </div>
+
     <table class="table table-bordered">
          <thead>
             <tr>

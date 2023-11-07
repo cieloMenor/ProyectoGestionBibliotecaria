@@ -12,8 +12,11 @@ class BibliotecarioController extends Controller
     }
 
     public function tablaB(Request $request){
-        $bibli=Bibliotecario::all();
-        return view('Abastecimiento.DatosBibliotecario',compact('bibli'));
+        $texto=trim($request->get('texto'));
+        $bibli=Bibliotecario::where('DNI','LIKE','%'.$texto.'%')
+        ->orderBy('DNI','asc')
+        ->paginate(10);
+        return view('Abastecimiento.DatosBibliotecario',compact('bibli','texto'));
     }
 
     public function storeB(Request $request){
