@@ -141,6 +141,18 @@ class ReporteController extends Controller
     
         //     }
 
+        //otro grafico
+        $prestamos= DB::select('select e.Estadoprestamo as estado, count(p.prestamoID) as prestamos from prestamo p inner join estado_prestamo e on e.Estado_prestamoID=p.Estado_prestamoID where p.Estadohabprestamo=1 group by e.Estadoprestamo');
+
+        $prestados= Prestamo::select(DB::raw("SUM(Nrocopiasprestamo)	as prestado"))
+        ->join('prestamo','prestamo.prestamoID','=','prestamo_detalle.prestamoID')
+        ->where('Estadohabprestamo','=','1')
+        ->whereYear('Fecharegistroprestamo','=',$valoraño)
+        ->groupBy(DB::raw("Nombrelibro"));
+
+
+
+
         return view('reportes.chartjs',compact('valores','nombres','años','valoraño','valores2','nombres2','libronombre'));
     }
 

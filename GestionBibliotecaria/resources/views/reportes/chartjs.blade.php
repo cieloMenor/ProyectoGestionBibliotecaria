@@ -161,7 +161,9 @@
           </div>
           <div class="card-body">
             <div class="chart">
-              <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              <canvas id="stackedBarChart" hidden style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              <canvas id="densityChart2" width="600" height="400"></canvas>
+
             </div>
           </div>
           <!-- /.card-body -->
@@ -391,7 +393,27 @@
       });
 
 
+      ///otro grafico2
+      //gtafico otro
+      var densityCanvas2 = document.getElementById("densityChart2");
 
+      Chart.defaults.global.defaultFontFamily = "Lato";
+      Chart.defaults.global.defaultFontSize = 18;
+
+      var densityData2 = {
+      label: 'Libros prestados por mes',
+      data: valores,
+      backgroundColor:'#19CED3'
+      
+      };
+
+      var barChart2 = new Chart(densityCanvas2, {
+      type: 'bar',
+      data: {
+        labels: nombres,
+        datasets: [densityData2]
+      }
+      });
   
       //---------------------
       //- STACKED BAR CHART -
