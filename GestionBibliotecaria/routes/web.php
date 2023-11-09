@@ -20,6 +20,7 @@ use App\Http\Controllers\UserController;
 use App\Models\Prestamo;
 use App\Models\Proveedor;
 use App\Models\User;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -136,10 +137,10 @@ Route::post('/eliminarPedido/{ide}',[PedidoController::class,'eliminarP'])->name
 Route::get('/RegistroDetallePedido',[PedidoController::class,'createDp'])->name('registroDP');
 Route::get('/ListadoDetallePedido',[PedidoController::class,'tablaDp'])->name('listadoDP');
 Route::post('/StoreDetallePedido',[PedidoController::class,'storeDp'])->name('storeDP'); 
+Route::get('/EditarDetallePedidoo/{id}',[PedidoController::class,'editarDP'])->name('editarDP');
+Route::post('/updateDetallePedido',[PedidoController::class,'updateDP'])->name('updateDP'); 
+Route::post('/eliminarDetallePedido/{ide}',[PedidoController::class,'eliminarDP'])->name('eliminarDP'); 
 
-Route::get('/RegistroBibliotecario',[BibliotecarioController::class,'createB'])->name('registroB');
-Route::get('/DatosBibliotecario',[BibliotecarioController::class,'tablaB'])->name('listadoB');
-Route::post('/StoreBibliotecario',[BibliotecarioController::class,'storeB'])->name('storeBb'); 
 
 Route::get('/RegistroLibro',[LibroController::class,'createL'])->name('registroL');
 Route::get('/ListadoLibro',[LibroController::class,'tablaL'])->name('listadoL');
@@ -157,3 +158,4 @@ Route::post('/eliminarLibr/{id}',[LibroController::class,'eliminarL'])->name('el
 
 Route::get('/graficos/',[GraficoAbastecimientoController::class,'index'])->name('graficoA');
 
+Route::get('/',[PedidoController::class,'prueba'])->name('prueba');

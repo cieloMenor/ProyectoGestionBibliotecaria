@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\registroDetallePedido;
 use App\Models\registroPedido;
+use Barryvdh\DomPDF\Facade\PDF as PDF;
 use Illuminate\Http\Request;
 
 class PedidoController extends Controller
@@ -100,5 +101,11 @@ class PedidoController extends Controller
         return redirect()->route('listadoDP');
 
     }
+
+    public function prueba(){
+        $pedidos=registroPedido::all();
+        $pdf = PDF::loadview('Abastecimiento.pdfPedido',compact('pedidos'));
+        return $pdf->download('pedidos.pdf');
+      }
 
 }
