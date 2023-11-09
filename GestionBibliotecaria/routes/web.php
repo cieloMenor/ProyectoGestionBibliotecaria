@@ -158,4 +158,4 @@ Route::post('/eliminarLibr/{id}',[LibroController::class,'eliminarL'])->name('el
 
 Route::get('/graficos/',[GraficoAbastecimientoController::class,'index'])->name('graficoA');
 
-Route::get('/',[PedidoController::class,'prueba'])->name('prueba');
+Route::get('/pdff',[PedidoController::class,'prueba'])->name('prueba');
