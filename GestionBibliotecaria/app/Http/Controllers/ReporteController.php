@@ -6,6 +6,8 @@ use App\Models\DetallePrestamo;
 use App\Models\Libro;
 use App\Models\Prestamo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 
 class ReporteController extends Controller
@@ -140,20 +142,74 @@ class ReporteController extends Controller
         //     $valores2[] = $row["prestado"];
     
         //     }
+        
+
+        //grafico tres ejes
+        $datos = DB::select('select l.Titulo as libro, sum(pd.Nrocopiasprestamo) as cantidad, Month(P.Fecharegistroprestamo) as Mes from prestamo p inner join prestamo_detalle pd on pd.prestamoID = p.prestamoID inner join libro l on l.libroID = pd.libroID where p.Estadohabprestamo group by l.Titulo,Month(p.Fecharegistroprestamo) order by Month(p.Fecharegistroprestamo)');
+        $chartData = [];
+        $labels = [];
+        $datasets = [];
+    
+        foreach ($datos as $entry) {
+            $producto = $entry->libro;
+            $fecha = $entry->Mes;
+            $cantidad = $entry->cantidad;
+    
+            if (!in_array($fecha, $labels)) {
+                $labels[] = $fecha;
+            }
+    
+            if (!array_key_exists($producto, $datasets)) {
+                $datasets[$producto] = [
+                    'label' => $producto,
+                    'backgroundColor' => 'rgba(60,141,188,0.9)',
+                    'borderColor' => 'rgba(60,141,188,0.8)',
+                    'pointRadius' => false,
+                    'pointColor' => '#3b8bba',
+                    'pointStrokeColor' => 'rgba(60,141,188,1)',
+                    'pointHighlightFill' => '#fff',
+                    'pointHighlightStroke' => 'rgba(60,141,188,1)',
+                    'data' => [],
+                ];
+            }
+    
+            $datasets[$producto]['data'][] = $cantidad;
+        }
+    
+        $chartData['labels'] = $labels;
+        $chartData['datasets'] = array_values($datasets);
+
+
+
+
 
         //otro grafico
+        $valores3 = array();
+        $nombres3 = array();
+
         $prestamos= DB::select('select e.Estadoprestamo as estado, count(p.prestamoID) as prestamos from prestamo p inner join estado_prestamo e on e.Estado_prestamoID=p.Estado_prestamoID where p.Estadohabprestamo=1 group by e.Estadoprestamo');
 
-        $prestados= Prestamo::select(DB::raw("SUM(Nrocopiasprestamo)	as prestado"))
-        ->join('prestamo','prestamo.prestamoID','=','prestamo_detalle.prestamoID')
-        ->where('Estadohabprestamo','=','1')
-        ->whereYear('Fecharegistroprestamo','=',$valoraño)
-        ->groupBy(DB::raw("Nombrelibro"));
+        // $estados= Prestamo::select(DB::raw("Estadoprestamo as estado"))
+        // ->join('estado_prestamo','estado_prestamo.Estado_prestamoID','=','prestamo.Estado_prestamoID')
+        // ->where('Estadohabprestamo','=','1')
+        // ->whereYear('Fecharegistroprestamo','=',$valoraño)
+        // ->groupBy(DB::raw("Estadoprestamo"));
+
+        // $prestados= Prestamo::select(DB::raw("count(prestamoID) as prestados"))
+        // ->join('estado_prestamo','estado_prestamo.Estado_prestamoID','=','prestamo.Estado_prestamoID')
+        // ->where('Estadohabprestamo','=','1')
+        // ->whereYear('Fecharegistroprestamo','=',$valoraño)
+        // ->groupBy(DB::raw("Estadoprestamo"));
+
+        foreach ($prestamos as $row) {
+            
+            $nombres3[] = $row->estado;
+            $valores3[] = $row->prestamos;
+    
+         }
 
 
-
-
-        return view('reportes.chartjs',compact('valores','nombres','años','valoraño','valores2','nombres2','libronombre'));
+        return view('reportes.chartjs',compact('valores','nombres','años','valoraño','valores2','nombres2','libronombre','datos','valores3','nombres3'),['chartData' => json_encode($chartData)]);
     }
 
     /**
@@ -161,9 +217,56 @@ class ReporteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $fechaInicio = $request->fechaInicio;
+        $fechaFin = $request->fechaFin;
+        $date = new Date();
+        $fecha=date_format(now(), 'Y-m-d');
+
+        if ($request->fechaInicio == "") {
+            $fechaInicio = '2023-10-01';
+        }
+        else{
+        $fechaInicio = $request->fechaInicio;
+        }
+
+        if ($request->fechaFin == "") {
+            $fechaFin = $fecha;
+        }
+        else{
+        $fechaFin = $request->fechaFin;
+        }
+
+        $prestamos= Prestamo::where('Estadohabprestamo','=','1')
+        ->join('lector','lector.LectorID','=','prestamo.LectorID')
+        ->join('estado_prestamo','estado_prestamo.Estado_prestamoID','prestamo.Estado_prestamoID')
+        ->whereBetween('Fecharegistroprestamo', [$fechaInicio, $fechaFin])
+        ->orderby('PrestamoID')
+        ->get();
+
+
+        return view('reportes.report',compact('prestamos','fechaInicio','fechaFin'));
+    }
+
+    public function pdf($id,Request $request)
+    {
+        //$fechaInicio = $request->fechaInicio;
+        $fechaInicio = substr($id, 0, 10);
+        //$fechaFin = $request->fechaFin;
+        $fechaFin = substr($id, 10, 10);
+
+        $prestamos= Prestamo::where('Estadohabprestamo','=','1')
+        ->join('lector','lector.LectorID','=','prestamo.LectorID')
+        ->join('estado_prestamo','estado_prestamo.Estado_prestamoID','prestamo.Estado_prestamoID')
+        ->whereBetween('Fecharegistroprestamo', [$fechaInicio, $fechaFin])
+        ->orderby('PrestamoID')
+        ->get();
+
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML(view('reportes.pdf', compact('prestamos')));
+        //return $pdf->download('lista_perritos.pdf');
+        return $pdf->stream('report.pdf');
     }
 
     /**

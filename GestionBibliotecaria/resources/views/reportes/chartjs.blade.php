@@ -133,7 +133,8 @@
           </div>
           <div class="card-body">
             <div class="chart">
-              <canvas id="barChart" hidden style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              <canvas id="barChart" hidden ="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              
               <canvas id="densityChart" width="600" height="400"></canvas>
             </div>
           </div>
@@ -148,7 +149,7 @@
         <!-- STACKED BAR CHART -->
         <div class="card card-success">
           <div class="card-header">
-            <h3 class="card-title">Stacked Bar Chart</h3>
+            <h3 class="card-title">N° de prestamos por estado</h3>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -177,6 +178,7 @@
 </div><!-- /.container-fluid -->
 @endsection
 @section('script')
+
 <script>
     $(function () {
       $('#años').click(function () {
@@ -322,54 +324,32 @@
       //-------------
       //- BAR CHART -
       //-------------
-      var areaChartData2 = {
-        labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      datasets: [
-        {
-          label               : 'Digital Goods',
-          backgroundColor     : 'rgba(60,141,188,0.9)',
-          borderColor         : 'rgba(60,141,188,0.8)',
-          pointRadius          : false,
-          pointColor          : '#3b8bba',
-          pointStrokeColor    : 'rgba(60,141,188,1)',
-          pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [28, 48, 40, 19, 86, 27, 90]
-        },
-          {
-          label               : 'Electronics',
-          backgroundColor     : 'rgba(210, 214, 222, 1)',
-          borderColor         : 'rgba(210, 214, 222, 1)',
-          pointRadius         : false,
-          pointColor          : 'rgba(210, 214, 222, 1)',
-          pointStrokeColor    : '#c1c7d1',
-          pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [65, 59, 80, 81, 56, 55, 40]
-        },
-          
-        ]
+      var matriz = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9]
+    ];
 
-      };
-      var barChartCanvas = $('#barChart').get(0).getContext('2d')
-      var barChartData = $.extend(true, {}, areaChartData2)
-      var temp0 = areaChartData2.datasets[0]
-      var temp1 = areaChartData2.datasets[1]
-      barChartData.datasets[0] = temp1
-      barChartData.datasets[1] = temp0
-  
+
+      
+
+      //otrooooooooooooooooooooooooo
+      var areaChartData2 = @json($chartData);
+      var barChartCanvas3 = $('#barChart').get(0).getContext('2d');
+      var barChartData3 = $.extend(true, {}, areaChartData2);
+
       var barChartOptions = {
-        responsive              : true,
-        maintainAspectRatio     : false,
-        datasetFill             : false
-      }
-  
-      new Chart(barChartCanvas, {
-        type: 'bar',
-        data: barChartData,
-        options: barChartOptions
-      })
+          responsive: true,
+          maintainAspectRatio: false,
+          datasetFill: false
+      };
 
+      new Chart(barChartCanvas3, {
+          type: 'bar',
+          data: barChartData3,
+          options: barChartOptions
+      });
+   
 
       //gtafico otro
       var densityCanvas = document.getElementById("densityChart");
@@ -395,22 +375,25 @@
 
       ///otro grafico2
       //gtafico otro
-      var densityCanvas2 = document.getElementById("densityChart2");
+      var densityCanvas2 = document.getElementById("densityChart2")
+      const valores3 = <?php echo json_encode($valores3); ?>;
+      const nombres3 = <?php echo json_encode($nombres3); ?>;;
+      
 
       Chart.defaults.global.defaultFontFamily = "Lato";
       Chart.defaults.global.defaultFontSize = 18;
 
       var densityData2 = {
-      label: 'Libros prestados por mes',
-      data: valores,
-      backgroundColor:'#19CED3'
+      label: 'N° de prestamos por estado',
+      data: valores3,
+      backgroundColor:'#71EC1C'
       
       };
 
       var barChart2 = new Chart(densityCanvas2, {
       type: 'bar',
       data: {
-        labels: nombres,
+        labels: nombres3,
         datasets: [densityData2]
       }
       });

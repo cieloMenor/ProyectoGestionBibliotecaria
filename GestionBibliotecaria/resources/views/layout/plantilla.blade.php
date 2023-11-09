@@ -177,12 +177,27 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a href="{{route('reporte.index')}}" class="nav-link">
+                <a href="{{--route('reporte.index')--}}" class="nav-link">
                   <i class="fas fa-fw fa-tachometer-alt"></i>
                   <p>Reportes<i class="right fas fa-angle-left"></i>
 
                   </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{route('reporte.index')}}" class="nav-link">
+                      <i class="fa fa-user" aria-hidden="true"></i>
+                      <p>Gráfico</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('reporte.create')}}" class="nav-link">
+                      <i class="fas fa-book-reader    "></i>
+                      <p>De Gestión</p> 
+                    </a>
+                  </li>
+                  
+                </ul>
               </li>
             </ul>
           </li>
@@ -335,7 +350,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="/adminlte/dist/js/demo.js"></script>
 <script src="/js/dark.js"></script>
-
 @yield('script')
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

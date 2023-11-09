@@ -33,6 +33,7 @@ class Prestamo extends Model
     {
         return $this->hasOne(EstadoPrestamo::class,'Estado_prestamoID','Estado_prestamoID');
     }
+    
 
     public static function AnularEntrega($PrestamoID){
         return DB::select(
