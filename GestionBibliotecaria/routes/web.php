@@ -4,6 +4,7 @@ use App\Http\Controllers\BibliotecarioController;
 use App\Http\Controllers\ControlPrestamoController;
 use App\Http\Controllers\DevolucionController;
 use App\Http\Controllers\EntregaController;
+use App\Http\Controllers\GraficoAbastecimientoController;
 use App\Http\Controllers\LectorController;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\LibrooController;
@@ -152,3 +153,7 @@ route::post('/reporte/all',[ReporteController::class,'all'])->name('all');
 Route::get('/EditarLibro/{id}',[LibroController::class,'editarL'])->name('editarL');
 Route::post('/updateLibro',[LibroController::class,'updateL'])->name('updateL'); 
 Route::post('/eliminarLibr/{id}',[LibroController::class,'eliminarL'])->name('eliminarLi');
+
+
+Route::get('/graficos/',[GraficoAbastecimientoController::class,'index'])->name('graficoA');
+
