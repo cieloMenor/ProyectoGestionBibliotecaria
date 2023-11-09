@@ -17,7 +17,7 @@
             <button class="btn btn-success" type="submit">Buscar</button>
               
         </form>  
-        <a href="{{route('reportepdf',$fechaInicio.$fechaFin)}}" class="btn btn-primary">Imprimir</a>
+        <a href="{{route('reportepdf',$fechaInicio.$fechaFin)}}" class="btn btn-primary">Exportar PDF</a>
     </nav>
     
     
