@@ -62,7 +62,7 @@
                     <td>{{$ItemDetallesL->Idioma}}</td>
                     <td>{{$ItemDetallesL->Editorial}}</td>
                     <td>{{$ItemDetallesL->Añopublicacion}}</td>
-                    <td>{{$ItemDetallesL->Stock}}</td>
+                    <td>{{$ItemDetallesL->Stocklibro}}</td>
                     <td>
                         <a href="{{route('editarL', [$ItemDetallesL->LibroID])}}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> Editar</a>
                         &nbsp; &nbsp; &nbsp;

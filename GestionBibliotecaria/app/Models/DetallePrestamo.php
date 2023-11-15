@@ -19,7 +19,7 @@ class DetallePrestamo extends Model
     
     public function libros()
     {
-        return $this->hasOne(Libroo::class,'LibroID','LibroID');
+        return $this->hasOne(Libro::class,'LibroID','LibroID');
     }
     public function prestamos()
     {
