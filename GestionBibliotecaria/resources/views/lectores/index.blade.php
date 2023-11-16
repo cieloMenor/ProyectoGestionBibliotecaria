@@ -109,8 +109,7 @@
                                   @else
                                   <p> No fue registrado por un bibliotecario</p>
                                   @endif
-                                  <p>Usuario que lo registró: {{$itemlector->usuarios->Usuario}}</p>
-
+                                  
                                   <p>Estado Habilitación:
                                     @if($itemlector->Estadohablector == 1)
                                         <h5 class="btn btn-warning">Habilitado</h5>

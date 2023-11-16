@@ -132,8 +132,7 @@
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
-                  @if(auth()->user()->roles->Descripcionrol == 'ROLE_BIBLIOTECARIO')
-                  <li class="nav-item">
+                 <li class="nav-item">
                     <a href="{{route('lector.index')}}" class="nav-link">
                       <i class="fa fa-user" aria-hidden="true"></i>
                       <p>Lectores</p>
@@ -145,9 +144,6 @@
                       <p>Tipo Préstamo</p> 
                     </a>
                   </li>
-                  @endif
-                  
-                  @if(auth()->user()->roles->Descripcionrol == 'ROLE_ADMIN')
                   <li class="nav-item">
                     <a href="{{route('tipomulta.index')}}" class="nav-link">
                       <i class="fas fa-money-check    "></i>
@@ -161,7 +157,6 @@
                       <p>Tipo Documento CDP</p>
                     </a>
                   </li>
-                  @endif
                   <li class="nav-item">
                     <a href="{{--route('perrito.index')--}}" class="nav-link">
                       <i class="fas fa-money-bill-wave    "></i>

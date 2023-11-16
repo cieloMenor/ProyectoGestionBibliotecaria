@@ -21,10 +21,14 @@ class DevolucionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    const PAGINATION=7;
+    public function index(Request $request)
     {
-        $devoluciones = Devolucion::where('Estadohabdevolución','=',1)->get();
-        return view('devoluciones.index', compact('devoluciones'));
+        $buscarpor=$request->buscarpor;
+        $devoluciones = Devolucion::where('Estadohabdevolución','=',1)
+        ->where('PrestamoID','like','%'.$buscarpor.'%')
+        ->paginate($this::PAGINATION);
+        return view('devoluciones.index', compact('devoluciones','buscarpor'));
     }
 
     /**

@@ -18,6 +18,13 @@
             </div>
         @endif
     </div>
+    <nav class="navbar float-right">
+       
+        <form class="form-inline my-2" method="GET">
+            <input name="buscarpor" class="form-control me-2" type="search" placeholder="codigo" aria-label="Search" value="{{$buscarpor}}">
+            <button class="btn btn-success" type="submit">Buscar por prestamo</button>
+        </form>
+    </nav>
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -77,7 +84,7 @@
             @endif
         </tbody>
     </table> 
-    {{--$prestamos->links()--}}
+    {{$devoluciones->links()}}
 </div>
 
 @endsection

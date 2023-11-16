@@ -16,7 +16,7 @@
 <body>
   <div class="container-fluid">
     <center> <p>
-        <h3 >Ticket de Prestamo <br>  <p>Biblioteca</p></h3>
+        <h3 >Ticket de Prestamo <br> <p>NRO. {{$prestamo->PrestamoID}}</p>  <p>Biblioteca</p></h3>
         
         <br>  Tipo:    {{$prestamo->tipo->Tipoprestamo}} <br>
         Lector: {{$prestamo->lectores->Apellidoslector}}, {{$prestamo->lectores->Nombreslector }} <br>
@@ -29,7 +29,6 @@
         <thead >
           <tr>
             <th scope="col">N°</th>
-            <th scope="col">Codigo</th>
                 <th scope="col">Libro</th>
                 <th scope="col">Cantidad</th>
           </tr>
@@ -42,8 +41,7 @@
             @else
                 @foreach ($detalles as $detalle)
                 <tr>
-                    <td>{{$detalle->index+1}}</td>
-                    <td>{{$detalle->LibroID}}</td>
+                    <td>{{$loop->index+1}}</td>
                     <td>{{$detalle->Nombrelibro}}</td>
                     <td>{{$detalle->Nrocopiasprestamo}}</td>
                     

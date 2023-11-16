@@ -123,7 +123,7 @@ class ReporteController extends Controller
         // ->whereYear('Fecharegistroprestamo','=',$valoraño)
         // ->groupBy(DB::raw("Nombrelibro"));
 
-        $libronombre= DB::select('select l.Titulo as libro, sum(pd.Nrocopiasprestamo) as prestados from prestamo p inner join prestamo_detalle pd on pd.prestamoID = p.prestamoID inner join libro l on l.libroID = pd.libroID where p.Estadohabprestamo=1 group by l.Titulo');
+        $libronombre= DB::select('select l.Titulo as libro, sum(pd.Nrocopiasprestamo) as prestados from prestamo p inner join prestamo_detalle pd on pd.prestamoID = p.prestamoID inner join libro l on l.libroID = pd.libroID where p.Estadohabprestamo=1 and Year(p.Fecharegistroprestamo)='.$valoraño.'  group by l.Titulo');
 
         $prestados= DetallePrestamo::select(DB::raw("SUM(Nrocopiasprestamo)	as prestado"))
         ->join('prestamo','prestamo.prestamoID','=','prestamo_detalle.prestamoID')
@@ -145,7 +145,7 @@ class ReporteController extends Controller
         
 
         //grafico tres ejes
-        $datos = DB::select('select l.Titulo as libro, sum(pd.Nrocopiasprestamo) as cantidad, Month(P.Fecharegistroprestamo) as Mes from prestamo p inner join prestamo_detalle pd on pd.prestamoID = p.prestamoID inner join libro l on l.libroID = pd.libroID where p.Estadohabprestamo group by l.Titulo,Month(p.Fecharegistroprestamo) order by Month(p.Fecharegistroprestamo)');
+        $datos = DB::select('select l.Titulo as libro, sum(pd.Nrocopiasprestamo) as cantidad, Month(P.Fecharegistroprestamo) as Mes from prestamo p inner join prestamo_detalle pd on pd.prestamoID = p.prestamoID inner join libro l on l.libroID = pd.libroID where p.Estadohabprestamo=1 and Year(p.Fecharegistroprestamo)='.$valoraño.' group by l.Titulo,Month(p.Fecharegistroprestamo) order by Month(p.Fecharegistroprestamo)');
         $chartData = [];
         $labels = [];
         $datasets = [];
@@ -187,7 +187,7 @@ class ReporteController extends Controller
         $valores3 = array();
         $nombres3 = array();
 
-        $prestamos= DB::select('select e.Estadoprestamo as estado, count(p.prestamoID) as prestamos from prestamo p inner join estado_prestamo e on e.Estado_prestamoID=p.Estado_prestamoID where p.Estadohabprestamo=1 group by e.Estadoprestamo');
+        $prestamos= DB::select('select e.Estadoprestamo as estado, count(p.prestamoID) as prestamos from prestamo p inner join estado_prestamo e on e.Estado_prestamoID=p.Estado_prestamoID where p.Estadohabprestamo=1 and Year(p.Fecharegistroprestamo)='.$valoraño.'  group by e.Estadoprestamo');
 
         // $estados= Prestamo::select(DB::raw("Estadoprestamo as estado"))
         // ->join('estado_prestamo','estado_prestamo.Estado_prestamoID','=','prestamo.Estado_prestamoID')

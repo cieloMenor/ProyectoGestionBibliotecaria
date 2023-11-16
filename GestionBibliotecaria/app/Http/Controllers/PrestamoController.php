@@ -23,7 +23,7 @@ class PrestamoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    const PAGINATION=10;
+    const PAGINATION=7;
     public function index(Request $request)
     {
         $buscarpor=$request->get('buscarpor');
@@ -130,7 +130,7 @@ class PrestamoController extends Controller
             Lector::ActualizarLectorADeudor($LectorID);
 
             DB::commit();
-            return redirect()->route('prestamo.index')->with('datos','Registro Exitoso ...!');
+            return redirect()->route('ticket',$idprestamo)->with('datos','Registro Exitoso ...!');
             //code...
         } catch (Exception $e) {
             DB::rollback();
