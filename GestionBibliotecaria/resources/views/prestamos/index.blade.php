@@ -139,7 +139,10 @@
                             @endif
                             
                             <a href="{{route('ticket',$item->PrestamoID)}}" class="btn btn-warning"> <i class="fas fa-file-pdf    "></i></a>
-                                
+                            @if ($item->Estado_prestamoID==4)
+                            <a href="{{route('prestamo.edit',$item->PrestamoID)}}" class="btn btn-danger">Multar</a>
+                            @endif
+                              
                         </td>
                     
                     </tr> 

@@ -28,7 +28,7 @@
         <div class="card card-primary row" >
           
           <div class="card-header">
-            <h3 class="card-title">N° de Libros prestados mensuales según año</h3>
+            <h3 class="card-title">N° de Libros prestados por mes</h3>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -51,7 +51,7 @@
         <!-- DONUT CHART -->
         <div class="card card-danger">
           <div class="card-header">
-            <h3 class="card-title">Donut Chart</h3>
+            <h3 class="card-title">N° de Libros prestados por mes</h3>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -96,7 +96,7 @@
         <!-- LINE CHART -->
         <div class="card card-info">
           <div class="card-header">
-            <h3 class="card-title">Line Chart</h3>
+            <h3 class="card-title">N° de Libros prestados por mes</h3>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -119,7 +119,7 @@
         <!-- BAR CHART -->
         <div class="card card-success">
           <div class="card-header">
-            <h3 class="card-title">Bar Chart</h3>
+            <h3 class="card-title">N° de lectores por mes</h3>
             
 
             <div class="card-tools">
@@ -206,7 +206,7 @@
         labels  : nombres,
         datasets: [
           {
-            label               : 'Digital Goods',
+            label               : 'N° de Libros',
             backgroundColor     : 'rgba(60,141,188,0.9)',
             borderColor         : 'rgba(60,141,188,0.8)',
             pointRadius          : false,
@@ -353,13 +353,15 @@
 
       //gtafico otro
       var densityCanvas = document.getElementById("densityChart");
+      const valores4 = <?php echo json_encode($valores4); ?>;
+      const nombres4 = <?php echo json_encode($nombres4); ?>;
 
       Chart.defaults.global.defaultFontFamily = "Lato";
       Chart.defaults.global.defaultFontSize = 18;
 
       var densityData = {
-      label: 'Libros prestados por mes',
-      data: valores,
+      label: 'Lectores registrados por mes',
+      data: valores4,
       backgroundColor:'#19CED3'
       
       };
@@ -367,7 +369,7 @@
       var barChart = new Chart(densityCanvas, {
       type: 'bar',
       data: {
-        labels: nombres,
+        labels: nombres4,
         datasets: [densityData]
       }
       });

@@ -207,9 +207,55 @@ class ReporteController extends Controller
             $valores3[] = $row->prestamos;
     
          }
+        
+        $valores4 = array();
+        $nombres4 = array();
 
+         $lectores= DB::select('select Month(l.Fecharegistrolector) as  Mes, count(l.lectorID) as cantidad from lector l where Year(l.Fecharegistrolector)='.$valoraño.' group by Month(l.Fecharegistrolector)  order by Month(l.Fecharegistrolector)');
+         foreach ($lectores as $row) {
+            
+            //$nombres[] = $row["Mes"];
+    
+            if ($row->Mes ==1) {
+                $nombres4[] = "Ene";
+            }
+            if ($row->Mes ==2) {
+                $nombres4[] = "Feb";
+            }
+            if ($row->Mes ==3) {
+                $nombres4[] = "Mar";
+            }
+            if ($row->Mes ==4) {
+                $nombres4[] = "Abr";
+            }
+            if ($row->Mes ==5) {
+                $nombres4[] = "May";
+            }
+            if ($row->Mes ==6) {
+                $nombres4[] = "Jun";
+            }
+            if ($row->Mes ==7) {
+                $nombres4[] = "Jul";
+            }
+            if ($row->Mes ==8) {
+                $nombres4[] = "Ago";
+            }
+            if ($row->Mes ==9) {
+                $nombres4[] = "Sep";
+            }
+            if ($row->Mes ==10) {
+                $nombres4[] = "Oct";
+            }
+            if ($row->Mes ==11) {
+                $nombres4[] = "Nov";
+            }
+            if ($row->Mes ==12) {
+                $nombres4[] = "Div";
+            }
 
-        return view('reportes.chartjs',compact('valores','nombres','años','valoraño','valores2','nombres2','libronombre','datos','valores3','nombres3'),['chartData' => json_encode($chartData)]);
+            $valores4[] = $row->cantidad;
+        }
+        return view('reportes.chartjs',compact('valores','nombres','años','valoraño','valores2','nombres2','libronombre','datos','valores3','nombres3','valores4','nombres4'),['chartData' => json_encode($chartData)]);
     }
 
     /**

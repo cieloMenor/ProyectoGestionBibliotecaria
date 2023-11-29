@@ -8,7 +8,10 @@ use App\Models\Devolucion;
 use App\Models\Lector;
 use App\Models\Libro;
 use App\Models\Libroo;
+use App\Models\Multa;
 use App\Models\Prestamo;
+use App\Models\Servicio;
+use App\Models\TipoMulta;
 use DateTime;
 use Exception;
 use Illuminate\Http\Request;
@@ -301,9 +304,20 @@ class DevolucionController extends Controller
         return view('devoluciones.multalector');
     }
 
-    public function edit($id)
+    public function edit($id,Request $request)
     {
-        //
+        
+        $idMulta = $request->idMulta;
+        $tiposmulta=TipoMulta::all();
+        $devolucion=Devolucion::find($id);
+        $prestamoid=$devolucion->PrestamoID;
+        $detalles=DetallePrestamo::where('PrestamoID','=',$prestamoid)->get();
+        $librosprestamo = 0;
+        foreach ($detalles as $item) {
+            $librosprestamo +=$item->NroLibrosFaltaDevo;
+        }
+
+        return view('devoluciones.agregarmulta',compact('id','tiposmulta','idMulta','librosprestamo'));
     }
 
     /**

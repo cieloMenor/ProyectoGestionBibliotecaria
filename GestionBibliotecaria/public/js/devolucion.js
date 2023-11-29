@@ -118,6 +118,7 @@ function agregarDetalle() {
             cod_producto: cod_producto,
             stock: stock,
             cantidad_producto: cantidad_producto,
+            fecha_detalle: fecha_detalle,
             descripcion : descripcion
         });
         cont++;

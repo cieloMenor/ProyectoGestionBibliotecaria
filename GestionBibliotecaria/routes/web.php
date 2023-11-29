@@ -8,6 +8,7 @@ use App\Http\Controllers\GraficoAbastecimientoController;
 use App\Http\Controllers\LectorController;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\LibrooController;
+use App\Http\Controllers\MultaController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\PrestamoController;
@@ -109,6 +110,8 @@ Route::resource('controlPrestamo', ControlPrestamoController::class);
 Route::get('/ticket/{id}',[PrestamoController::class,'pdf'])->name('ticket');
 
 Route::get('/report/{id}',[ReporteController::class,'pdf'])->name('reportepdf');
+Route::resource('multa', MultaController::class);
+
 
 Route::get('/ListadoProveedor',[ProveedorController::class,'Tabla'])->name('listado');
 Route::get('/RegistroProveedor',[ProveedorController::class,'Form'])->name('registro');

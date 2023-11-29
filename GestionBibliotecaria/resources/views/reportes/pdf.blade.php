@@ -8,7 +8,8 @@
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <style>
     table {
-        font-size: 12px; 
+        font-size: 15px; 
+        
     }
   </style>  
   <title>Report</title>
@@ -19,6 +20,8 @@
 
     <center><h2>Reporte de prestamos hechos en el año actual</h2></center>
     
+    <center>
+
     
     <table class="table">
         <thead class="thead-default" style="background-color:#2b8190;color: #fff;">
@@ -85,6 +88,7 @@
           </tbody>
     
     </table>
+    </center>
 </div>
 </body>
 </html>

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\DetallePrestamo;
+use App\Models\Devolucion;
 use App\Models\Lector;
 use App\Models\Libro;
 use App\Models\Libroo;
 use App\Models\Prestamo;
+use App\Models\TipoMulta;
 use App\Models\TipoPrestamo;
 use Carbon\Carbon;
 use Exception;
@@ -76,7 +78,15 @@ class PrestamoController extends Controller
             $lector=Lector::where('Dni_lector','=',$request->Dni_lector)->get();
             $LectorID=$lector[0]->LectorID;
 
-            $count=Prestamo::all()->last()->PrestamoID;
+            //$count=Prestamo::all()->last()->PrestamoID;
+            $latestMulta = Prestamo::latest('PrestamoID')->first();
+
+            if ($latestMulta) {
+                $count = $latestMulta->PrestamoID;
+            } else {
+                // Manejar el caso en que no hay registros en la tabla
+                $count = 0; // o cualquier otro valor predeterminado que desees
+            }
             $prestamo= new Prestamo();
                     date_default_timezone_set('America/Lima');		
                     $fecha_actual = date("Y-m-d H:i:s"); 
@@ -106,7 +116,15 @@ class PrestamoController extends Controller
             $cont = 0;
             while ($cont<count($cod_libro)) {
 
-                $count2=DetallePrestamo::all()->last()->Prestamo_detalleID;
+                // $count2=DetallePrestamo::all()->last()->Prestamo_detalleID;
+                $latestMulta2 = DetallePrestamo::latest('Prestamo_detalleID')->first();
+
+                if ($latestMulta2) {
+                    $count2 = $latestMulta->Prestamo_detalleID;
+                } else {
+                    // Manejar el caso en que no hay registros en la tabla
+                    $count2 = 0; // o cualquier otro valor predeterminado que desees
+                }
                 $detalle = new DetallePrestamo();
                 
                 $detalle->Prestamo_detalleID = $count2+1;
@@ -188,8 +206,15 @@ class PrestamoController extends Controller
             'Direccionlector']));                   
         }
         else{ // si no lo encuentra con el name
-            $count=Lector::all()->last()->LectorID;
+            //$count=Lector::all()->last()->LectorID;
+            $latestMulta = Lector::latest('LectorID')->first();
 
+            if ($latestMulta) {
+                $count = $latestMulta->LectorID;
+            } else {
+                // Manejar el caso en que no hay registros en la tabla
+                $count = 0; // o cualquier otro valor predeterminado que desees
+            }
             $lector = new Lector();
             $lector->LectorID = $count + 1;
             $lector->Dni_lector = $request->Dni_lector;
@@ -225,9 +250,17 @@ class PrestamoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,Request $request)
     {
-        //
+        $idMulta = $request->idMulta;
+        $tiposmulta=TipoMulta::all();
+        $detalles=DetallePrestamo::where('PrestamoID','=',$id)->get();
+        $librosprestamo = 0;
+        foreach ($detalles as $item) {
+            $librosprestamo +=$item->NroLibrosFaltaDevo;
+        }
+
+        return view('prestamos.agregarmulta',compact('id','tiposmulta','idMulta','librosprestamo','detalles'));
     }
 
     /**

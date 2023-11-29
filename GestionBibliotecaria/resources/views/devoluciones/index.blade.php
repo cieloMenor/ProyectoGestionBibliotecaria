@@ -69,7 +69,7 @@
                     </td>
                     <td> 
                         @if ($item->Conmulta==1)
-                        <a href="{{route('devolucion.multalector',$item->DevolucionID)}}" class="btn btn-danger">SI</a>
+                        <a href="{{route('devolucion.edit',$item->DevolucionID)}}" class="btn btn-danger">SI</a>
                         @else
                         <a href="" class="btn btn-warning">NO</a>
                         @endif

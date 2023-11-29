@@ -7,20 +7,21 @@ use App\Models\Proveedor;
 use App\Models\registroDetallePedido;
 use App\Models\registroPedido;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GraficoAbastecimientoController extends Controller
 {
     public function index()
     {
         $librosPrestadosPorFecha = registroPedido::select(
-            \DB::raw('MONTHNAME(Fecha) as mes'),
-            \DB::raw('COUNT(PedidoID) as total')
+            DB::raw('MONTHNAME(Fecha) as mes'),
+            DB::raw('COUNT(PedidoID) as total')
         )
-            ->groupBy(\DB::raw('MONTHNAME(Fecha)'))
+            ->groupBy(DB::raw('MONTHNAME(Fecha)'))
             ->get();
 
         $data = [];
-
+        $pedidosYProveedores = [];
         foreach ($librosPrestadosPorFecha as $libro) {
             $data[] = [
                 'mes' => $libro->mes,

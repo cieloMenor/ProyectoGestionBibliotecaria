@@ -83,7 +83,7 @@
                 labels: libros.map(libro => libro.Titulo),
                 datasets: [{
                     label: 'Stock de libros',
-                    data: libros.map(item => item.Stock),
+                    data: libros.map(item => item.Stocklibro),
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(255, 159, 64, 0.2)',

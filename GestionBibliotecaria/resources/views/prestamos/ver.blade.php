@@ -31,7 +31,6 @@
                 <th scope="col">CodigoLibro</th>
                 <th scope="col">Titulo</th>
                 <th scope="col">Cantidad</th>
-                <th scope="col">Stock Anterior</th>
                 <th scope="col">Faltan devolver:</th>
                 <th scope="col">Estado</th>
                 
@@ -50,7 +49,6 @@
                         <td>{{$item->LibroID}}</td>
                         <td>{{$item->Nombrelibro}}</td>
                         <td>{{$item->Nrocopiasprestamo}}</td>
-                        <td>{{$item->StockLibroP}}</td>
                         <td>{{$item->NroLibrosFaltaDevo}}</td>
                         <td><a href="" class="btn btn-primary">{{$item->estadodetalleprestamos->Estadodetalleprestamo}}</a></td>
                         
