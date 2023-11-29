@@ -37,7 +37,15 @@ class RolController extends Controller
      */
     public function store(Request $request)
     {
-        $count=Rol::all()->last()->RolID;
+        //$count=Rol::all()->last()->RolID;
+        $latest = Rol::latest('RolID')->first();
+
+            if ($latest) {
+                $count = $latest->RolID;
+            } else {
+                // Manejar el caso en que no hay registros en la tabla
+                $count = 0; // o cualquier otro valor predeterminado que desees
+            }
         $rol = new Rol();
         $rol->RolID= $count + 1;
         $rol->Descripcionrol=$request->Descripcionrol;
