@@ -102,7 +102,10 @@
                             
                         @endif  @if ($item->Estado_prestamoID==5) class="btn btn-info"
                             
-                        @endif  
+                        @endif 
+                            @if ($item->Estado_prestamoID==6) class="btn btn-danger"
+                            
+                        @endif 
                             
                             
                             >{{$item->estadoprestamos->Estadoprestamo}}</a></td>
