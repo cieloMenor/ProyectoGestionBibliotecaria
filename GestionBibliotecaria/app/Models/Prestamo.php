@@ -57,5 +57,11 @@ class Prestamo extends Model
         DB::raw("UPDATE prestamo set Estado_prestamoID ='4' where PrestamoID='".$PrestamoID."'")
         );
     }
+
+    public static function MultarPrestamo($PrestamoID){
+        return DB::select(
+        DB::raw("UPDATE prestamo set Estado_prestamoID ='6' where PrestamoID='".$PrestamoID."'")
+        );
+    }
     
 }

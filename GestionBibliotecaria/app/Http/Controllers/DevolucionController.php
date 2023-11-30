@@ -72,7 +72,15 @@ class DevolucionController extends Controller
         else{
 
             $prestamo = Prestamo::find($idPrestamo);
-            $count=Devolucion::all()->last()->DevolucionID;
+            //$count=Devolucion::all()->last()->DevolucionID;
+            $latest = Devolucion::latest('DevolucionID')->first();
+
+            if ($latest) {
+                $count = $latest->DevolucionID;
+            } else {
+                // Manejar el caso en que no hay registros en la tabla
+                $count = 0; // o cualquier otro valor predeterminado que desees
+            }
             $devolucion= new Devolucion();
 
             $devolucion->DevolucionID= $count+1;
@@ -112,7 +120,15 @@ class DevolucionController extends Controller
             $multa=false;
             while ($cont<count($cod_libro)) {
 
-                $count2=DetalleDevolucion::all()->last()->Devolucion_detalleID;
+                //$count2=DetalleDevolucion::all()->last()->Devolucion_detalleID;
+                $latest = DetalleDevolucion::latest('Devolucion_detalleID')->first();
+
+                if ($latest) {
+                    $count2 = $latest->Devolucion_detalleID;
+                } else {
+                    // Manejar el caso en que no hay registros en la tabla
+                    $count2 = 0; // o cualquier otro valor predeterminado que desees
+                }
                 $detalle = new DetalleDevolucion();
                 
                 $detalle->Devolucion_detalleID = $count2+1;

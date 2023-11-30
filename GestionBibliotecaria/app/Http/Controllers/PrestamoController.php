@@ -35,6 +35,8 @@ class PrestamoController extends Controller
         ->where('lector.Apellidoslector','like','%'.$buscarpor.'%')
         ->orderby('PrestamoID')->paginate($this::PAGINATION);
         
+        
+
         //$fecha = Carbon::now()->toTimeString();
         foreach($prestamos as $registro) {
 
@@ -120,7 +122,7 @@ class PrestamoController extends Controller
                 $latestMulta2 = DetallePrestamo::latest('Prestamo_detalleID')->first();
 
                 if ($latestMulta2) {
-                    $count2 = $latestMulta->Prestamo_detalleID;
+                    $count2 = $latestMulta2->Prestamo_detalleID;
                 } else {
                     // Manejar el caso en que no hay registros en la tabla
                     $count2 = 0; // o cualquier otro valor predeterminado que desees
@@ -259,7 +261,7 @@ class PrestamoController extends Controller
         foreach ($detalles as $item) {
             $librosprestamo +=$item->NroLibrosFaltaDevo;
         }
-
+        Prestamo::MultarPrestamo($id);
         return view('prestamos.agregarmulta',compact('id','tiposmulta','idMulta','librosprestamo','detalles'));
     }
 
