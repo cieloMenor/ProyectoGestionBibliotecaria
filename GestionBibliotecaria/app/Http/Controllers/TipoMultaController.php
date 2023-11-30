@@ -48,8 +48,15 @@ class TipoMultaController extends Controller
             'Porcentajemulta.numeric'=>'Registre solo valores numericos'
         ]);
 
-        $count=TipoMulta::all()->last()->MultaID;
+            //$count=TipoMulta::all()->last()->MultaID;
+            $latest = TipoMulta::latest('MultaID')->first();
 
+            if ($latest) {
+                $count = $latest->MultaID;
+            } else {
+                // Manejar el caso en que no hay registros en la tabla
+                $count = 0; // o cualquier otro valor predeterminado que desees
+            }
             $tipomulta = new TipoMulta();
             $tipomulta->MultaID= $count+1;
             $tipomulta->Descripcionmulta = $request->Descripcionmulta;

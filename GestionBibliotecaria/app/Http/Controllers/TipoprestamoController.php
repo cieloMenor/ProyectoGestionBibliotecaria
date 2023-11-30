@@ -36,7 +36,15 @@ class TipoprestamoController extends Controller
      */
     public function store(Request $request)
     {
-        $count=TipoPrestamo::all()->last()->Tipo_prestamoID;
+        //$count=TipoPrestamo::all()->last()->Tipo_prestamoID;
+        $latest = TipoPrestamo::latest('Tipo_prestamoID')->first();
+
+        if ($latest) {
+            $count = $latest->Tipo_prestamoID;
+        } else {
+            // Manejar el caso en que no hay registros en la tabla
+            $count = 0; // o cualquier otro valor predeterminado que desees
+        }
         $tipoprestamo = new TipoPrestamo();
         $tipoprestamo->Tipo_prestamoID= $count + 1;
         $tipoprestamo->Tipoprestamo=$request->Tipoprestamo;
