@@ -15,6 +15,7 @@ use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\RolController;
+use App\Http\Controllers\TiendaController;
 use App\Http\Controllers\TipoMultaController;
 use App\Http\Controllers\TipoprestamoController;
 use App\Http\Controllers\UserController;
@@ -162,3 +163,12 @@ Route::post('/eliminarLibr/{id}',[LibroController::class,'eliminarL'])->name('el
 Route::get('/graficos/',[GraficoAbastecimientoController::class,'index'])->name('graficoA');
 
 Route::get('/pdff',[PedidoController::class,'prueba'])->name('prueba');
+
+Route::get('/tienda',[TiendaController::class,'index'])->name('tienda');
+
+Route::post('/verificar/{id}',[TiendaController::class,'verificar'])->name('verificar');
+
+
+Route::get('/stripe', 'App\Http\Controllers\StripeController@index')->name('index');
+Route::post('/checkout/{id}', 'App\Http\Controllers\StripeController@checkout')->name('checkout');
+Route::get('/success', 'App\Http\Controllers\StripeController@success')->name('success');

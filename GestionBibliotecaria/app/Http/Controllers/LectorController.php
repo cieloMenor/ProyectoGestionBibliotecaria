@@ -96,8 +96,15 @@ class LectorController extends Controller
             'Direccionlector']));                   
         }
         else{ // si no lo encuentra con el name
-            $count=Lector::all()->last()->LectorID;
+            //$count=Lector::all()->last()->LectorID;
+            $latest = Lector::latest('LectorID')->first();
 
+            if ($latest) {
+                $count = $latest->LectorID;
+            } else {
+                // Manejar el caso en que no hay registros en la tabla
+                $count = 0; // o cualquier otro valor predeterminado que desees
+            }
             $lector = new Lector();
             $lector->LectorID = $count + 1;
             $lector->Dni_lector = $request->Dni_lector;
