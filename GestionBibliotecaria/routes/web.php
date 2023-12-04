@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BibliotecarioController;
+use App\Http\Controllers\ComprobanteController;
 use App\Http\Controllers\ControlPrestamoController;
 use App\Http\Controllers\DevolucionController;
 use App\Http\Controllers\EntregaController;
@@ -166,9 +167,12 @@ Route::get('/pdff',[PedidoController::class,'prueba'])->name('prueba');
 
 Route::get('/tienda',[TiendaController::class,'index'])->name('tienda');
 
-Route::post('/verificar/{id}',[TiendaController::class,'verificar'])->name('verificar');
+Route::get('/verificar/{id}',[TiendaController::class,'verificar'])->name('verificar');
 
 
 Route::get('/stripe', 'App\Http\Controllers\StripeController@index')->name('index');
 Route::post('/checkout/{id}', 'App\Http\Controllers\StripeController@checkout')->name('checkout');
-Route::get('/success', 'App\Http\Controllers\StripeController@success')->name('success');
+Route::get('/success/{id}', 'App\Http\Controllers\StripeController@success')->name('success');
+
+
+Route::resource('comprobante', ComprobanteController::class);

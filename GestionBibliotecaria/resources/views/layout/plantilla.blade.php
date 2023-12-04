@@ -292,6 +292,16 @@
             </a>
             
           </li>
+          <li class="nav-item">
+            <a href="{{route('tienda')}}" class="nav-link">
+              <i class="fa fa-user-circle" aria-hidden="true"></i>
+              {{-- <i class="nav-icon fas fa-chart-pie"></i> --}}
+              <p>
+                Tienda
+                {{-- <i class="right fas fa-angle-left"></i> --}}
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

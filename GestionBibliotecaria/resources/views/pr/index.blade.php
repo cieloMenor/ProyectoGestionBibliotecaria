@@ -37,7 +37,21 @@
         <p>Te alegramos informarte que has realizado con éxito el préstamo del libro.</p>
         <h3>Acercarte a recoger el libro</h3>
         <p>¡Disfruta de tu lectura!</p>
+        <p>Comprobante: {{$idcomprobante}}</p>
+        <p>Libro:{{$libro->Titulo}}</p>
+        {{-- @if(session('transaccionStripe'))
+    <h2>Detalles de la Transacción de Stripe</h2>
+                    <p>Session ID: {{ $session->id }}</p>
+                <p>Pagos: {{ $paymentIntent }}</p>
+    <p>ID de la Sesión: {{ session('transaccionStripe')->id }}</p>
+    <p>Estado: {{ session('transaccionStripe')->payment_status }}</p> --}}
+    <!-- Agrega más detalles según sea necesario -->
 
+    <!-- Nota: Asegúrate de revisar la estructura de los datos en la variable de sesión y ajusta según sea necesario -->
+{{-- @else
+    <p>No hay detalles de transacción disponibles.</p>
+@endif --}}
+      <a  class="boton-tienda" href="{{route('comprobante.edit',$idcomprobante)}}" target="_blank">Comprobante</a><br><br>
         <a  class="boton-tienda" href="{{route('tienda')}}">Tienda</a>
     </div>
 
