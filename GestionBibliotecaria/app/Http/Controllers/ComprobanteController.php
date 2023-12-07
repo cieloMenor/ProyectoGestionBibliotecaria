@@ -63,11 +63,11 @@ class ComprobanteController extends Controller
     {
         $comprobante = ComprobanteTienda::find($id);
         $imprimir=true;
-        $datosComprobante = [
-             'cliente' => $comprobante->clientes->Usuario,
-             'monto' => '100.00',  // Monto del comprobante
-             // Otros datos relevantes...
-         ];
+        // $datosComprobante = [
+        //      'cliente' => $comprobante->clientes->Usuario,
+        //      'monto' => '100.00',  // Monto del comprobante
+        //      // Otros datos relevantes...
+        //  ];
          
         // Generar el código QR con los datos del comprobante
         $codigoQR = QrCode::size(200)->generate(json_encode($comprobante));
