@@ -156,7 +156,7 @@
  
  {{-- a{!! $codigoQR !!} --}}
 
- <a href="{{ route('comprobante.pdf', ['comprobante' => $comprobante->idcomprobante]) }}">
+ <a href="{{-- route('comprobante.pdf', ['comprobante' => $comprobante->idcomprobante]) --}}">
     <img src="data:image/svg+xml;base64,{{ base64_encode($codigoQR) }}" alt="Código QR">
 </a>
 <p style="font-size: 12px;">Gracias por comprar en la tienda de libros online, donde la lectura es lo más importante</p>
