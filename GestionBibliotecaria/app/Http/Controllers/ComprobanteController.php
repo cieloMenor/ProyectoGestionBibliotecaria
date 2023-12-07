@@ -50,17 +50,7 @@ class ComprobanteController extends Controller
      */
     public function show($id)
     {
-        // Lógica para obtener los datos del comprobante con el ID proporcionado
-        $comprobante = ComprobanteTienda::find($id);
-
-        // Lógica para generar la vista en PDF
-        $codigoQR = QrCode::size(200)->generate(route('comprobante.show', ['comprobante' => $id]));
-
-        $pdf = App::make('dompdf.wrapper');
-        $pdf->loadHTML(view('comprobantes.pdf', compact('comprobante','codigoQR')));
         
-        // Devolver la respuesta con el PDF
-        return $pdf->stream('comprobante.pdf');
     }
 
     /**
@@ -85,34 +75,34 @@ class ComprobanteController extends Controller
         return view('pr.comprobante',compact('comprobante','imprimir','codigoQR'));
     }
 
-    public function downloadPDF($id)
-    {
-        $comprobante = ComprobanteTienda::find($id);
-        $imprimir = true;
-        $datosComprobante = [
-            'cliente' => $comprobante->clientes->Usuario,
-            'monto' => $comprobante->monto,  // Monto del comprobante
-            // Otros datos relevantes...
-        ];
+    // public function downloadPDF($id)
+    // {
+    //     $comprobante = ComprobanteTienda::find($id);
+    //     $imprimir = true;
+    //     $datosComprobante = [
+    //         'cliente' => $comprobante->clientes->Usuario,
+    //         'monto' => $comprobante->monto,  // Monto del comprobante
+    //         // Otros datos relevantes...
+    //     ];
 
-        // Generar el código QR con los datos del comprobante
-        $codigoQR = QrCode::size(200)->generate(json_encode($datosComprobante));
+    //     // Generar el código QR con los datos del comprobante
+    //     $codigoQR = QrCode::size(200)->generate(json_encode($datosComprobante));
 
-        // Crear el PDF
-        // $pdf = App::make('dompdf.wrapper');
-        // $pdf = $pdf->loadView('pr.comprobante', compact('comprobante', 'imprimir', 'codigoQR'));
-        // // Descargar el PDF
-        // return $pdf->download('comprobante.pdf');
-        //simplicada:
-        // $pdf = App::make('dompdf.wrapper');
+    //     // Crear el PDF
+    //     // $pdf = App::make('dompdf.wrapper');
+    //     // $pdf = $pdf->loadView('pr.comprobante', compact('comprobante', 'imprimir', 'codigoQR'));
+    //     // // Descargar el PDF
+    //     // return $pdf->download('comprobante.pdf');
+    //     //simplicada:
+    //     // $pdf = App::make('dompdf.wrapper');
         
-        // return $pdf->loadView('pr.comprobante', compact('comprobante', 'imprimir', 'codigoQR'))
-        //         ->download('comprobante.pdf');}
+    //     // return $pdf->loadView('pr.comprobante', compact('comprobante', 'imprimir', 'codigoQR'))
+    //     //         ->download('comprobante.pdf');}
 
-        $pdf = App::make('dompdf.wrapper');
-        $pdf->loadHTML(view('pr.comprobante', compact('comprobante', 'imprimir', 'codigoQR')));
-        return $pdf->download('comprobante.pdf');
-    }
+    //     $pdf = App::make('dompdf.wrapper');
+    //     $pdf->loadHTML(view('pr.comprobante', compact('comprobante', 'imprimir', 'codigoQR')));
+    //     return $pdf->download('comprobante.pdf');
+    // }
     /**
      * Update the specified resource in storage.
      *
