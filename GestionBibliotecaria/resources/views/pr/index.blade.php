@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prestamo Exitoso</title>
+    <title>Compra Exitosa</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -33,8 +33,8 @@
 <body>
 
     <div>
-        <h2>¡Préstamo Exitoso!</h2>
-        <p>Te alegramos informarte que has realizado con éxito el préstamo del libro.</p>
+        <h2>Compra Exitosa!</h2>
+        <p>Te alegramos informarte que has realizado con éxito la compra del libro.</p>
         <h3>Acercarte a recoger el libro</h3>
         <p>¡Disfruta de tu lectura!</p>
         <p>Comprobante: {{$idcomprobante}}</p>
