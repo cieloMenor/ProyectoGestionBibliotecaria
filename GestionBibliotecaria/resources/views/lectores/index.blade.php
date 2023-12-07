@@ -70,7 +70,7 @@
                     @endif
                     <td>
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{$itemlector->LectorID}}">
-                            <i class="fas fa-edit"></i> Ver
+                          <i class="fa fa-eye" aria-hidden="true"></i>
                           </button>
                           <!-- Modal -->
                           <div class="modal fade" id="exampleModal{{$itemlector->LectorID}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -126,7 +126,7 @@
                             </div>
                           </div>
                         
-                        <a href="{{route('lector.edit',$itemlector->LectorID)}}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> Editar</a>
+                        <a href="{{route('lector.edit',$itemlector->LectorID)}}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> </a>
                         
                         {{-- <a href="{{route('tramite.confirmar',$itemtramite->idtramite)}}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>--}}
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2{{$itemlector->LectorID}}">

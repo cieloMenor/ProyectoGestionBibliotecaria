@@ -253,10 +253,47 @@
               </li>
             </ul>
           </li>
+          
+          
+          {{-- @if(auth()->user()->roles->Descripcionrol == 'ROLE_USER')
+              <h2>Eres un cliente</h2>
+          @endif --}}
+          
+          <li class="nav-item">
+            <a href="{{route('tienda')}}" class="nav-link">
+              <i class="fas fa-store    "></i>
+              {{-- <i class="nav-icon fas fa-chart-pie"></i> --}}
+              <p>
+                Tienda
+                {{-- <i class="right fas fa-angle-left"></i> --}}
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('comprobante.index')}}" class="nav-link">
+              <i class="fas fa-receipt    "></i>
+              {{-- <i class="nav-icon fas fa-chart-pie"></i> --}}
+              <p>
+                Comprobantes-Tienda
+                {{-- <i class="right fas fa-angle-left"></i> --}}
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('perfil.index')}}" class="nav-link">
+              <i class="fa fa-user-circle" aria-hidden="true"></i>
+              {{-- <i class="nav-icon fas fa-chart-pie"></i> --}}
+              <p>
+                Mi Perfil
+                {{-- <i class="right fas fa-angle-left"></i> --}}
+              </p>
+            </a>
+            
+          </li>
           @if(auth()->user()->roles->Descripcionrol == 'ROLE_ADMIN')
           <li class="nav-item">
             <a href="{{route('usuario.index')}}" class="nav-link">
-              <i class="fa fa-user-circle" aria-hidden="true"></i>
+             <i class="fa fa-users" aria-hidden="true"></i>
               {{-- <i class="nav-icon fas fa-chart-pie"></i> --}}
               <p>
                 Usuarios
@@ -277,31 +314,6 @@
             
           </li>
           @endif 
-          
-          {{-- @if(auth()->user()->roles->Descripcionrol == 'ROLE_USER')
-              <h2>Eres un cliente</h2>
-          @endif --}}
-          <li class="nav-item">
-            <a href="{{route('perfil.index')}}" class="nav-link">
-              <i class="fa fa-user-circle" aria-hidden="true"></i>
-              {{-- <i class="nav-icon fas fa-chart-pie"></i> --}}
-              <p>
-                Mi Perfil
-                {{-- <i class="right fas fa-angle-left"></i> --}}
-              </p>
-            </a>
-            
-          </li>
-          <li class="nav-item">
-            <a href="{{route('tienda')}}" class="nav-link">
-              <i class="fa fa-user-circle" aria-hidden="true"></i>
-              {{-- <i class="nav-icon fas fa-chart-pie"></i> --}}
-              <p>
-                Tienda
-                {{-- <i class="right fas fa-angle-left"></i> --}}
-              </p>
-            </a>
-          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -31,13 +31,6 @@
         }
     </style>
     
-    @if(isset($imprimir) && $imprimir)
-    <script>
-        window.onload = function () {
-            window.print();
-        }
-    </script>
-@endif
 </head>
 
 <body>
@@ -148,17 +141,12 @@
 {{-- <center>
     <img src="/img/qr.png" alt="" width="10%">
 </center> --}}
-{{-- <div class="title m-b-md">
+<div class="title m-b-md">
     {!!QrCode::size(300)->generate('http://127.0.0.1:8000/comprobante/1/edit') !!}
 
-    
- </div> --}}
- 
- {{-- a{!! $codigoQR !!} --}}
-
- <a href="{{ route('comprobante.pdf', ['comprobante' => $comprobante->idcomprobante]) }}">
-    <img src="data:image/svg+xml;base64,{{ base64_encode($codigoQR) }}" alt="Código QR">
-</a>
+   
+ </div>
+ {!! $codigoQR !!}
 <p style="font-size: 12px;">Gracias por comprar en la tienda de libros online, donde la lectura es lo más importante</p>
     </div>
     <script src="view/librerias/plugins/jQuery/jquery-1.11.0.min.js" type="text/javascript"></script>

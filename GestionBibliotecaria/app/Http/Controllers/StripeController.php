@@ -54,6 +54,7 @@ class StripeController extends Controller
         $comprobante->save();
 
         $idcomprobante= $comprobante->idcomprobante;
+       
 
         return view('pr.index',compact('libro','idcomprobante'));
     }

@@ -4,14 +4,14 @@
 
 
 @section('contenido')
-<div class="container ">
+<div class="container " style="background-color: rgba(255,255,246,255)">
 
     <h2 id="ss">Sistema de Gestión Bibliotecaria</h2>
 
     <div class="imagenhome" id="imagenhome" name="imagenhome">
-      {{-- <center>
+      <center>
         <img src="/img/logo.png" width="40%" style="filter:brightness(105%)">
-      </center> --}}
+      </center>
     </div>
     {{-- Mensaje de alerta --}}
     <div id="mensaje">

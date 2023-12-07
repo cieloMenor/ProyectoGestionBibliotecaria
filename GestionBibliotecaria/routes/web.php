@@ -176,3 +176,6 @@ Route::get('/success/{id}', 'App\Http\Controllers\StripeController@success')->na
 
 
 Route::resource('comprobante', ComprobanteController::class);
+
+Route::get('comprobante/{comprobante}/pdf', 'ComprobanteController@downloadPDF')->name('comprobante.pdf');
+
