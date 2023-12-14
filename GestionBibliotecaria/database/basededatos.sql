@@ -1,760 +1,770 @@
--- drop database if exists biblioteca;
--- create database biblioteca;
--- use biblioteca;
-
--- create table roles(idrol integer auto_increment, rol varchar(50),primary key(idrol));
-
--- insert into roles(rol) values('admin'),('user');
-
--- create table users(id bigint auto_increment, name varchar(100),email varchar(100) unique,
--- created_at datetime,updated_at datetime, password varchar(200), 
--- token char(200), idrol integer,primary key(id), foreign key(idrol) references 
--- roles(idrol));
-
--- INSERT INTO `users` (`id`, `name`, `email`, `created_at`, `updated_at`, `password`, `token`, `idrol`) VALUES
--- (1, 'admin', 'wflatley@example.net', '2023-06-22 18:50:33', '2023-06-22 18:50:33', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'rMsxyri7EJ',1);
-
--- create table estadolectores(idestadolector integer auto_increment,
--- estadolector varchar(60), primary key(idestadolector));
-
--- insert into estadolectores(estadolector) values ('SIN_LIBRO'),('DEUDOR_LIBRO'),
--- ('MOROSO'),('SANCIONADO');
-
-
--- CREATE TABLE lectores( DNILector char(8),NombresLector varchar(30),ApellidosLector varchar(50),
--- idestadolector integer ,CorreoLector varchar(150),FechaNacLector date,
--- FecharegistroLector datetime,FechaUpdateLector datetime,CelularLector varchar(11),
--- DireccionLector varchar(100),EstadoHabLector tinyint, EstadoEliminadoLector tinyint,primary key(DNILector),
--- foreign key(idestadolector) references estadolectores(idestadolector));
-
--- INSERT INTO `lectores` (`DNILector`, `NombresLector`, `ApellidosLector`, `idestadolector`, `CorreoLector`, `FechaNacLector`, `FecharegistroLector`, `FechaUpdateLector`, `CelularLector`, `DireccionLector`, `EstadoHabLector`,`EstadoEliminadoLector`) VALUES
--- ('19257821', 'Maria Magdalena', 'Saavedra Chalán', 1, 'maria1@gmail.com', '2002-05-18', '2023-06-24 16:33:20', '2023-06-24 16:33:20', '985687854', 'Las palmeras', 1,1),
--- ('74970694', 'Cielo Yamile', 'Menor Saavedra', 1, 'cmenorsaavedra@gmail.com', '2000-05-18', '2023-06-24 06:18:45', '2023-06-24 06:18:45', '929869004', 'Las Palmeras', 1,1),
--- ('78963653', 'Margot Felicita', 'Sanchez Valdez', 1, 'margot@gmail.com', '1999-06-18', '2023-06-24 17:17:00', '2023-06-24 20:02:04', '963652369', 'Las Palmeras', 0,1);
-
-
--- create table autores(idautor integer auto_increment, nombresautor varchar(30),apellidosautor
--- varchar(50),estadoautor tinyint,fecharegistroAutor datetime,fechaupdateAutor datetime,
--- primary key(idautor));
-
--- INSERT INTO `autores` (`nombresautor`, `apellidosautor`, `estadoautor`, `fecharegistroAutor`, `fechaupdateAutor`) VALUES
--- ('Pablo', 'Villanueva Flores', 1, '2023-06-25 01:02:20', '2023-06-25 01:02:20');
-
-
--- create table estadolibros(idestadolibro integer auto_increment, estadolibro varchar(50),
--- primary key(idestadolibro));
-
--- insert into estadolibros(estadolibro) values('DISPONIBLE'),('NO_DISPONIBLE'),('MANTENIMIENTO');
-
--- create table libross(idlibro integer auto_increment,nombrelibro varchar(100),nrocopiaslibro integer,
--- idautor integer,idestadolibro integer,estadoHablibro tinyint,fecharegistroLibro datetime,fechaupdateLibro datetime,
--- stocklibro integer,primary key(idlibro), foreign key(idautor) references
--- autores(idautor), foreign key(idestadolibro) references estadolibros(idestadolibro));
-
--- INSERT INTO `libross` (`nombrelibro`, `nrocopiaslibro`, `idautor`, `idestadolibro`, `estadoHablibro`, `fecharegistroLibro`, `fechaupdateLibro`, `stocklibro`) VALUES
--- ('Ingenieria de Datos', 100, 1, 1, 1, '2023-06-25 01:03:17', '2023-06-25 01:03:17', 100);
-
--- create table tipoprestamos(idtipoprestamo integer auto_increment,tipoprestamo varchar(50),
--- primary key(idtipoprestamo));
-
--- insert into tipoprestamos(tipoprestamo) values('CASA'),('BIBLIOTECA');
-
--- create table estadoprestamos(idestadoprestamo integer auto_increment,estadoprestamo varchar(50),
--- primary key(idestadoprestamo));
-
--- insert into estadoprestamos(estadoprestamo) values ('REGISTRADO'),('ENTREGADO'),('ANULADO'),('VENCIDO'),('FINALIZADO');
-
--- create table prestamos(idprestamo integer auto_increment, fecharegistroPrestamo datetime,
--- fechaupdatePrestamo datetime,fechaDevolucionEsperadaP date,horaDevolucionEsperadaP time,DNILector char(8),
--- observacionesPrestamo varchar(300), idtipoprestamo integer, idestadoprestamo integer,estadoHabprestamo tinyint,
--- primary key(idprestamo), foreign key(idtipoprestamo) references tipoprestamos(idtipoprestamo),
--- foreign key(DNILector) references lectores(DNILector),foreign key(idestadoprestamo) references 
--- estadoprestamos(idestadoprestamo));
-
--- create table estadodetalleprestamos(idestadodetalleprestamo integer auto_increment,
--- estadodetalleprestamo varchar(50),primary key(idestadodetalleprestamo));
-
--- insert into estadodetalleprestamos(estadodetalleprestamo) values('REGISTRADO','PENDIENTE'),('DEVUELTO');
-
--- create table detalleprestamos(idprestamo integer,idlibro integer,nrocopiasprestamo integer,
--- nombrelibro varchar(100), idestadodetalleprestamo integer,
--- primary key(idprestamo,idlibro),foreign key(idprestamo) references
--- prestamos(idprestamo), foreign key(idlibro) references libross(idlibro),foreign key(idestadodetalleprestamo)
--- references estadodetalleprestamos(idestadodetalleprestamo));
-
-
-
-/* ---------------------------------------------------- */
-/*  Generated by Enterprise Architect Version 15.0 		*/
-/*  Created On : 13-jul.-2023 23:21:51 				*/
-/*  DBMS       : MySql 						*/
-/* ---------------------------------------------------- */
-create database biblioteca;
-use biblioteca;
-SET FOREIGN_KEY_CHECKS=0
-; 
-/* Drop Tables */
-
-DROP TABLE IF EXISTS `Autor` CASCADE
-;
-
-DROP TABLE IF EXISTS `Bibliotecario` CASCADE
-;
-
-DROP TABLE IF EXISTS `Categoria` CASCADE
-;
-
-DROP TABLE IF EXISTS `Comprobante_pago` CASCADE
-;
-
-DROP TABLE IF EXISTS `Detalle_pedido` CASCADE
-;
-
-DROP TABLE IF EXISTS `Libro` CASCADE
-;
-
-DROP TABLE IF EXISTS `Libro_autor` CASCADE
-;
-
-DROP TABLE IF EXISTS `Pedido` CASCADE
-;
-
-DROP TABLE IF EXISTS `Proveedor` CASCADE
-;
-
-/* Create Tables */
-
-CREATE TABLE `Autor`
-(
-	`Nombre` INT NULL,
-	`AutorID` INT NOT NULL,
-	CONSTRAINT `PK_Autor` PRIMARY KEY (`AutorID` ASC)
-)
-
-;
-
-CREATE TABLE `Bibliotecario`
-(
-	`Correoelectronico` VARCHAR(50) NULL,
-	`Direccion` VARCHAR(50) NULL,
-	`Dni` CHAR(8) NULL,
-	`Nombre` VARCHAR(50) NULL,
-	`Telefono` VARCHAR(50) NULL,
-	`BibliotecarioID` INT NOT NULL,
-	CONSTRAINT `PK_Bibliotecario` PRIMARY KEY (`BibliotecarioID` ASC)
-)
-
-;
-
-CREATE TABLE `Categoria`
-(
-	`Descripcion` VARCHAR(50) NULL,
-	`LibroID` INT NOT NULL,
-	`CategoriaID` INT NOT NULL,
-	CONSTRAINT `PK_Categoria` PRIMARY KEY (`CategoriaID` ASC)
-)
-
-;
-
-CREATE TABLE `Comprobante_pago`
-(
-	`Descuento` DECIMAL(10,2) NULL,
-	`Fecha` DATE NULL,
-	`Monto` DECIMAL(10,2) NULL,
-	`Montototal` DECIMAL(10,2) NULL,
-	`Tipocomprobante` VARCHAR(50) NULL,
-	`Comprobante_pagoID` INT NOT NULL,
-	`PedidoID` INT NOT NULL,
-	CONSTRAINT `PK_Comprobante_pago` PRIMARY KEY (`Comprobante_pagoID` ASC)
-)
-
-;
-
-CREATE TABLE `Detalle_pedido`
-(
-	`Cantidad` INT NULL,
-	`PedidoID` INT NOT NULL,
-	`Detalle_pedidoID` INT NOT NULL,
-	`LibroID` INT NOT NULL,
-	CONSTRAINT `PK_Detalle_pedido` PRIMARY KEY (`Detalle_pedidoID` ASC)
-)
-
-;
-
-CREATE TABLE `Libro`
-(
-	`Añopublicacion` INT NULL,
-	`Editorial` VARCHAR(50) NULL,
-	`Idioma` VARCHAR(50) NULL,
-	`Isbn` VARCHAR(50) NULL,
-	`Paginas` INT NULL,
-	`Precio` DECIMAL(10,2) NULL,
-	`Stock` INT NULL,
-	`Titulo` VARCHAR(50) NULL,
-	`LibroID` INT NOT NULL,
-    `Edicionlibro` INT NULL,
-	`Estadohablibro` BIT(1) NULL,
-	`Fecharegistrolibro` DATETIME NULL,
-	`Fechaupdatelibro` DATETIME NULL,
-	`Nrocopiaslibro` INT NULL,
-	`Stocklibro` INT NULL,
-	`Estado_libroID` INT NOT NULL,
-	CONSTRAINT `PK_Libro` PRIMARY KEY (`LibroID` ASC)
-)
-
-;
-
-CREATE TABLE `Libro_autor`
-(
-	`AutorID` INT NOT NULL,
-	`Libro_autorID` INT NOT NULL,
-	`LibroID` INT NOT NULL,
-	CONSTRAINT `PK_Libro_autor` PRIMARY KEY (`Libro_autorID` ASC)
-)
-
-;
-
-CREATE TABLE `Pedido`
-(
-	`Fecha` DATE NULL,
-	`BibliotecarioID` INT NOT NULL,
-	`PedidoID` INT NOT NULL,
-	`ProveedorID` INT NOT NULL,
-	CONSTRAINT `PK_Pedido` PRIMARY KEY (`PedidoID` ASC)
-)
-
-;
-
-CREATE TABLE `Proveedor`
-(
-	`Correoelectronico` VARCHAR(30) NULL,
-	`Direccion` VARCHAR(50) NULL,
-	`Empresa` VARCHAR(50) NULL,
-	`ProveedorID` INT NOT  NULL,
-	`Telefono` VARCHAR(12)  NULL ,
-	CONSTRAINT `PK_Proveedor` PRIMARY KEY (`ProveedorID` ASC)
-)
-
-;
-
-/* Create Foreign Key Constraints */
-
-ALTER TABLE `Categoria` 
- ADD CONSTRAINT `FK_Categoria_Libro`
-	FOREIGN KEY (`LibroID`) REFERENCES `Libro` (`LibroID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Comprobante_pago` 
- ADD CONSTRAINT `FK_Comprobante_pago_Pedido`
-	FOREIGN KEY (`PedidoID`) REFERENCES `Pedido` (`PedidoID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Detalle_pedido` 
- ADD CONSTRAINT `FK_Detalle_pedido_Pedido`
-	FOREIGN KEY (`PedidoID`) REFERENCES `Pedido` (`PedidoID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Detalle_pedido` 
- ADD CONSTRAINT `FK_Detalle_pedido_Libro`
-	FOREIGN KEY (`LibroID`) REFERENCES `Libro` (`LibroID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Libro_autor` 
- ADD CONSTRAINT `FK_Libro_autor_Autor`
-	FOREIGN KEY (`AutorID`) REFERENCES `Autor` (`AutorID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Libro_autor` 
- ADD CONSTRAINT `FK_Libro_autor_Libro`
-	FOREIGN KEY (`LibroID`) REFERENCES `Libro` (`LibroID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Pedido` 
- ADD CONSTRAINT `FK_Pedido_Bibliotecario`
-	FOREIGN KEY (`BibliotecarioID`) REFERENCES `Bibliotecario` (`BibliotecarioID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Pedido` 
- ADD CONSTRAINT `FK_Pedido_Proveedor`
-	FOREIGN KEY (`ProveedorID`) REFERENCES `Proveedor` (`ProveedorID`) ON DELETE No Action ON UPDATE No Action
-;
-
-/*MI PARTE: CIELO*/
-
-/* Drop Tables */
-
-DROP TABLE IF EXISTS `Cdp` CASCADE
-;
-
-DROP TABLE IF EXISTS `Cdp_detalle` CASCADE
-;
-
-DROP TABLE IF EXISTS `Devolucion` CASCADE
-;
-
-DROP TABLE IF EXISTS `Devolucion_detalle` CASCADE
-;
-
-DROP TABLE IF EXISTS `Estado_detalle_prestamo` CASCADE
-;
-
-DROP TABLE IF EXISTS `Estado_lector` CASCADE
-;
-
-DROP TABLE IF EXISTS `Estado_libro` CASCADE
-;
-
-DROP TABLE IF EXISTS `Estado_multa_lector` CASCADE
-;
-
-DROP TABLE IF EXISTS `Estado_prestamo` CASCADE
-;
-
-DROP TABLE IF EXISTS `Lector` CASCADE
-;
-
-DROP TABLE IF EXISTS `Mantenimiento_libros` CASCADE
-;
-
-DROP TABLE IF EXISTS `Multa` CASCADE
-;
-
-DROP TABLE IF EXISTS `Multa_lector` CASCADE
-;
-
-DROP TABLE IF EXISTS `Permiso` CASCADE
-;
-
-DROP TABLE IF EXISTS `Prestamo` CASCADE
-;
-
-DROP TABLE IF EXISTS `Prestamo_detalle` CASCADE
-;
-
-DROP TABLE IF EXISTS `Rol` CASCADE
-;
-
-DROP TABLE IF EXISTS `Rol_permiso` CASCADE
-;
-
-DROP TABLE IF EXISTS `Servicio` CASCADE
-;
-
-DROP TABLE IF EXISTS `Tipo_documento` CASCADE
-;
-
-DROP TABLE IF EXISTS `Tipo_prestamo` CASCADE
-;
-
-DROP TABLE IF EXISTS `users` CASCADE
-;
-
-/* Create Tables */
-
-
-CREATE TABLE `Cdp`
-(
-	`Cdp_fechapago` DATETIME NULL,
-	`Cdp_total` DOUBLE(10,2) NULL,
-	`CdpID` INT NOT NULL,
-	`Tipo_documentoID` INT NOT NULL,
-	`LectorID` INT NOT NULL,
-	`descuentoCdp` DOUBLE(10,2) NULL,
-	CONSTRAINT `PK_Cdp` PRIMARY KEY (`CdpID` ASC)
-)
-
-;
-
-CREATE TABLE `Cdp_detalle`
-(
-	`Estadoeliminadodetalle` varchar(25) NULL,
-	`Montopagado` DOUBLE(10,2) NULL,
-	`Cdp_detalleID` INT NOT NULL,
-	`CdpID` INT NOT NULL,
-	`Multa_lectorID` INT NOT NULL,
-	CONSTRAINT `PK_Cdp_detalle` PRIMARY KEY (`Cdp_detalleID` ASC)
-)
-
-;
-
-CREATE TABLE `Devolucion`
-(
-	`Conmulta` BIT(1) NULL,
-	`Dev_observaciones` VARCHAR(50) NULL,
-	`Estadohabdevolución` BIT(1) NULL,
-	`Fechainiciodevolucion` DATETIME NULL,
-	`PrestamoID` INT NULL,
-	`Restantetiempodevolución` DATETIME NULL,
-	`DevolucionID` INT NOT NULL,
-	CONSTRAINT `PK_Devolucion` PRIMARY KEY (`DevolucionID` ASC)
-)
-
-;
-
-CREATE TABLE `Devolucion_detalle`
-(
-	`Estadodevolucion` BIT(1) NULL,
-	`Fechadevolucionlibro` DATETIME NULL,
-	`Nrocopiasdevolucion` INT NULL,
-	`Devolucion_detalleID` INT NOT NULL,
-	`DevolucionID` INT NOT NULL,
-	`LibroID` INT NOT NULL,
-	CONSTRAINT `PK_Devolucion_detalle` PRIMARY KEY (`Devolucion_detalleID` ASC)
-)
-
-;
-
-CREATE TABLE `Estado_detalle_prestamo`
-(
-	`Estadodetalleprestamo` VARCHAR(30) NULL,
-	`Estado_detalle_prestamoID` INT NOT NULL,
-	CONSTRAINT `PK_Estado_detalle_prestamo` PRIMARY KEY (`Estado_detalle_prestamoID` ASC)
-)
-
-;
-
-CREATE TABLE `Estado_lector`
-(
-	`Estadolector` VARCHAR(30) NULL,
-	`Estado_lectorID` INT NOT NULL,
-	CONSTRAINT `PK_Estado_lector` PRIMARY KEY (`Estado_lectorID` ASC)
-)
-
-;
-
-CREATE TABLE `Estado_libro`
-(
-	`Estadolibro` VARCHAR(30) NULL,
-	`Estado_libroID` INT NOT NULL,
-	CONSTRAINT `PK_Estado_libro` PRIMARY KEY (`Estado_libroID` ASC)
-)
-
-;
-
-CREATE TABLE `Estado_multa_lector`
-(
-	`Estadomultalector` VARCHAR(30) NULL,
-	`Estado_multa_lectorID` INT NOT NULL,
-	CONSTRAINT `PK_Estado_multa_lector` PRIMARY KEY (`Estado_multa_lectorID` ASC)
-)
-
-;
-
-CREATE TABLE `Estado_prestamo`
-(
-	`Estadoprestamo` VARCHAR(30) NULL,
-	`Estado_prestamoID` INT NOT NULL,
-	CONSTRAINT `PK_Estado_prestamo` PRIMARY KEY (`Estado_prestamoID` ASC)
-)
-
-;
-
-CREATE TABLE `Lector`
-(
-	`Apellidoslector` VARCHAR(50) NULL,
-	`Celularlector` CHAR(9) NULL,
-	`Correolector` VARCHAR(100) NULL,
-	`Direccionlector` varchar(100) NULL,
-	`Dni_lector` CHAR(9) NULL,
-	`Estadoeliminadolector` BIT(1) NULL,
-	`Estadohablector` BIT(1) NULL,
-	`Fechanaclector` DATE NULL,
-	`Fecharegistrolector` DATETIME NULL,
-	`Fechaupdatelector` DATETIME NULL,
-	`Nombreslector` VARCHAR(50) NULL,
-	`LectorID` INT NOT NULL,
-	`Estado_lectorID` INT NOT NULL,
-	CONSTRAINT `PK_Lector` PRIMARY KEY (`LectorID` ASC)
-)
-
-;
-
-
-CREATE TABLE `Mantenimiento_libros`
-(
-	`Codigolibrounidad` CHAR(15) NULL,
-	`Man_estadohab` BIT(1) NULL,
-	`Man_fecharegistro` DATETIME NULL,
-	`Man_fechaupdate` DATETIME NULL,
-	`Man_observaciones` VARCHAR(100) NULL,
-	`Man_problemas` VARCHAR(100) NULL,
-	`Mantenimiento_librosID` INT NOT NULL,
-	`Devolucion_detalleID` INT NOT NULL,
-	CONSTRAINT `PK_Mantenimiento_libros` PRIMARY KEY (`Mantenimiento_librosID` ASC)
-)
-
-;
-
-CREATE TABLE `Multa`
-(
-	`Descripcionmulta` VARCHAR(50) NULL,
-	`Estadomultahab` BIT(1) NULL,
-	`Fecharegistromulta` DATETIME NULL,
-	`Fechaupdatemulta` DATETIME NULL,
-	`Porcentajemulta` DOUBLE(10,2) NULL,
-	`MultaID` INT NOT NULL,
-	CONSTRAINT `PK_Multa` PRIMARY KEY (`MultaID` ASC)
-)
-
-;
-
-CREATE TABLE `Multa_lector`
-(
-	`Descripcionmultalector` VARCHAR(50) NULL,
-	`Estadohabmultalector` varchar(50) NULL,
-	`FechamultaLector` DATETIME NULL,
-	`MontoMultaLector` DECIMAL(10,2) NULL,
-	`Multa_lectorID` INT NOT NULL,
-	`DevolucionID` INT NOT NULL,
-	`Estado_multa_lectorID` INT NOT NULL,
-	`MultaID` INT NOT NULL,
-	`ServicioID` INT NOT NULL,
-	CONSTRAINT `PK_Multa_lector` PRIMARY KEY (`Multa_lectorID` ASC)
-)
-
-;
-
-CREATE TABLE `Permiso`
-(
-	`Estadopermiso` BIT(1) NULL,
-	`Permiso` VARCHAR(50) NULL,
-	`PermisoID` INT NOT NULL,
-	CONSTRAINT `PK_Permiso` PRIMARY KEY (`PermisoID` ASC)
-)
-
-;
-
-CREATE TABLE `Prestamo`
-(
-	`Estadohabprestamo` BIT(1) NULL,
-	`Fechadevolucionesperadap` DATE NULL,
-	`Fechaentregaprestamo` DATETIME NULL,
-	`Fecharegistroprestamo` DATETIME NULL,
-	`Fechaupdateprestamo` DATETIME NULL,
-	`Horadevolucionesperadap` TIME NULL,
-	`Observacionesprestamo` VARCHAR(80) NULL,
-	`PrestamoID` INT NOT NULL,
-	`Estado_prestamoID` INT NOT NULL,
-	`LectorID` INT NOT NULL,
-	`Tipo_prestamoID` INT NOT NULL,
-	CONSTRAINT `PK_Prestamo` PRIMARY KEY (`PrestamoID` ASC)
-)
-
-;
-
-CREATE TABLE `Prestamo_detalle`
-(
-	`Estadohabdetalleprestamo` BIT(1) NULL,
-	`Nombrelibro` VARCHAR(100) NULL,
-	`Nrocopiasprestamo` INT NULL,
-	`Prestamo_detalleID` INT NOT NULL,
-	`Estado_detalle_prestamoID` INT NOT NULL,
-	`LibroID` INT NOT NULL,
-	`PrestamoID` INT NOT NULL,
-	CONSTRAINT `PK_Prestamo_detalle` PRIMARY KEY (`Prestamo_detalleID` ASC)
-)
-
-;
-
-CREATE TABLE `Rol`
-(
-	`Descripcionrol` VARCHAR(50) NULL,
-	`Estadorol` BIT(1) NULL,
-	`fechaRegistroRol` DATETIME NULL,
-	`RolID` INT NOT NULL,
-	`fechaUpdateRol` DATETIME NULL,
-	CONSTRAINT `PK_Rol` PRIMARY KEY (`RolID` ASC)
-)
-
-;
-
-CREATE TABLE `Rol_permiso`
-(
-	`Rol_permisoID` INT NOT NULL,
-	`RolID` INT NULL,
-	`PermisoID` INT NULL,
-	CONSTRAINT `PK_Rol_permiso` PRIMARY KEY (`Rol_permisoID` ASC)
-)
-
-;
-
-CREATE TABLE `Servicio`
-(
-	`Servicio` VARCHAR(50) NULL,
-	`ServicioID` INT NOT NULL,
-	CONSTRAINT `PK_Servicio` PRIMARY KEY (`ServicioID` ASC)
-)
-
-;
-
-CREATE TABLE `Tipo_documento`
-(
-	`Tipodoc_estadoeliminado` BIT(1) NULL,
-	`Tipodoc_estadohab` BIT(1) NULL,
-	`Tipodoc_formatoimpresion` VARCHAR(15) NULL,
-	`Tipodocumento` VARCHAR(50) NULL,
-	`Tipo_documentoID` INT NOT NULL,
-	CONSTRAINT `PK_Tipo_documento` PRIMARY KEY (`Tipo_documentoID` ASC)
-)
-
-;
-
-CREATE TABLE `Tipo_prestamo`
-(
-	`Tipoprestamo` VARCHAR(50) NULL,
-	`Tipo_prestamoID` INT NOT NULL,
-	CONSTRAINT `PK_Tipo_prestamo` PRIMARY KEY (`Tipo_prestamoID` ASC)
-)
-
-;
-
-CREATE TABLE `users`
-(
-	`Apellidosusuario` VARCHAR(50) NULL,
-	`Celularusuario` CHAR(9) NULL,
-	`password` VARCHAR(200) NULL,
-	`Correousuario` VARCHAR(100) NULL,
-	`Estadousuario` BIT(1) NULL,
-	`Nombresusuario` VARCHAR(50) NULL,
-	`Usuario` VARCHAR(50) NULL,
-	`UsuarioID` INT  NOT NULL,
-	`RolID` INT NOT NULL,
-	`token` CHAR(200) NULL,
-    `created_at` datetime NULL,
-    `updated_at` datetime NULL,
-	CONSTRAINT `PK_Usuario` PRIMARY KEY (`UsuarioID` ASC)
-)
-
-;
-
-/* Create Primary Keys, Indexes, Uniques, Checks */
-
-ALTER TABLE `Prestamo` 
- ADD INDEX `IXFK_PRESTAMO_asocia` (`LectorID` ASC)
-;
-
-/* Create Foreign Key Constraints */
-
-ALTER TABLE `Cdp` 
- ADD CONSTRAINT `FK_CDP_pertenece`
-	FOREIGN KEY (`Tipo_documentoID`) REFERENCES `Tipo_documento` (`Tipo_documentoID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Cdp` 
- ADD CONSTRAINT `FK_CDP_tiene`
-	FOREIGN KEY (`LectorID`) REFERENCES `Lector` (`LectorID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Cdp_detalle` 
- ADD CONSTRAINT `FK_CDP_DETALLE_contiene`
-	FOREIGN KEY (`CdpID`) REFERENCES `Cdp` (`CdpID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Cdp_detalle` 
- ADD CONSTRAINT `FK_CDP_DETALLE_asocia`
-	FOREIGN KEY (`Multa_lectorID`) REFERENCES `Multa_lector` (`Multa_lectorID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Devolucion_detalle` 
- ADD CONSTRAINT `FK_DEVOLUCION_DETALLE_contiene`
-	FOREIGN KEY (`DevolucionID`) REFERENCES `Devolucion` (`DevolucionID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Devolucion_detalle` 
- ADD CONSTRAINT `FK_DEVOLUCION_DETALLE_relaciona`
-	FOREIGN KEY (`LibroID`) REFERENCES `Libro` (`LibroID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Lector` 
- ADD CONSTRAINT `FK_LECTOR_tiene`
-	FOREIGN KEY (`Estado_lectorID`) REFERENCES `Estado_lector` (`Estado_lectorID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Libro` 
- ADD CONSTRAINT `FK_LIBROO_tiene`
-	FOREIGN KEY (`Estado_libroID`) REFERENCES `Estado_libro` (`Estado_libroID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Mantenimiento_libros` 
- ADD CONSTRAINT `FK_MANTENIMIENTO_LIBROS_relaciona`
-	FOREIGN KEY (`Devolucion_detalleID`) REFERENCES `Devolucion_detalle` (`Devolucion_detalleID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Multa_lector` 
- ADD CONSTRAINT `FK_MULTA_LECTOR_asocia`
-	FOREIGN KEY (`DevolucionID`) REFERENCES `Devolucion` (`DevolucionID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Multa_lector` 
- ADD CONSTRAINT `FK_MULTA_LECTOR_tiene`
-	FOREIGN KEY (`Estado_multa_lectorID`) REFERENCES `Estado_multa_lector` (`Estado_multa_lectorID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Multa_lector` 
- ADD CONSTRAINT `FK_MULTA_LECTOR_relaciona`
-	FOREIGN KEY (`MultaID`) REFERENCES `Multa` (`MultaID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Multa_lector` 
- ADD CONSTRAINT `FK_MULTA_LECTOR_pertenece`
-	FOREIGN KEY (`ServicioID`) REFERENCES `Servicio` (`ServicioID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Devolucion` 
- ADD CONSTRAINT `FK_DEVOLUCION_devuelve`
-	FOREIGN KEY (`PrestamoID`) REFERENCES `Prestamo` (`PrestamoID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Prestamo` 
- ADD CONSTRAINT `FK_PRESTAMO_tiene`
-	FOREIGN KEY (`Estado_prestamoID`) REFERENCES `Estado_prestamo` (`Estado_prestamoID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Prestamo` 
- ADD CONSTRAINT `FK_PRESTAMO_asocia`
-	FOREIGN KEY (`LectorID`) REFERENCES `Lector` (`LectorID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Prestamo` 
- ADD CONSTRAINT `FK_PRESTAMO_pertenece`
-	FOREIGN KEY (`Tipo_prestamoID`) REFERENCES `Tipo_prestamo` (`Tipo_prestamoID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Prestamo_detalle` 
- ADD CONSTRAINT `FK_PRESTAMO_DETALLE_tiene`
-	FOREIGN KEY (`Estado_detalle_prestamoID`) REFERENCES `Estado_detalle_prestamo` (`Estado_detalle_prestamoID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Prestamo_detalle` 
- ADD CONSTRAINT `FK_PRESTAMO_DETALLE_relaciona`
-	FOREIGN KEY (`LibroID`) REFERENCES `Libro` (`LibroID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Prestamo_detalle` 
- ADD CONSTRAINT `FK_PRESTAMO_DETALLE_contiene`
-	FOREIGN KEY (`PrestamoID`) REFERENCES `Prestamo` (`PrestamoID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Rol_permiso` 
- ADD CONSTRAINT `FK_ROL_PERMISO_ROL`
-	FOREIGN KEY (`RolID`) REFERENCES `Rol` (`RolID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `Rol_permiso` 
- ADD CONSTRAINT `FK_ROL_PERMISO_PERMISO`
-	FOREIGN KEY (`PermisoID`) REFERENCES `Permiso` (`PermisoID`) ON DELETE No Action ON UPDATE No Action
-;
-
-ALTER TABLE `users` 
- ADD CONSTRAINT `FK_USUARIO_tiene`
-	FOREIGN KEY (`RolID`) REFERENCES `Rol` (`RolID`) ON DELETE No Action ON UPDATE No Action
-;
-
-SET FOREIGN_KEY_CHECKS=1
-; 
-
-
-
-
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema bd_biblioteca
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema bd_biblioteca
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `bd_biblioteca` DEFAULT CHARACTER SET utf8mb4 ;
+USE `bd_biblioteca` ;
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`autor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`autor` (
+  `Nombre` INT(11) NULL DEFAULT NULL,
+  `AutorID` INT(11) NOT NULL,
+  PRIMARY KEY (`AutorID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`rol`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`rol` (
+  `Descripcionrol` VARCHAR(50) NULL DEFAULT NULL,
+  `Estadorol` BIT(1) NULL DEFAULT NULL,
+  `fechaRegistroRol` DATETIME NULL DEFAULT NULL,
+  `RolID` INT(11) NOT NULL,
+  `fechaUpdateRol` DATETIME NULL DEFAULT NULL,
+  PRIMARY KEY (`RolID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`users` (
+  `Apellidosusuario` VARCHAR(50) NULL DEFAULT NULL,
+  `Celularusuario` CHAR(9) NULL DEFAULT NULL,
+  `password` VARCHAR(200) NULL DEFAULT NULL,
+  `Correousuario` VARCHAR(100) NULL DEFAULT NULL,
+  `Estadousuario` BIT(1) NULL DEFAULT NULL,
+  `Nombresusuario` VARCHAR(50) NULL DEFAULT NULL,
+  `Usuario` VARCHAR(50) NULL DEFAULT NULL,
+  `UsuarioID` INT(11) NOT NULL,
+  `RolID` INT(11) NOT NULL,
+  `token` CHAR(200) NULL DEFAULT NULL,
+  `created_at` DATETIME NULL DEFAULT NULL,
+  `updated_at` DATETIME NULL DEFAULT NULL,
+  `imagenusuario` VARCHAR(191) NULL DEFAULT NULL,
+  PRIMARY KEY (`UsuarioID`),
+  INDEX `FK_USUARIO_tiene` (`RolID` ASC),
+  CONSTRAINT `FK_USUARIO_tiene`
+    FOREIGN KEY (`RolID`)
+    REFERENCES `bd_biblioteca`.`rol` (`RolID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`bibliotecario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`bibliotecario` (
+  `Correoelectronico` VARCHAR(50) NULL DEFAULT NULL,
+  `Direccion` VARCHAR(50) NULL DEFAULT NULL,
+  `Dni` CHAR(8) NULL DEFAULT NULL,
+  `Nombre` VARCHAR(50) NULL DEFAULT NULL,
+  `Telefono` VARCHAR(50) NULL DEFAULT NULL,
+  `BibliotecarioID` INT(11) NOT NULL,
+  `suUsuarioID` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`BibliotecarioID`),
+  INDEX `FK__Bibliotecario_user` (`suUsuarioID` ASC),
+  CONSTRAINT `FK__Bibliotecario_user`
+    FOREIGN KEY (`suUsuarioID`)
+    REFERENCES `bd_biblioteca`.`users` (`UsuarioID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`estado_libro`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`estado_libro` (
+  `Estadolibro` VARCHAR(30) NULL DEFAULT NULL,
+  `Estado_libroID` INT(11) NOT NULL,
+  PRIMARY KEY (`Estado_libroID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`libro`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`libro` (
+  `Añopublicacion` INT(11) NULL DEFAULT NULL,
+  `Editorial` VARCHAR(50) NULL DEFAULT NULL,
+  `Idioma` VARCHAR(50) NULL DEFAULT NULL,
+  `Isbn` VARCHAR(50) NULL DEFAULT NULL,
+  `Paginas` INT(11) NULL DEFAULT NULL,
+  `Precio` DECIMAL(10,2) NULL DEFAULT NULL,
+  `Titulo` VARCHAR(50) NULL DEFAULT NULL,
+  `LibroID` INT(11) NOT NULL,
+  `Edicionlibro` INT(11) NULL DEFAULT NULL,
+  `Estadohablibro` BIT(1) NULL DEFAULT NULL,
+  `Fecharegistrolibro` DATETIME NULL DEFAULT NULL,
+  `Fechaupdatelibro` DATETIME NULL DEFAULT NULL,
+  `Nrocopiaslibro` INT(11) NULL DEFAULT NULL,
+  `Stocklibro` INT(11) NULL DEFAULT NULL,
+  `Estado_libroID` INT(11) NOT NULL,
+  PRIMARY KEY (`LibroID`),
+  INDEX `FK_LIBROO_tiene` (`Estado_libroID` ASC),
+  CONSTRAINT `FK_LIBROO_tiene`
+    FOREIGN KEY (`Estado_libroID`)
+    REFERENCES `bd_biblioteca`.`estado_libro` (`Estado_libroID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`categoria`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`categoria` (
+  `Descripcion` VARCHAR(50) NULL DEFAULT NULL,
+  `LibroID` INT(11) NOT NULL,
+  `CategoriaID` INT(11) NOT NULL,
+  PRIMARY KEY (`CategoriaID`),
+  INDEX `FK_Categoria_Libro` (`LibroID` ASC),
+  CONSTRAINT `FK_Categoria_Libro`
+    FOREIGN KEY (`LibroID`)
+    REFERENCES `bd_biblioteca`.`libro` (`LibroID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`tipo_documento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`tipo_documento` (
+  `Tipodoc_estadoeliminado` BIT(1) NULL DEFAULT NULL,
+  `Tipodoc_estadohab` BIT(1) NULL DEFAULT NULL,
+  `Tipodoc_formatoimpresion` VARCHAR(15) NULL DEFAULT NULL,
+  `Tipodocumento` VARCHAR(50) NULL DEFAULT NULL,
+  `Tipo_documentoID` INT(11) NOT NULL,
+  PRIMARY KEY (`Tipo_documentoID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`estado_lector`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`estado_lector` (
+  `Estadolector` VARCHAR(30) NULL DEFAULT NULL,
+  `Estado_lectorID` INT(11) NOT NULL,
+  PRIMARY KEY (`Estado_lectorID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`lector`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`lector` (
+  `Apellidoslector` VARCHAR(50) NULL DEFAULT NULL,
+  `Celularlector` CHAR(9) NULL DEFAULT NULL,
+  `Correolector` VARCHAR(100) NULL DEFAULT NULL,
+  `Direccionlector` VARCHAR(100) NULL DEFAULT NULL,
+  `Dni_lector` CHAR(9) NULL DEFAULT NULL,
+  `Estadoeliminadolector` BIT(1) NULL DEFAULT NULL,
+  `Estadohablector` BIT(1) NULL DEFAULT NULL,
+  `Fechanaclector` DATE NULL DEFAULT NULL,
+  `Fecharegistrolector` DATETIME NULL DEFAULT NULL,
+  `Fechaupdatelector` DATETIME NULL DEFAULT NULL,
+  `Nombreslector` VARCHAR(50) NULL DEFAULT NULL,
+  `LectorID` INT(11) NOT NULL,
+  `Estado_lectorID` INT(11) NOT NULL,
+  `BibliotecarioID` INT(11) NULL DEFAULT NULL,
+  `UsuarioID` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`LectorID`),
+  INDEX `FK_LECTOR_tiene` (`Estado_lectorID` ASC),
+  INDEX `FK_lector_bibliotecario` (`BibliotecarioID` ASC),
+  INDEX `FK_lector_usuario` (`UsuarioID` ASC),
+  CONSTRAINT `FK_LECTOR_tiene`
+    FOREIGN KEY (`Estado_lectorID`)
+    REFERENCES `bd_biblioteca`.`estado_lector` (`Estado_lectorID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_lector_bibliotecario`
+    FOREIGN KEY (`BibliotecarioID`)
+    REFERENCES `bd_biblioteca`.`bibliotecario` (`BibliotecarioID`),
+  CONSTRAINT `FK_lector_usuario`
+    FOREIGN KEY (`UsuarioID`)
+    REFERENCES `bd_biblioteca`.`users` (`UsuarioID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`cdp`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`cdp` (
+  `Cdp_fechapago` DATETIME NULL DEFAULT NULL,
+  `Cdp_total` DOUBLE(10,2) NULL DEFAULT NULL,
+  `CdpID` INT(11) NOT NULL,
+  `Tipo_documentoID` INT(11) NOT NULL,
+  `LectorID` INT(11) NOT NULL,
+  `descuentoCdp` DOUBLE(10,2) NULL DEFAULT NULL,
+  PRIMARY KEY (`CdpID`),
+  INDEX `FK_CDP_pertenece` (`Tipo_documentoID` ASC),
+  INDEX `FK_CDP_tiene` (`LectorID` ASC),
+  CONSTRAINT `FK_CDP_pertenece`
+    FOREIGN KEY (`Tipo_documentoID`)
+    REFERENCES `bd_biblioteca`.`tipo_documento` (`Tipo_documentoID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_CDP_tiene`
+    FOREIGN KEY (`LectorID`)
+    REFERENCES `bd_biblioteca`.`lector` (`LectorID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`servicio`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`servicio` (
+  `Servicio` VARCHAR(50) NULL DEFAULT NULL,
+  `ServicioID` INT(11) NOT NULL,
+  PRIMARY KEY (`ServicioID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`multa`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`multa` (
+  `Descripcionmulta` VARCHAR(50) NULL DEFAULT NULL,
+  `Estadomultahab` BIT(1) NULL DEFAULT NULL,
+  `Fecharegistromulta` DATETIME NULL DEFAULT NULL,
+  `Fechaupdatemulta` DATETIME NULL DEFAULT NULL,
+  `Porcentajemulta` DOUBLE(10,2) NULL DEFAULT NULL,
+  `MultaID` INT(11) NOT NULL,
+  `UsuarioID` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`MultaID`),
+  INDEX `FK_multa_usuario` (`UsuarioID` ASC),
+  CONSTRAINT `FK_multa_usuario`
+    FOREIGN KEY (`UsuarioID`)
+    REFERENCES `bd_biblioteca`.`users` (`UsuarioID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`estado_multa_lector`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`estado_multa_lector` (
+  `Estadomultalector` VARCHAR(30) NULL DEFAULT NULL,
+  `Estado_multa_lectorID` INT(11) NOT NULL,
+  PRIMARY KEY (`Estado_multa_lectorID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`tipo_prestamo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`tipo_prestamo` (
+  `Tipoprestamo` VARCHAR(50) NULL DEFAULT NULL,
+  `Tipo_prestamoID` INT(11) NOT NULL,
+  `estadotipoprestamo` BIT(1) NULL DEFAULT NULL,
+  `fechatipoprestamo` DATETIME NULL DEFAULT NULL,
+  `updateipoprestamo` DATETIME NULL DEFAULT NULL,
+  `UsuarioID` INT(11) NULL DEFAULT NULL,
+  `observacionestipoprestamo` VARCHAR(250) NULL DEFAULT NULL,
+  PRIMARY KEY (`Tipo_prestamoID`),
+  INDEX `FK_tipo_prestamo_lector` (`UsuarioID` ASC),
+  CONSTRAINT `FK_tipo_prestamo_lector`
+    FOREIGN KEY (`UsuarioID`)
+    REFERENCES `bd_biblioteca`.`users` (`UsuarioID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`estado_prestamo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`estado_prestamo` (
+  `Estadoprestamo` VARCHAR(30) NULL DEFAULT NULL,
+  `Estado_prestamoID` INT(11) NOT NULL,
+  PRIMARY KEY (`Estado_prestamoID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`prestamo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`prestamo` (
+  `Estadohabprestamo` BIT(1) NULL DEFAULT NULL,
+  `Fechadevolucionesperadap` DATE NULL DEFAULT NULL,
+  `Fechaentregaprestamo` DATETIME NULL DEFAULT NULL,
+  `Fecharegistroprestamo` DATETIME NULL DEFAULT NULL,
+  `Fechaupdateprestamo` DATETIME NULL DEFAULT NULL,
+  `Horadevolucionesperadap` TIME NULL DEFAULT NULL,
+  `Observacionesprestamo` VARCHAR(80) NULL DEFAULT NULL,
+  `PrestamoID` INT(11) NOT NULL,
+  `Estado_prestamoID` INT(11) NOT NULL,
+  `LectorID` INT(11) NOT NULL,
+  `Tipo_prestamoID` INT(11) NOT NULL,
+  PRIMARY KEY (`PrestamoID`),
+  INDEX `IXFK_PRESTAMO_asocia` (`LectorID` ASC),
+  INDEX `FK_PRESTAMO_tiene` (`Estado_prestamoID` ASC),
+  INDEX `FK_PRESTAMO_pertenece` (`Tipo_prestamoID` ASC),
+  CONSTRAINT `FK_PRESTAMO_asocia`
+    FOREIGN KEY (`LectorID`)
+    REFERENCES `bd_biblioteca`.`lector` (`LectorID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_PRESTAMO_pertenece`
+    FOREIGN KEY (`Tipo_prestamoID`)
+    REFERENCES `bd_biblioteca`.`tipo_prestamo` (`Tipo_prestamoID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_PRESTAMO_tiene`
+    FOREIGN KEY (`Estado_prestamoID`)
+    REFERENCES `bd_biblioteca`.`estado_prestamo` (`Estado_prestamoID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`multa_lector`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`multa_lector` (
+  `Descripcionmultalector` VARCHAR(50) NULL DEFAULT NULL,
+  `Estadohabmultalector` VARCHAR(50) NULL DEFAULT NULL,
+  `FechamultaLector` DATETIME NULL DEFAULT NULL,
+  `MontoMultaLector` DECIMAL(10,2) NULL DEFAULT NULL,
+  `Multa_lectorID` INT(11) NOT NULL,
+  `Estado_multa_lectorID` INT(11) NOT NULL,
+  `MultaID` INT(11) NOT NULL,
+  `ServicioID` INT(11) NOT NULL,
+  `PrestamoID` INT(11) NULL DEFAULT NULL,
+  `cantidadlibros` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`Multa_lectorID`),
+  INDEX `FK_MULTA_LECTOR_tiene` (`Estado_multa_lectorID` ASC),
+  INDEX `FK_MULTA_LECTOR_relaciona` (`MultaID` ASC),
+  INDEX `FK_MULTA_LECTOR_pertenece` (`ServicioID` ASC),
+  INDEX `FK_multalector_prestamo` (`PrestamoID` ASC),
+  CONSTRAINT `FK_MULTA_LECTOR_pertenece`
+    FOREIGN KEY (`ServicioID`)
+    REFERENCES `bd_biblioteca`.`servicio` (`ServicioID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_MULTA_LECTOR_relaciona`
+    FOREIGN KEY (`MultaID`)
+    REFERENCES `bd_biblioteca`.`multa` (`MultaID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_MULTA_LECTOR_tiene`
+    FOREIGN KEY (`Estado_multa_lectorID`)
+    REFERENCES `bd_biblioteca`.`estado_multa_lector` (`Estado_multa_lectorID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_multalector_prestamo`
+    FOREIGN KEY (`PrestamoID`)
+    REFERENCES `bd_biblioteca`.`prestamo` (`PrestamoID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`cdp_detalle`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`cdp_detalle` (
+  `Estadoeliminadodetalle` VARCHAR(25) NULL DEFAULT NULL,
+  `Montopagado` DOUBLE(10,2) NULL DEFAULT NULL,
+  `Cdp_detalleID` INT(11) NOT NULL,
+  `CdpID` INT(11) NOT NULL,
+  `Multa_lectorID` INT(11) NOT NULL,
+  PRIMARY KEY (`Cdp_detalleID`),
+  INDEX `FK_CDP_DETALLE_contiene` (`CdpID` ASC),
+  INDEX `FK_CDP_DETALLE_asocia` (`Multa_lectorID` ASC),
+  CONSTRAINT `FK_CDP_DETALLE_asocia`
+    FOREIGN KEY (`Multa_lectorID`)
+    REFERENCES `bd_biblioteca`.`multa_lector` (`Multa_lectorID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_CDP_DETALLE_contiene`
+    FOREIGN KEY (`CdpID`)
+    REFERENCES `bd_biblioteca`.`cdp` (`CdpID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`proveedor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`proveedor` (
+  `Correoelectronico` VARCHAR(30) NULL DEFAULT NULL,
+  `Direccion` VARCHAR(50) NULL DEFAULT NULL,
+  `Empresa` VARCHAR(50) NULL DEFAULT NULL,
+  `Telefono` VARCHAR(12) NULL DEFAULT NULL,
+  `ProveedorID` INT(11) NOT NULL,
+  PRIMARY KEY (`ProveedorID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`pedido`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`pedido` (
+  `Fecha` DATE NULL DEFAULT NULL,
+  `BibliotecarioID` INT(11) NOT NULL,
+  `PedidoID` INT(11) NOT NULL,
+  `ProveedorID` INT(11) NOT NULL,
+  PRIMARY KEY (`PedidoID`),
+  INDEX `FK_Pedido_Bibliotecario` (`BibliotecarioID` ASC),
+  INDEX `FK_Pedido_Proveedor` (`ProveedorID` ASC),
+  CONSTRAINT `FK_Pedido_Bibliotecario`
+    FOREIGN KEY (`BibliotecarioID`)
+    REFERENCES `bd_biblioteca`.`bibliotecario` (`BibliotecarioID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_Pedido_Proveedor`
+    FOREIGN KEY (`ProveedorID`)
+    REFERENCES `bd_biblioteca`.`proveedor` (`ProveedorID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`comprobante_pago`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`comprobante_pago` (
+  `Descuento` DECIMAL(10,2) NULL DEFAULT NULL,
+  `Fecha` DATE NULL DEFAULT NULL,
+  `Monto` DECIMAL(10,2) NULL DEFAULT NULL,
+  `Montototal` DECIMAL(10,2) NULL DEFAULT NULL,
+  `Tipocomprobante` VARCHAR(50) NULL DEFAULT NULL,
+  `Comprobante_pagoID` INT(11) NOT NULL,
+  `PedidoID` INT(11) NOT NULL,
+  PRIMARY KEY (`Comprobante_pagoID`),
+  INDEX `FK_Comprobante_pago_Pedido` (`PedidoID` ASC),
+  CONSTRAINT `FK_Comprobante_pago_Pedido`
+    FOREIGN KEY (`PedidoID`)
+    REFERENCES `bd_biblioteca`.`pedido` (`PedidoID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`comprobante_tienda`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`comprobante_tienda` (
+  `idcomprobante` INT(11) NOT NULL AUTO_INCREMENT,
+  `idcliente` INT(11) NULL DEFAULT NULL,
+  `monto` DOUBLE NULL DEFAULT NULL,
+  `libroID` INT(11) NULL DEFAULT NULL,
+  `fecha` DATETIME NULL DEFAULT NULL,
+  PRIMARY KEY (`idcomprobante`),
+  INDEX `idcliente` (`idcliente` ASC),
+  INDEX `libroID` (`libroID` ASC),
+  CONSTRAINT `comprobante_tienda_ibfk_1`
+    FOREIGN KEY (`idcliente`)
+    REFERENCES `bd_biblioteca`.`users` (`UsuarioID`),
+  CONSTRAINT `comprobante_tienda_ibfk_2`
+    FOREIGN KEY (`libroID`)
+    REFERENCES `bd_biblioteca`.`libro` (`LibroID`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 12
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`detalle_pedido`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`detalle_pedido` (
+  `Cantidad` INT(11) NULL DEFAULT NULL,
+  `PedidoID` INT(11) NOT NULL,
+  `Detalle_pedidoID` INT(11) NOT NULL,
+  `LibroID` INT(11) NOT NULL,
+  PRIMARY KEY (`Detalle_pedidoID`),
+  INDEX `FK_Detalle_pedido_Pedido` (`PedidoID` ASC),
+  INDEX `FK_Detalle_pedido_Libro` (`LibroID` ASC),
+  CONSTRAINT `FK_Detalle_pedido_Libro`
+    FOREIGN KEY (`LibroID`)
+    REFERENCES `bd_biblioteca`.`libro` (`LibroID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_Detalle_pedido_Pedido`
+    FOREIGN KEY (`PedidoID`)
+    REFERENCES `bd_biblioteca`.`pedido` (`PedidoID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`devolucion`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`devolucion` (
+  `Conmulta` BIT(1) NULL DEFAULT NULL,
+  `Dev_observaciones` VARCHAR(50) NULL DEFAULT NULL,
+  `Estadohabdevolución` BIT(1) NULL DEFAULT NULL,
+  `Fechainiciodevolucion` DATETIME NULL DEFAULT NULL,
+  `PrestamoID` INT(11) NULL DEFAULT NULL,
+  `DevolucionID` INT(11) NOT NULL,
+  `Fecharegistrodevolucion` DATETIME NULL DEFAULT NULL,
+  PRIMARY KEY (`DevolucionID`),
+  INDEX `FK_DEVOLUCION_devuelve` (`PrestamoID` ASC),
+  CONSTRAINT `FK_DEVOLUCION_devuelve`
+    FOREIGN KEY (`PrestamoID`)
+    REFERENCES `bd_biblioteca`.`prestamo` (`PrestamoID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`devolucion_detalle`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`devolucion_detalle` (
+  `Estadodevolucion` BIT(1) NULL DEFAULT NULL,
+  `Fechadevolucionlibro` DATETIME NULL DEFAULT NULL,
+  `Nrocopiasdevolucion` INT(11) NULL DEFAULT NULL,
+  `Devolucion_detalleID` INT(11) NOT NULL,
+  `DevolucionID` INT(11) NOT NULL,
+  `LibroID` INT(11) NOT NULL,
+  `NroLibrosFaltaDevoD` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`Devolucion_detalleID`),
+  INDEX `FK_DEVOLUCION_DETALLE_contiene` (`DevolucionID` ASC),
+  INDEX `FK_DEVOLUCION_DETALLE_relaciona` (`LibroID` ASC),
+  CONSTRAINT `FK_DEVOLUCION_DETALLE_contiene`
+    FOREIGN KEY (`DevolucionID`)
+    REFERENCES `bd_biblioteca`.`devolucion` (`DevolucionID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_DEVOLUCION_DETALLE_relaciona`
+    FOREIGN KEY (`LibroID`)
+    REFERENCES `bd_biblioteca`.`libro` (`LibroID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`estado_detalle_prestamo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`estado_detalle_prestamo` (
+  `Estadodetalleprestamo` VARCHAR(30) NULL DEFAULT NULL,
+  `Estado_detalle_prestamoID` INT(11) NOT NULL,
+  PRIMARY KEY (`Estado_detalle_prestamoID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`libro_autor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`libro_autor` (
+  `AutorID` INT(11) NOT NULL,
+  `Libro_autorID` INT(11) NOT NULL,
+  `LibroID` INT(11) NOT NULL,
+  PRIMARY KEY (`Libro_autorID`),
+  INDEX `FK_Libro_autor_Autor` (`AutorID` ASC),
+  INDEX `FK_Libro_autor_Libro` (`LibroID` ASC),
+  CONSTRAINT `FK_Libro_autor_Autor`
+    FOREIGN KEY (`AutorID`)
+    REFERENCES `bd_biblioteca`.`autor` (`AutorID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_Libro_autor_Libro`
+    FOREIGN KEY (`LibroID`)
+    REFERENCES `bd_biblioteca`.`libro` (`LibroID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`mantenimiento_libros`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`mantenimiento_libros` (
+  `Codigolibrounidad` CHAR(15) NULL DEFAULT NULL,
+  `Man_estadohab` BIT(1) NULL DEFAULT NULL,
+  `Man_fecharegistro` DATETIME NULL DEFAULT NULL,
+  `Man_fechaupdate` DATETIME NULL DEFAULT NULL,
+  `Man_observaciones` VARCHAR(100) NULL DEFAULT NULL,
+  `Man_problemas` VARCHAR(100) NULL DEFAULT NULL,
+  `Mantenimiento_librosID` INT(11) NOT NULL,
+  `Devolucion_detalleID` INT(11) NOT NULL,
+  PRIMARY KEY (`Mantenimiento_librosID`),
+  INDEX `FK_MANTENIMIENTO_LIBROS_relaciona` (`Devolucion_detalleID` ASC),
+  CONSTRAINT `FK_MANTENIMIENTO_LIBROS_relaciona`
+    FOREIGN KEY (`Devolucion_detalleID`)
+    REFERENCES `bd_biblioteca`.`devolucion_detalle` (`Devolucion_detalleID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`permiso`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`permiso` (
+  `Estadopermiso` BIT(1) NULL DEFAULT NULL,
+  `Permiso` VARCHAR(50) NULL DEFAULT NULL,
+  `PermisoID` INT(11) NOT NULL,
+  PRIMARY KEY (`PermisoID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`prestamo_detalle`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`prestamo_detalle` (
+  `Estadohabdetalleprestamo` BIT(1) NULL DEFAULT NULL,
+  `Nombrelibro` VARCHAR(100) NULL DEFAULT NULL,
+  `Nrocopiasprestamo` INT(11) NULL DEFAULT NULL,
+  `Prestamo_detalleID` INT(11) NOT NULL,
+  `Estado_detalle_prestamoID` INT(11) NOT NULL,
+  `LibroID` INT(11) NOT NULL,
+  `PrestamoID` INT(11) NOT NULL,
+  `StockLibroP` INT(11) NULL DEFAULT NULL,
+  `NroLibrosFaltaDevo` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`Prestamo_detalleID`),
+  INDEX `FK_PRESTAMO_DETALLE_tiene` (`Estado_detalle_prestamoID` ASC),
+  INDEX `FK_PRESTAMO_DETALLE_relaciona` (`LibroID` ASC),
+  INDEX `FK_PRESTAMO_DETALLE_contiene` (`PrestamoID` ASC),
+  CONSTRAINT `FK_PRESTAMO_DETALLE_contiene`
+    FOREIGN KEY (`PrestamoID`)
+    REFERENCES `bd_biblioteca`.`prestamo` (`PrestamoID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_PRESTAMO_DETALLE_relaciona`
+    FOREIGN KEY (`LibroID`)
+    REFERENCES `bd_biblioteca`.`libro` (`LibroID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_PRESTAMO_DETALLE_tiene`
+    FOREIGN KEY (`Estado_detalle_prestamoID`)
+    REFERENCES `bd_biblioteca`.`estado_detalle_prestamo` (`Estado_detalle_prestamoID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `bd_biblioteca`.`rol_permiso`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bd_biblioteca`.`rol_permiso` (
+  `Rol_permisoID` INT(11) NOT NULL,
+  `RolID` INT(11) NULL DEFAULT NULL,
+  `PermisoID` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`Rol_permisoID`),
+  INDEX `FK_ROL_PERMISO_ROL` (`RolID` ASC),
+  INDEX `FK_ROL_PERMISO_PERMISO` (`PermisoID` ASC),
+  CONSTRAINT `FK_ROL_PERMISO_PERMISO`
+    FOREIGN KEY (`PermisoID`)
+    REFERENCES `bd_biblioteca`.`permiso` (`PermisoID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_ROL_PERMISO_ROL`
+    FOREIGN KEY (`RolID`)
+    REFERENCES `bd_biblioteca`.`rol` (`RolID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+USE `bd_biblioteca` ;
 insert into rol(RolID,Descripcionrol) values(1,'ROLE_ADMIN'),(2,'ROLE_USER');
 insert into Estado_libro(Estado_libroID,Estado_libro)values(001,'En stock'),(002,'Fuera de Stock');
+insert into tipo_prestamo(Tipo_prestamoID,Tipoprestamo) values(1,'CASA'),(2,'BIBLIOTECA');
+insert into estado_prestamo(Estado_prestamoID,Estadoprestamo) values (1,'REGISTRADO'),(2,'ENTREGADO'),(3,'ANULADO'),(4,'VENCIDO'),(5,'FINALIZADO'),(6,'MULTADO');
+insert into estado_detalle_prestamo(Estado_detalle_prestamoID,Estadodetalleprestamo) values (1,'REGISTRADO'),(2,'PENDIENTE'),(3,'DEVUELTO');
+insert into estado_lector(Estado_lectorID,Estadolector) values (1,'SINLIBRO'),(2,'DEUDORLIBRO'),(3,'MOROSO'),(4,'SANCIONADO');
+
+insert into users(Apellidosusuario,Celularusuario,password,Correousuario,Estadousuario,Nombresusuario,Usuario,
+UsuarioID,RolID,token,created_at,updated_at) values('Menor Saavedra','994006872','$2y$10$Uwx9SlsTKAQNbGaEpXnSTOw3429kYA.6itWKD6CcdUySGE.aNECau','cmenorsaavedra@gmail.com',
+'1','Cielo','cmenorSa','1','1','KzIeHb2HI0','2023-07-15 20:27:07','2023-09-27 23:03:46');
+
+-- -----------------------------------------------------
+-- procedure new_procedure
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `bd_biblioteca`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `new_procedure`()
+BEGIN
+select * from lector;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure reporte1
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `bd_biblioteca`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `reporte1`()
+BEGIN
+	select  case month(P.Fecharegistroprestamo)
+			when 1 then 'Ene'
+			when 2 then 'Feb'
+			when 3 then 'Mar'
+			when 4 then 'Abr'
+			when 5 then 'May'
+			when 6 then 'Jun'
+			when 7 then 'Jul'
+			when 8 then 'Ago'
+			when 9 then 'Sep'
+			when 10 then 'Oct'
+			when 11 then 'Nov'
+			when 12 then 'Dic'
+			end
+												as Mes,
+		sum(PD.Nrocopiasprestamo)				as Cantidad
+	from prestamo	P
+	inner join prestamo_detalle PD				ON PD.PrestamoID=P.PrestamoID
+    where Estadohabprestamo ='1' And year(P.Fecharegistroprestamo)='2023'
+   group by month(P.Fecharegistroprestamo)
+   order by month(P.Fecharegistroprestamo);
+END$$
+
+DELIMITER ;
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
